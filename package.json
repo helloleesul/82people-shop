@@ -1,16 +1,28 @@
 {
-  "name": "82people",
-  "version": "1.0.0",
-  "description": "init",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://kdt-gitlab.elice.io/sw_track/class_05/web_project/team08/82people.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+	"name": "82people",
+	"version": "1.0.0",
+	"description": "init",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://kdt-gitlab.elice.io/sw_track/class_05/web_project/team08/82people.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"dotenv": "^16.3.1",
+		"express": "^4.18.2",
+		"mongoose": "^7.3.1"
+	},
+	"devDependencies": {
+		"@babel/cli": "^7.22.5",
+		"@babel/core": "^7.22.5",
+		"@babel/node": "^7.22.5",
+		"@babel/plugin-transform-runtime": "^7.22.5",
+		"@babel/preset-env": "^7.22.5"
+	}
 }
