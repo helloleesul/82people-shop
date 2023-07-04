@@ -1,0 +1,16 @@
+{
+  "name": "82people",
+  "version": "1.0.0",
+  "description": "init",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://kdt-gitlab.elice.io/sw_track/class_05/web_project/team08/82people.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
