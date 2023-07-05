@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>장바구니</title>
+	</head>
+	<body>
+		<header>header</header>
+		<main>
+			<div>
+				<ol>
+					<li>
+						<h2>장바구니</h2>
+					</li>
+					<li><span>주문하기</span></li>
+					<li><span>결제완료</span></li>
+				</ol>
+				<form action="">
+					<!-- 장바구니 목록 -->
+					<fieldset>
+						<div>
+							<input type="checkbox" id="allItem" name="cartItem" />
+							<label for="allItem">전체 선택</label>
+							<button type="button">선택 삭제</button>
+						</div>
+						<section>
+							<ul>
+								<li>
+									<article>
+										<div>
+											<input type="checkbox" id="item1" name="cartItem" />
+											<label for="item1">
+												<img src="/" />
+												상품1
+											</label>
+										</div>
+										<div>
+											<button type="button">-</button>
+											<input type="number" name="" id="" value="1" min="0" />
+											<button type="button">+</button>
+										</div>
+										<div><span>1,000</span>원</div>
+									</article>
+									<button type="button">삭제</button>
+								</li>
+								<li>
+									<article>
+										<div>
+											<input type="checkbox" id="item2" name="cartItem" />
+											<label for="item2">
+												<img src="/" />
+												상품1
+											</label>
+										</div>
+										<div>
+											<button type="button">-</button>
+											<input type="number" name="" id="" value="1" min="0" />
+											<button type="button">+</button>
+										</div>
+										<div><span>1,000</span>원</div>
+									</article>
+									<button type="button">삭제</button>
+								</li>
+								<li>
+									<article>
+										<div>
+											<input type="checkbox" id="item3" name="cartItem" />
+											<label for="item3">
+												<img src="/" />
+												상품1
+											</label>
+										</div>
+										<div>
+											<button type="button">-</button>
+											<input type="number" name="" id="" value="1" min="0" />
+											<button type="button">+</button>
+										</div>
+										<div><span>1,000</span>원</div>
+									</article>
+									<button type="button">삭제</button>
+								</li>
+							</ul>
+						</section>
+					</fieldset>
+				</form>
+				<!-- 금액 정보 -->
+				<section>
+					<div>
+						<span>상품금액</span>
+						<span>20,000 원</span>
+					</div>
+					<div>
+						<span>배송비</span>
+						<span>3,000 원</span>
+					</div>
+					<hr />
+					<div>
+						<strong>
+							<span>결제예정금액</span>
+							<span>23,000 원</span>
+						</strong>
+					</div>
+				</section>
+				<a href="#">주문하기</a>
+			</div>
+		</main>
+		<footer>footer</footer>
+	</body>
+</html>
