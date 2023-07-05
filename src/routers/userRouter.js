@@ -25,3 +25,5 @@ router.get('/users/myPage/orderHistory', (req, res, next) => {
 router.get('/users/myPage/orderHistory/details', (req, res, next) => {
 	const { token } = req.body; //토큰으로 로그인 정보 검색(토큰 유효성도 동시에 체크)
 });
+
+module.exports = router;
