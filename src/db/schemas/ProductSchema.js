@@ -18,6 +18,10 @@ const ProductSchema = new Schema({
         type: String,
         required: true,
     },
+    manufacturer: {
+        type: String,
+        required: true,
+    },
     imgaeURL: [ String ],
     amount: {
         type: Number,
