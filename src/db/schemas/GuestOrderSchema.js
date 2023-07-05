@@ -5,8 +5,8 @@ const GuestOrderSchema = new Schema({
     orderId: Schema.Types.ObjectId,
     purchase:[ ProductSchema ],
     orderDetails: {
-            password : String, 
-            address : {
+            password: String, 
+            address: {
                 recipient: String,
                 recipientNumber: String,
                 address: String,
