@@ -1,9 +1,13 @@
 const { Schema } = require('mongoose');
 const ProductSchema = require('./ProductSchema');
 
-const UserOrderSchema = new Schema({
+const OrderSchema = new Schema({
     orderId: Schema.Types.ObjectId,
     purchase: [ ProductSchema ],
+    password: {
+        type: String,
+        required: false,
+    },
     orderDetails: {
         type: Schema.Types.ObjectId,
         ref: 'User',
@@ -12,4 +16,4 @@ const UserOrderSchema = new Schema({
     }
 );
 
-module.exports = UserOrderSchema;
+module.exports = OrderSchema;

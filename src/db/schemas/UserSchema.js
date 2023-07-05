@@ -14,7 +14,7 @@ const UserSchema = new Schema({
         type: String,
         required: true,   
     },
-    address: {
+    addressInfo: {
         type: String, 
     },
     grade: {
