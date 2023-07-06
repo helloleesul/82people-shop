@@ -1,0 +1,139 @@
+/* 레이아웃 기본 스타일 (FE-dev로 병합 후 따로 common.css로 뺄 예정)*/
+/* header, footer 스타일은 추후 작업 후 삭제 예정 */
+html,
+body {
+	width: 100%;
+	height: 100%;
+}
+header,
+footer {
+	text-align: center;
+	background-color: lightgray;
+	font-size: 2rem;
+	padding: 1rem;
+	text-transform: uppercase;
+}
+#global-wrap {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	justify-content: space-between;
+}
+main {
+	display: flex;
+	flex: 1;
+	align-self: stretch;
+}
+.main-container {
+	padding: 48px;
+	box-sizing: border-box;
+	width: 80%;
+	margin: 0 auto;
+	background-color: #f5f5f5;
+}
+
+/* 여기서 부터 각자 레이아웃 스타일 작업 */
+/* 장바구니 스타일 */
+button {
+	border: none;
+	background: none;
+	font-size: inherit;
+	padding: 0;
+	margin: 0;
+	cursor: pointer;
+}
+#cart-wrap {
+	width: 80%;
+	margin: 0 auto;
+}
+
+.cart-step {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 20px;
+	margin-bottom: 50px;
+}
+.cart-step > li {
+	display: flex;
+	align-items: center;
+	opacity: 0.3;
+	font-size: 30px;
+}
+.cart-step > li.active {
+	opacity: 1;
+}
+.cart-step > li > span {
+	background-color: black;
+	color: #fff;
+	width: 30px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	border-radius: 999px;
+	margin-right: 10px;
+	font-size: 20px;
+}
+.cart-control-btn {
+	border-bottom: 1px solid #000;
+}
+.cart-items img {
+	width: 100px;
+	height: 80px;
+	background-color: #fff;
+}
+.cart-items li,
+.cart-items article {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.cart-items li {
+	gap: 20px;
+	margin-top: 20px;
+	border-bottom: 1px solid #ddd;
+	padding-bottom: 20px;
+}
+.cart-items article {
+	flex: 1;
+}
+.cart-items .thumbnail,
+.cart-items .thumbnail label {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	cursor: pointer;
+}
+.cart-price {
+	background-color: #ddd;
+	padding: 40px;
+	padding-bottom: 20px;
+	font-size: 20px;
+	margin-top: 20px;
+}
+.cart-price > div {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 20px;
+}
+.cart-price .total {
+	border-top: 1px solid #000;
+	padding-top: 20px;
+	font-weight: 900;
+	font-size: 26px;
+}
+.cart-price .total strong {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.order-btn {
+	font-size: 26px;
+	background: #000;
+	width: 100%;
+	color: #fff;
+	font-weight: 900;
+	padding: 20px 0;
+}
