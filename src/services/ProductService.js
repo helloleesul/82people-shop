@@ -9,7 +9,7 @@ const ProductService = {
 
     // 인기 상품 4개까지 조회 
     getBestProducts: async () => {
-        return await Product.find({}).sort({ salesAmount: 1 }).limit(4);;
+        return await Product.find({}).sort({ salesAmount: -1 }).limit(4);;
     },
     
     // 카테고리별 제품 조회 
@@ -21,7 +21,7 @@ const ProductService = {
         return Product.find({ category: category })
     },
 
-    // 상품 상세 조회 
+    // 상품 상세 조회
     getProductById: async (productId) => {
         if (!productId) {
           throw new Error('상품이 존재하지 않습니다. 다시 한 번 확인해주세요.');
