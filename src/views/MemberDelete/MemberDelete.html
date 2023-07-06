@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- css 초기화 연결 (삭제예정) -->
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css"
+		/>
+		<!-- 작업할 css 연결 -->
+		<link rel="stylesheet" href="MemberDelete.css" />
+		<!-- 페이지에 맞는 타이틀 입력 -->
+		<title>회원 탈퇴</title>
+	</head>
+	<body>
+		<div id="global-wrap">
+			<header>header</header>
+			<main role="main" id="Member_Withdrawal">
+				<div class="main-container" id="MemberDelete">
+					<!-- 클래스명 main-container까지 공통, id값은 페이지에 맞게 이름설정해서 사용 -->
+					<!-- 해당 위치에 페이지 마크업 -->
+					<div class="Member_icon_image">
+						<a href="http://www.naver.com" target="_self"></a
+						><img
+							src="https://www.catchsecu.com/wp-content/uploads/2021/02/%EC%B6%94%EA%B0%80%EC%9D%B4%EB%AF%B8%EC%A7%801-1-600x338.png"
+							alt="마이 파티"
+							width="265"
+							height="400"
+						/>
+					</div>
+					<div class="field">
+						<span class="Member_Name">회원 탈퇴</span>
+						<strong>
+							<div class="Member_Email_Container">
+								<span class="Member_Email">이메일</span>
+								<span class="Member_Email2">이메일@aaa.com</span>
+							</div>
+						</strong>
+						<strong>
+							<div class="Member_Withdrawal_Statement_Container">
+								<span class="Member_Withdrawal_Statement">회원 탈퇴문구</span>
+								<span class="Member_Withdrawal_Statement2"
+									>파티피플에서 탈퇴하겠습니다.</span
+								>
+							</div>
+						</strong>
+						<strong>
+							<span class="Member_Withdrawal_Statement_Enter"
+								>회원 탈퇴 문구 입력</span
+							>
+							<input class="input" />
+						</strong>
+						<button class="Check_Botton" onclick="doAction()">확인</button>
+					</div>
+				</div>
+			</main>
+			<footer>footer</footer>
+		</div>
+	</body>
+</html>
