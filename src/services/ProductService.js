@@ -6,9 +6,13 @@ class ProductService {
   };
 
   // 전체 상품 조회
-  // bestProduct => ??
-  async getProducts() {
+  async getAllProducts() {
     return await this.Product.findAll();
+  };
+
+  // bestProduct => 판매량 최상위 4개
+  async getBestProducts() {
+    return await this.Product.find();
   };
   
   // 카테고리별 제품 조회
@@ -22,6 +26,45 @@ class ProductService {
   };
 }
 
-const productService = new ProductService(Product);
+const ProductService = new ProductService(Product);
 
-export { productService };
+module.exports = ProductService;
+
+    /* totalProducts:
+                    {[
+                        _id:,
+                        title:,
+                        price:,
+                        manufacturer:,
+                        imageUrl:,
+                        category:,
+                        amout
+                    ]} */
+    // path: /products  
+
+
+        /* categoryProducts:
+                    {[
+                        _id:,
+                        title:,
+                        price:,
+                        manufacturer:,
+                        imageUrl:,
+                        category:,
+                        amout
+                    ]} */
+    //path: /products/:category
+
+
+
+    /* product{[
+                _id:,
+                title:,
+                price:,
+                manufacturer:,
+                imageUrl:,
+                category:,
+                description,
+                amount
+            ]} */
+    //path: /products/:productId
