@@ -39,19 +39,19 @@ main {
 	color: #000;
 }
 
-#MemberInfo > #MemberInfo-wrap {
+#memberinfo > #memberinfo-wrap {
 	display: flex;
 	justify-content: center;
 }
 
-#MemberInfo > #MemberInfo-wrap > .Member_icon_image {
+#memberinfo > #memberinfo-wrap > .member-icon-image {
 	width: 265px;
 	height: 400px;
 	background-color: red;
 	margin: 58px 50px 0 0;
 }
 
-#MemberInfo > #MemberInfo-wrap > .field {
+#memberinfo > #memberinfo-wrap > .field {
 	width: 740px;
 	height: 1000px;
 	background-color: white;
@@ -60,20 +60,20 @@ main {
 	flex-direction: column;
 }
 
-#MemberInfo > #MemberInfo-wrap > .field > .Modify_tag {
+#memberinfo > #memberinfo-wrap > .field > .modify-tag {
 	width: 730px;
 	height: 75px;
 	font-size: 30px;
 	border-bottom: solid;
 }
 
-#MemberInfo > #MemberInfo-wrap > .field > strong {
+#memberinfo > #memberinfo-wrap > .field > strong {
 	width: 513px;
 	height: 120px;
 	margin: 40px 0 0 0;
 }
 
-#MemberInfo > #MemberInfo-wrap > .field > strong > .Member_Name {
+#memberinfo > #memberinfo-wrap > .field > strong > .member-name {
 	display: inline-block;
 	width: 198px;
 	height: 120px;
@@ -82,7 +82,7 @@ main {
 	text-align: left center;
 	line-height: 120px;
 }
-#MemberInfo > #MemberInfo-wrap > .field > strong > .Member_Email {
+#memberinfo > #memberinfo-wrap > .field > strong > .member-email {
 	display: inline-block;
 	width: 198px;
 	height: 120px;
@@ -91,7 +91,7 @@ main {
 	text-align: left center;
 	line-height: 120px;
 }
-#MemberInfo > #MemberInfo-wrap > .field > strong > .Member_Password {
+#memberinfo > #memberinfo-wrap > .field > strong > .member-password {
 	display: inline-block;
 	width: 198px;
 	height: 120px;
@@ -100,7 +100,7 @@ main {
 	text-align: left center;
 	line-height: 120px;
 }
-#MemberInfo > #MemberInfo-wrap > .field > strong > .Member_Address {
+#memberinfo > #memberinfo-wrap > .field > strong > .member-address {
 	display: inline-block;
 	width: 198px;
 	height: 120px;
@@ -109,13 +109,13 @@ main {
 	text-align: left center;
 	line-height: 120px;
 }
-#MemberInfo > #MemberInfo-wrap > .field > strong > .input {
+#memberinfo > #memberinfo-wrap > .field > strong > .input {
 	width: 300px;
 	height: 50px;
 	font-size: 24px;
 	margin: auto;
 }
-#MemberInfo > #MemberInfo-wrap > .field > strong > .input_Address {
+#memberinfo > #memberinfo-wrap > .field > strong > .input_Address {
 	width: 300px;
 	height: 80px;
 	font-size: 24px;
@@ -129,7 +129,7 @@ main {
 	margin-top: 50px;
 }
 
-.field2 > .Member_Withdrawal_Link {
+.field2 > .member-withdrawal-link {
 	width: 115px;
 	height: 70px;
 	text-align: center;
@@ -139,7 +139,7 @@ main {
 	margin: 50px 0 0 0;
 }
 
-.field2 > .Member_Withdrawal_Link a {
+.field2 > .member-withdrawal-link a {
 	display: block;
 	width: 100%;
 	height: 100%;
@@ -147,13 +147,13 @@ main {
 	color: #000;
 }
 
-.field2 > .Member_Withdrawal_Link span {
+.field2 > .member-withdrawal-link span {
 	display: inline-block;
 	color: white;
 	vertical-align: middle;
 }
 
-.field2 > .Modify_Botton {
+.field2 > .modify-botton {
 	width: 115px;
 	height: 70px;
 	text-align: center;
