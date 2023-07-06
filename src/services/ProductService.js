@@ -1,70 +1,26 @@
-const { Product } = require('../db');
+const { Product } = require('../db/models');
+// 작업 중
+const ProductService = {
 
-class ProductService {
-  constructor(Product) {
-    this.Product = Product;
-  };
-
-  // 전체 상품 조회
-  async getAllProducts() {
+  // 전체 상품 조회 => 재고가 없으면 품절 띄우기
+  getAllProducts: async () => {
     return await this.Product.findAll();
-  };
+  },
 
-  // bestProduct => 판매량 최상위 4개
-  async getBestProducts() {
+  // bestProduct => 재고가 없으면 품절 띄우기
+  getBestProducts: async () => {
     return await this.Product.find();
-  };
+  },
   
-  // 카테고리별 제품 조회
-  async getProductsByCategory() {
+  // 카테고리별 제품 조회 => 재고가 없으면 품절 띄우기
+  getProductsByCategory: async () => {
     return await this.Product.find()
-  };
+  },
 
-  // 상품 상세 조회
-  async getProductById() {
+  // 상품 상세 조회 => 재고가 없으면 품절 띄우기
+  getProductById: async () => {
     return await this.Product.findById();
-  };
+  },
 }
 
-const ProductService = new ProductService(Product);
-
 module.exports = ProductService;
-
-    /* totalProducts:
-                    {[
-                        _id:,
-                        title:,
-                        price:,
-                        manufacturer:,
-                        imageUrl:,
-                        category:,
-                        amout
-                    ]} */
-    // path: /products  
-
-
-        /* categoryProducts:
-                    {[
-                        _id:,
-                        title:,
-                        price:,
-                        manufacturer:,
-                        imageUrl:,
-                        category:,
-                        amout
-                    ]} */
-    //path: /products/:category
-
-
-
-    /* product{[
-                _id:,
-                title:,
-                price:,
-                manufacturer:,
-                imageUrl:,
-                category:,
-                description,
-                amount
-            ]} */
-    //path: /products/:productId

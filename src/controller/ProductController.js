@@ -1,8 +1,8 @@
 const { ProductService } = require('../services');
 
-class ProductController {
+const ProductController = {
     // 전체 상품 요청 및 응답    
-    async getAllProducts(req, res, next) {
+    getAllProducts: async (req, res, next) => {
         try {
             const totalProducts = await ProductService.getAllProducts();
             const bestProducts = await ProductService.getBestProducts();
@@ -15,10 +15,10 @@ class ProductController {
         } catch(err) {
             next(err);
         };
-    };
+    },
 
     // 카테고리별 상품 요청 및 응답
-    async getProductsByCategory() {
+    getProductsByCategory: async () => {
         try {
             const { category } = req.params;
             const categoryProducts = await ProductService.getProductsByCategory(category);
@@ -30,10 +30,10 @@ class ProductController {
         } catch(err) {
             next(err);
         };
-    };
+    },
 
-    // 상품 Id별 요청 및 응답
-    async getProductsById() {        
+    // 상품 id별 요청 및 응답
+    getProductsById: async () => {        
         try {
             const { productId } = req.params;
             const product = await ProductService.getProductsById(productId);
@@ -45,9 +45,7 @@ class ProductController {
         } catch(err) {
             next(err);
         };
-    };
+    },
 }
 
-const ProductController = new ProductController();
-
-export { ProductController };
+module.exports = ProductController;

@@ -4,7 +4,7 @@ const { ProductController }  = require('../controller');
 const ProductRouter = Router();
 
 // [사용자] 전체 상품 조회
-ProductRouter.get('/products', ProductController.getProducts);
+ProductRouter.get('/products', ProductController.getAllProducts);
 
 // [사용자] 카테고리별 상품 조회
 ProductRouter.get('/products/:category', ProductController.getProductsByCategory);
