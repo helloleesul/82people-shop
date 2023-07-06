@@ -1,0 +1,164 @@
+/* 레이아웃 기본 스타일 (FE-dev로 병합 후 따로 common.css로 뺄 예정)*/
+/* header, footer 스타일은 추후 작업 후 삭제 예정 */
+html,
+body {
+	width: 100%;
+	height: 100%;
+}
+header,
+footer {
+	text-align: center;
+	background-color: lightgray;
+	font-size: 2rem;
+	padding: 1rem;
+	text-transform: uppercase;
+}
+#global-wrap {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	justify-content: space-between;
+}
+main {
+	display: flex;
+	flex: 1;
+	align-self: stretch;
+}
+.main-container {
+	padding: 48px;
+	box-sizing: border-box;
+	width: 80%;
+	margin: 0 auto;
+	background-color: #f5f5f5;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	color: #000;
+}
+
+#MemberInfo > #MemberInfo-wrap {
+	display: flex;
+	justify-content: center;
+}
+
+#MemberInfo > #MemberInfo-wrap > .Member_icon_image {
+	width: 265px;
+	height: 400px;
+	background-color: red;
+	margin: 58px 50px 0 0;
+}
+
+#MemberInfo > #MemberInfo-wrap > .field {
+	width: 740px;
+	height: 1000px;
+	background-color: white;
+	margin: 58px 0 0;
+	display: flex;
+	flex-direction: column;
+}
+
+#MemberInfo > #MemberInfo-wrap > .field > .Modify_tag {
+	width: 730px;
+	height: 75px;
+	font-size: 30px;
+	border-bottom: solid;
+}
+
+#MemberInfo > #MemberInfo-wrap > .field > strong {
+	width: 513px;
+	height: 120px;
+	margin: 40px 0 0 0;
+}
+
+#MemberInfo > #MemberInfo-wrap > .field > strong > .Member_Name {
+	display: inline-block;
+	width: 198px;
+	height: 120px;
+	font-size: 24px;
+	background-color: white;
+	text-align: left center;
+	line-height: 120px;
+}
+#MemberInfo > #MemberInfo-wrap > .field > strong > .Member_Email {
+	display: inline-block;
+	width: 198px;
+	height: 120px;
+	font-size: 24px;
+	background-color: white;
+	text-align: left center;
+	line-height: 120px;
+}
+#MemberInfo > #MemberInfo-wrap > .field > strong > .Member_Password {
+	display: inline-block;
+	width: 198px;
+	height: 120px;
+	font-size: 24px;
+	background-color: white;
+	text-align: left center;
+	line-height: 120px;
+}
+#MemberInfo > #MemberInfo-wrap > .field > strong > .Member_Address {
+	display: inline-block;
+	width: 198px;
+	height: 120px;
+	font-size: 24px;
+	background-color: white;
+	text-align: left center;
+	line-height: 120px;
+}
+#MemberInfo > #MemberInfo-wrap > .field > strong > .input {
+	width: 300px;
+	height: 50px;
+	font-size: 24px;
+	margin: auto;
+}
+#MemberInfo > #MemberInfo-wrap > .field > strong > .input_Address {
+	width: 300px;
+	height: 80px;
+	font-size: 24px;
+	margin: auto;
+}
+
+.field2 {
+	display: flex;
+	flex-direction: row;
+	align-items: end;
+	margin-top: 50px;
+}
+
+.field2 > .Member_Withdrawal_Link {
+	width: 115px;
+	height: 70px;
+	text-align: center;
+	font-size: 20px;
+	background-color: black;
+	line-height: 60px;
+	margin: 50px 0 0 0;
+}
+
+.field2 > .Member_Withdrawal_Link a {
+	display: block;
+	width: 100%;
+	height: 100%;
+	text-decoration: none;
+	color: #000;
+}
+
+.field2 > .Member_Withdrawal_Link span {
+	display: inline-block;
+	color: white;
+	vertical-align: middle;
+}
+
+.field2 > .Modify_Botton {
+	width: 115px;
+	height: 70px;
+	text-align: center;
+	margin-left: 150px;
+	color: white;
+	font-size: 20px;
+	background-color: black;
+}
