@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- css 초기화 연결 (삭제예정) -->
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css"
+		/>
+		<!-- 작업할 css 연결 -->
+		<link rel="stylesheet" href="HomeDetails.css" />
+		<!-- 페이지에 맞는 타이틀 입력 -->
+		<title>물품 상세</title>
+	</head>
+	<body>
+		<div id="global-wrap">
+			<header>header</header>
+			<main role="main" id="Product_Details_Main">
+				<div class="main-container" id="HomeDetails">
+					<!-- 클래스명 main-container까지 공통, id값은 페이지에 맞게 이름설정해서 사용 -->
+					<!-- 해당 위치에 페이지 마크업 -->
+					<div class="Product_icon_image">
+						<a href="http://www.naver.com" target="_self"></a
+						><img
+							src="https://image.auction.co.kr/itemimage/18/41/a3/1841a37b16.jpg"
+							alt="main_item1"
+							width="400"
+							height="400"
+						/>
+					</div>
+					<div class="field">
+						<span class="Maker">파티피플</span>
+						<span class="Product_Name">완전멋진 상품명</span>
+						<span class="Product_Price">10,000원</span>
+						<span class="Product_Detail"
+							>아니 이게 아직도 없으시다구요?아니 이게 아직도
+							없으시다구요?</span
+						>
+						<strong>
+							<span class="Product_Count">수량</span>
+							<input class="input" />
+						</strong>
+						<strong>
+							<span class="Product_Total_Price">총 상품금액 :</span>
+							<span class="Product_Total_Cash">100,000원</span>
+						</strong>
+						<div class="Product_Put_ShoppingCart">
+							<a href="http://www.naver.com">
+								<span>장바구니 담기</span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</main>
+			<footer>footer</footer>
+		</div>
+	</body>
+</html>
