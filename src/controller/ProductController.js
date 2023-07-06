@@ -34,7 +34,7 @@ const ProductController = {
     },
 
     // 상품 id별 요청 및 응답
-    getProductsById: async (req, res, next) => {        
+    getProductById: async (req, res, next) => {        
         try {
             const { productId } = req.params;
             
