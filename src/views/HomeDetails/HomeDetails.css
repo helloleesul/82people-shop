@@ -39,19 +39,19 @@ main {
 	color: #000;
 }
 
-#Product_Details_Main > #HomeDetails {
+#product-details-main > #homedetails {
 	display: flex;
 	justify-content: center;
 }
 
-#Product_Details_Main > #HomeDetails > .Product_icon_image {
+#product-details-main > #homedetails > .product-icon-image {
 	width: 400px;
 	height: 400px;
 	background-color: red;
 	margin-right: 40px;
 }
 
-#Product_Details_Main > #HomeDetails > .field {
+#product-details-main > #homedetails > .field {
 	width: 540px;
 	height: 700px;
 	background-color: white;
@@ -59,13 +59,13 @@ main {
 	flex-direction: column;
 	justify-content: center;
 }
-#Product_Details_Main > #HomeDetails > .field > .Maker {
+#product-details-main > #homedetails > .field > .maker {
 	width: 200px;
 	height: 30px;
 	font-size: 25px;
 }
 
-#Product_Details_Main > #HomeDetails > .field > .Product_Name {
+#product-details-main > #homedetails > .field > .product-name {
 	width: 450px;
 	height: 50px;
 	font-size: 30px;
@@ -73,48 +73,48 @@ main {
 	border-bottom: solid;
 }
 
-#Product_Details_Main > #HomeDetails > .field > .Product_Price {
+#product-details-main > #homedetails > .field > .product-price {
 	width: 204px;
 	height: 68px;
 	font-size: 40px;
 	margin-top: 51px;
 }
-#Product_Details_Main > #HomeDetails > .field > .Product_Detail {
+#product-details-main > #homedetails > .field > .product-detail {
 	width: 450px;
 	height: 70px;
 	font-size: 24px;
 	margin-top: 33px;
 }
-#Product_Details_Main > #HomeDetails > .field > strong {
+#product-details-main > #homedetails > .field > strong {
 	margin: 40px 0 0 0;
 }
 
-#Product_Details_Main > #HomeDetails > .field > strong > .Product_Count {
+#product-details-main > #homedetails > .field > strong > .product-count {
 	width: 100px;
 	height: 30px;
 	font-size: 24px;
 }
 
-#Product_Details_Main > #HomeDetails > .field > strong > .input {
+#product-details-main > #homedetails > .field > strong > .input {
 	width: 200px;
 	height: 50px;
 	font-size: 24px;
 	margin: 0 0 0 100px;
 }
-#Product_Details_Main > #HomeDetails > .field > strong > .Product_Total_Price {
+#product-details-main > #homedetails > .field > strong > .product-total-price {
 	margin: 70px 0 0 0;
 	width: 150px;
 	height: 30px;
 	font-size: 24px;
 }
-#Product_Details_Main > #HomeDetails > .field > strong > .Product_Total_Cash {
+#product-details-main > #homedetails > .field > strong > .product-total-cash {
 	margin: 70px 0 0 50px;
 	width: 150px;
 	height: 30px;
 	font-size: 24px;
 }
 
-.Product_Put_ShoppingCart {
+.product-put-shoppingcart {
 	width: 500px;
 	height: 100px;
 	text-align: center;
@@ -124,7 +124,7 @@ main {
 	margin: 50px 0 0 0;
 }
 
-.Product_Put_ShoppingCart a {
+.product-put-shoppingcart a {
 	display: block;
 	width: 100%;
 	height: 100%;
@@ -132,7 +132,7 @@ main {
 	color: #000;
 }
 
-.Product_Put_ShoppingCart span {
+.product-put-shoppingcart span {
 	display: inline-block;
 	color: white;
 	vertical-align: middle;
