@@ -3,106 +3,134 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>마이페이지 - 주문내역 상세</title>
+		<!-- css 초기화 연결 (삭제예정) -->
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css"
+		/>
+		<!-- 작업할 css 연결 -->
+		<link rel="stylesheet" href="OrderDetail.css" />
+		<!-- 페이지에 맞는 타이틀 입력 -->
+		<title>마이파티 - 주문내역 상세</title>
 	</head>
 	<body>
-		<header>header</header>
-		<main>
-			<div>
-				<!-- 마이페이지 메뉴바 -->
-				<section>
-					<h2>마이파티</h2>
-					<!-- 회원정보 -->
-					<div>
-						<div role="img">🥳</div>
-						<p><span>홍길동</span>님</p>
-						<span>일반회원</span>
+		<div id="global-wrap">
+			<header>header</header>
+			<main>
+				<div class="main-container">
+					<div id="order-history-wrap">
+						<!-- 마이페이지 메뉴바 -->
+						<section class="myparty-menubar">
+							<h2>마이파티</h2>
+							<!-- 회원정보 -->
+							<article class="user-info">
+								<div>
+									<div class="profile" role="img">🥳</div>
+									<p class="user-name"><span>홍길동</span>님</p>
+								</div>
+								<span class="user-role">일반회원</span>
+							</article>
+							<!-- 마이페이지 메뉴 -->
+							<nav>
+								<ul>
+									<li class="active">
+										<a href="#">주문 내역</a>
+									</li>
+									<li>
+										<a href="#">내 정보수정</a>
+									</li>
+								</ul>
+							</nav>
+						</section>
+						<!-- 주문내역 상세-->
+						<section class="order-history">
+							<h3>주문내역 > 주문상세</h3>
+							<!-- 주문번호 및 상태 -->
+							<div class="order-number-status">
+								<p>주문번호 <span>31000182263853</span></p>
+								<span class="status">상품 준비중</span>
+							</div>
+							<!-- 주문상품 내역 -->
+							<article class="order-products">
+								<div class="products-info">
+									<span class="date">2023-00-00</span>
+								</div>
+								<div class="products-list">
+									<ul>
+										<li>
+											<div class="thumbnail">
+												<img src="/" />
+												<span class="title">상품1</span>
+											</div>
+											<div><span>1</span> 개 / <span>1,000</span>원</div>
+										</li>
+										<li>
+											<div class="thumbnail">
+												<img src="/" />
+												<span class="title">상품1</span>
+											</div>
+											<div><span>1</span> 개 / <span>1,000</span>원</div>
+										</li>
+									</ul>
+									<a href="#" class="add-cart">장바구니 담기</a>
+								</div>
+							</article>
+							<!-- 주문 정보 -->
+							<article class="order-info">
+								<div class="title-container">
+									<h4>주문 정보</h4>
+									<!-- 상품준비중일 때에만 해당요소 노출 -->
+									<button type="button" class="order-modify">
+										주문 정보 수정
+									</button>
+								</div>
+								<section>
+									<div>
+										<span>수령인</span>
+										<span>홍길동</span>
+									</div>
+									<div>
+										<span>연락처</span>
+										<span>010-0000-0000</span>
+									</div>
+									<div>
+										<span>배송지</span>
+										<span>서울시 땡땡구 땡땡로 땡땡아파트 000동 000호</span>
+									</div>
+								</section>
+							</article>
+							<!-- 결제 정보 -->
+							<article class="purchase-info">
+								<h4>결제 정보</h4>
+								<section>
+									<div>
+										<span>총 상품가격</span>
+										<span>20,000 원</span>
+									</div>
+									<div>
+										<span>배송비</span>
+										<span>3,000 원</span>
+									</div>
+									<div>
+										<strong>
+											<span>총 결제금액</span>
+										</strong>
+										<strong>
+											<span>23,000 원</span>
+										</strong>
+									</div>
+								</section>
+							</article>
+							<div class="btns">
+								<a href="#">< 주문목록</a>
+								<!-- 상품준비중일 때에만 해당요소 노출 -->
+								<button type="button">주문취소</button>
+							</div>
+						</section>
 					</div>
-					<!-- 마이페이지 메뉴 -->
-					<nav>
-						<ul>
-							<li>
-								<a href="#">주문 내역</a>
-							</li>
-							<li>
-								<a href="#">내 정보수정</a>
-							</li>
-						</ul>
-					</nav>
-				</section>
-				<!-- 주문내역 상세-->
-				<section>
-					<h3>주문내역 > 주문상세</h3>
-					<!-- 주문번호 및 상태 -->
-					<div>
-						<p>주문번호 <span>31000182263853</span></p>
-						<span>상품 준비중</span>
-					</div>
-					<!-- 주문상품 내역 -->
-					<article>
-						<div>
-							<span>2023-00-00</span>
-						</div>
-						<ul>
-							<li>
-								<img src="/" />
-								<span>상품1</span>
-								<div><span>1</span> 개 / <span>1,000</span>원</div>
-							</li>
-							<li>
-								<img src="/" />
-								<span>상품2</span>
-								<div><span>1</span> 개 / <span>1,000</span>원</div>
-							</li>
-						</ul>
-						<a href="#">장바구니 담기</a>
-					</article>
-					<!-- 주문 정보 -->
-					<article>
-						<div>
-							<h4>주문 정보</h4>
-							<!-- 상품준비중일 때에만 해당요소 노출 -->
-							<button>주문 정보 수정</button>
-						</div>
-						<div>
-							<span>수령인</span>
-							<span>홍길동</span>
-						</div>
-						<div>
-							<span>연락처</span>
-							<span>010-0000-0000</span>
-						</div>
-						<div>
-							<span>배송지</span>
-							<span>서울시 땡땡구 땡땡로 땡땡아파트 000동 000호</span>
-						</div>
-					</article>
-					<!-- 결제 정보 -->
-					<article>
-						<h4>결제 정보</h4>
-						<div>
-							<span>총 상품가격</span>
-							<span>20,000 원</span>
-						</div>
-						<div>
-							<span>배송비</span>
-							<span>3,000 원</span>
-						</div>
-						<div>
-							<strong>
-								<span>총 결제금액</span>
-								<span>23,000 원</span>
-							</strong>
-						</div>
-					</article>
-					<div>
-						<a href="#">< 주문목록</a>
-						<!-- 상품준비중일 때에만 해당요소 노출 -->
-						<button>주문취소</button>
-					</div>
-				</section>
-			</div>
-		</main>
-		<footer>footer</footer>
+				</div>
+			</main>
+			<footer>footer</footer>
+		</div>
 	</body>
 </html>
