@@ -55,7 +55,7 @@ ul {
 
 .contents1 {
 	font-size: 24px;
-	font-weigth: normal;
+	font-weight: normal;
 }
 
 .contents1-blod {
@@ -66,7 +66,118 @@ ul {
 	background-color: gray;
 	line-height: 50px;
 }
-
+.contents2-blod {
+	height: 50px;
+	font-size: 24px;
+	font-weight: normal;
+	text-align: center;
+	background-color: gray;
+	line-height: 50px;
+}
+.contents3-blod {
+	height: 50px;
+	font-size: 24px;
+	font-weight: normal;
+	text-align: center;
+	background-color: gray;
+	line-height: 50px;
+}
+.contents4-blod {
+	height: 50px;
+	font-size: 24px;
+	font-weight: normal;
+	text-align: center;
+	background-color: gray;
+	line-height: 50px;
+}
+.contents5-blod {
+	height: 50px;
+	font-size: 24px;
+	font-weight: normal;
+	text-align: center;
+	background-color: gray;
+	line-height: 50px;
+}
+.contents6-blod {
+	height: 50px;
+	font-size: 24px;
+	font-weight: normal;
+	text-align: center;
+	background-color: gray;
+	line-height: 50px;
+}
+.contents7-blod {
+	height: 50px;
+	font-size: 24px;
+	font-weight: normal;
+	text-align: center;
+	background-color: gray;
+	line-height: 50px;
+}
+.contents8-blod {
+	height: 50px;
+	font-size: 24px;
+	font-weight: normal;
+	text-align: center;
+	background-color: gray;
+	line-height: 50px;
+}
+.contents1-price {
+	height: 50px;
+	font-size: 29px;
+	text-align: center;
+	background-color: #ebebeb;
+	line-height: 50px;
+}
+.contents2-price {
+	height: 50px;
+	font-size: 29px;
+	text-align: center;
+	background-color: #ebebeb;
+	line-height: 50px;
+}
+.contents3-price {
+	height: 50px;
+	font-size: 29px;
+	text-align: center;
+	background-color: #ebebeb;
+	line-height: 50px;
+}
+.contents4-price {
+	height: 50px;
+	font-size: 29px;
+	text-align: center;
+	background-color: #ebebeb;
+	line-height: 50px;
+}
+.contents5-price {
+	height: 50px;
+	font-size: 29px;
+	text-align: center;
+	background-color: #ebebeb;
+	line-height: 50px;
+}
+.contents6-price {
+	height: 50px;
+	font-size: 29px;
+	text-align: center;
+	background-color: #ebebeb;
+	line-height: 50px;
+}
+.contents7-price {
+	height: 50px;
+	font-size: 29px;
+	text-align: center;
+	background-color: #ebebeb;
+	line-height: 50px;
+}
+.contents8-price {
+	height: 50px;
+	font-size: 29px;
+	text-align: center;
+	background-color: #ebebeb;
+	line-height: 50px;
+}
 .contents3 {
 	height: 50px;
 	font-size: 29px;
