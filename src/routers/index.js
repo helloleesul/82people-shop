@@ -1,6 +1,6 @@
 const { userRouter } = require('./UserRouter');
-const { GuestOrderHistoryRouter } = require('./GuestOrderHistoryRouter');
+const { AuthRouter } = require('./AuthRouter');
 const { OrderRouter } = require('./OrderRouter');
 const { ProductRouter } = require('./ProductRouter');
 
-export { userRouter, GuestOrderHistoryRouter, OrderRouter, ProductRouter };
+export { userRouter, AuthRouter, OrderRouter, ProductRouter };
