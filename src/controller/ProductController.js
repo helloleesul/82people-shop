@@ -6,7 +6,7 @@ const ProductController = {
         try {
             const totalProducts = await ProductService.getAllProducts();
             const bestProducts = await ProductService.getBestProducts();
-
+            
             res.status(200).json({
                 msg: '전체 제품 목록 조회 성공',
                 totalProducts,
@@ -18,9 +18,10 @@ const ProductController = {
     },
 
     // 카테고리별 상품 요청 및 응답
-    getProductsByCategory: async () => {
+    getProductsByCategory: async (req, res, next) => {
         try {
             const { category } = req.params;
+
             const categoryProducts = await ProductService.getProductsByCategory(category);
 
             res.status(200).json({
@@ -33,10 +34,11 @@ const ProductController = {
     },
 
     // 상품 id별 요청 및 응답
-    getProductsById: async () => {        
+    getProductsById: async (req, res, next) => {        
         try {
             const { productId } = req.params;
-            const product = await ProductService.getProductsById(productId);
+            
+            const product = await ProductService.getProductById(productId);
 
             res.status(200).json({
                 msg: '제품 상세 보기 조회 성공',
