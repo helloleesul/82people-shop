@@ -39,20 +39,20 @@ main {
 	color: #000;
 }
 
-#Member_Withdrawal > #MemberDelete {
+#member-withdrawal > #memberdelete {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
 }
 
-#Member_Withdrawal > #MemberDelete > .Member_icon_image {
+#member-withdrawal > #memberdelete > .member-icon-image {
 	width: 265px;
 	height: 400px;
 	background-color: red;
 	margin: 58px 50px 0 0;
 }
 
-#Member_Withdrawal > #MemberDelete > .field {
+#member-withdrawal > #memberdelete > .field {
 	width: 740px;
 	height: 1000px;
 	background-color: white;
@@ -61,27 +61,27 @@ main {
 	flex-direction: column;
 }
 
-#Member_Withdrawal > #MemberDelete > .field > .Member_Name {
+#member-withdrawal > #memberdelete > .field > .member-name {
 	width: 730px;
 	height: 75px;
 	font-size: 30px;
 	border-bottom: solid;
 }
 
-#Member_Withdrawal > #MemberDelete > .field > strong {
+#member-withdrawal > #memberdelete > .field > strong {
 	width: 703px;
 	height: 120px;
 	margin: 40px 0 0 0;
 }
-#Member_Withdrawal > #MemberDelete > .field > strong > .Member_Email_Container {
+#member-withdrawal > #memberdelete > .field > strong > .member-email-container {
 	display: flex;
 }
-#Member_Withdrawal
-	> #MemberDelete
+#member-withdrawal
+	> #memberdelete
 	> .field
 	> strong
-	> .Member_Email_Container
-	> .Member_Email {
+	> .member-email-container
+	> .member-email {
 	display: inline-block;
 	width: 200px;
 	height: 120px;
@@ -90,12 +90,12 @@ main {
 	text-align: left center;
 	line-height: 120px;
 }
-#Member_Withdrawal
-	> #MemberDelete
+#member-withdrawal
+	> #memberdelete
 	> .field
 	> strong
-	> .Member_Email_Container
-	> .Member_Email2 {
+	> .member-email-container
+	> .member-email2 {
 	display: inline-block;
 	width: 420px;
 	height: 50px;
@@ -107,20 +107,20 @@ main {
 	line-height: 60px;
 }
 
-#Member_Withdrawal
-	> #MemberDelete
+#member-withdrawal
+	> #memberdelete
 	> .field
 	> strong
-	> .Member_Withdrawal_Statement_Container {
+	> .member-withdrawal-statement-container {
 	display: flex;
 	width: 700px;
 }
-#Member_Withdrawal
-	> #MemberDelete
+#member-withdrawal
+	> #memberdelete
 	> .field
 	> strong
-	> .Member_Withdrawal_Statement_Container
-	> .Member_Withdrawal_Statement {
+	> .member-withdrawal-statement-container
+	> .member-withdrawal-statement {
 	display: inline-block;
 	width: 200px;
 	height: 120px;
@@ -129,12 +129,12 @@ main {
 	text-align: left center;
 	line-height: 120px;
 }
-#Member_Withdrawal
-	> #MemberDelete
+#member-withdrawal
+	> #memberdelete
 	> .field
 	> strong
-	> .Member_Withdrawal_Statement_Container
-	> .Member_Withdrawal_Statement2 {
+	> .member-withdrawal-statement-container
+	> .member-withdrawal-statement2 {
 	display: inline-block;
 	width: 500px;
 	height: 50px;
@@ -146,11 +146,11 @@ main {
 	line-height: 60px;
 }
 
-#Member_Withdrawal
-	> #MemberDelete
+#member-withdrawal
+	> #memberdelete
 	> .field
 	> strong
-	> .Member_Withdrawal_Statement_Enter {
+	> .member-withdrawal-statement-enter {
 	display: inline-block;
 	width: 198px;
 	height: 120px;
@@ -160,14 +160,14 @@ main {
 	line-height: 120px;
 }
 
-#Member_Withdrawal > #MemberDelete > .field > strong > .input {
+#member-withdrawal > #memberdelete > .field > strong > .input {
 	width: 400px;
 	height: 50px;
 	font-size: 24px;
 	margin: auto;
 }
 
-.Check_Botton {
+.check-botton {
 	width: 115px;
 	height: 70px;
 	text-align: center;
