@@ -2,27 +2,40 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- css 초기화 연결 (삭제예정) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" />
+  <!-- 작업할 css 연결 -->
   <link rel="stylesheet" href="./SignIn.css">
-  <title>Document</title>
+  <!-- 페이지에 맞는 타이틀 입력 -->
+  <title>장바구니</title>
 </head>
 
 <body>
-  <section class="signin">
-    <h1>로그인</h1>
-    <div class="signin-card">
-      <form action="">
-        <input type="email" placeholder="이메일을 입력하세요." />
-        <input type="password" placeholder="비밀번호를 입력하세요." />
-        <div class="button">
-          <button type="button">로그인</button>
-          <button type="button" class="outline-btn">회원가입</button>
-        </div>
-      </form>
-    </div>
-  </section>
+  <div id="global-wrap">
+    <header>header</header>
+    <main>
+      <div class="main-container" id="signin-wrap">
+        <!-- 클래스명 main-container까지 공통, id값은 페이지에 맞게 이름설정해서 사용 -->
+        <!-- 해당 위치에 페이지 마크업 -->
+        <section class="signin">
+          <h1>로그인</h1>
+          <div class="signin-card">
+            <form action="">
+              <input type="email" placeholder="이메일을 입력하세요." />
+              <input type="password" placeholder="비밀번호를 입력하세요." />
+              <div class="button">
+                <button type="button">로그인</button>
+                <button type="button" class="outline-btn">회원가입</button>
+              </div>
+            </form>
+          </div>
+        </section>
+      </div>
+    </main>
+    <footer>footer</footer>
+  </div>
 </body>
 
 </html>
