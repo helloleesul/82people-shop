@@ -1,29 +1,42 @@
 const { Router } = require('express');
 
-const router = Router();
+const OrderRouter = Router();
 
-router.post('/order', (req, res) => {
+//토큰 값 체크는 중복값이기에 middleware로 분리
+
+OrderRouter.post('/orders', async (req, res, next) => {
+	//헤더에 토큰 값 체크
 	const {
+		password,
 		purchase,
 		address,
 		recipient,
-		recipientNumber,
+		phone,
 		detailAddress,
 		shippingRequest,
-	} = req.body; //purchase: string[]
+	} = await req.body; //purchase: string[]
+	//토큰이 있다면 회원 , 토큰이 없고 비밀번호가 있으면 비회원
 });
 
-router.get('/order', (req, res) => {
-	const { token } = req.params;
+OrderRouter.get('/order/checkAddress', async (req, res, next) => {
+	//헤더에 토큰값 체크
 });
 
-router.post('/order/addAddress', (req, res) => {
-	const {
-		token,
-		address,
-		recipient,
-		recipientNumber,
-		detailAddress,
-		shippingRequest,
-	} = req.body;
+OrderRouter.post('/order/addAddress', async (req, res, next) => {
+	//헤더에 토큰값 체크
+	const { recipient, phone, address, detailAddress, shippingRequest } =
+		await req.body;
+	//redirect('/')
 });
+
+OrderRouter.get('orders/history', async (req, res, next) => {
+	//헤더에 토큰값 체크
+	//토큰속 아이디 값으로 주문정보 뿌려주기
+});
+
+OrderRouter.get('orders/history:orderId', async (req, res, next) => {
+	const { orderId } = await req.params;
+	//orderId로 검색해서 값 알려주기
+});
+
+module.exports = OrderRouter;

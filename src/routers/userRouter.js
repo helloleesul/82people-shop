@@ -1,29 +1,23 @@
 const { Router } = require('express');
 
-const router = Router();
+const UserRouter = Router();
 
-router.patch('/users', (req, res, next) => {
-	const { email, name, password, address } = req.body; //address : required:false
+UserRouter.patch('/users', async (req, res, next) => {
+	//헤더에 토큰 값 체크
+	const { email, name, password, address } = await req.body; //address:Object[] = required:false
 });
 
-router.delete('/users', (req, res, next) => {
-	const { email, token } = req.body; //필수 : validation check
+UserRouter.delete('/users', async (req, res, next) => {
+	//헤더에 토큰 값 체크
+	const { email } = await req.body; //필수 : validation check
 });
 
-router.post('/users/signUp', (req, res, next) => {
-	const { email, name, password, address } = req.body; //필수 : 중복체크
+UserRouter.post('/users/signUp', async (req, res, next) => {
+	const { email, name, password, address } = await req.body; //필수 : 이메일 중복체크, address=required:false
 });
 
-router.get('/users/myPage', (req, res, next) => {
-	const { token } = req.body; //토큰으로 로그인 정보 검색(토큰 유효성도 동시에 체크)
+UserRouter.get('/users/myPage', async (req, res, next) => {
+	//헤더에 토큰 값 체크
 });
 
-router.get('/users/myPage/orderHistory', (req, res, next) => {
-	const { token } = req.body; //토큰으로 로그인 정보 검색(토큰 유효성도 동시에 체크)
-});
-
-router.get('/users/myPage/orderHistory/details', (req, res, next) => {
-	const { token } = req.body; //토큰으로 로그인 정보 검색(토큰 유효성도 동시에 체크)
-});
-
-module.exports = router;
+module.exports = UserRouter;
