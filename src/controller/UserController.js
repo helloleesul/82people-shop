@@ -6,12 +6,6 @@ const UserController = {
 		const { email, password, address } = await req.body; //address:Object[] = required:false
 
 		try {
-			// await User.create({
-			// 	email,
-			// 	name,
-			// 	password,
-			// 	address: address.length === 0 ? [] : address,
-			// });
 			await User.updateOne({ email }, { password, address });
 		} catch (err) {
 			next(err);
