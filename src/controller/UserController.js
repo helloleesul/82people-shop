@@ -3,10 +3,16 @@ const { User } = require('../db/models');
 const UserController = {
 	updateUser: async (req, res, next) => {
 		//헤더에 토큰값 체크
-		const { email, name, password, address } = await req.body; //address:Object[] = required:false
+		const { email, password, address } = await req.body; //address:Object[] = required:false
 
 		try {
-			await User.create({ email, name, password, address });
+			// await User.create({
+			// 	email,
+			// 	name,
+			// 	password,
+			// 	address: address.length === 0 ? [] : address,
+			// });
+			await User.updateOne({ email }, { password, address });
 		} catch (err) {
 			next(err);
 		}
@@ -20,7 +26,7 @@ const UserController = {
 		//헤더에 토큰값 체크
 		const { email } = await req.body; //필수 : validation check
 		try {
-			await User.updateOne({ email }).set({ deletedAt: true });
+			await User.updateOne({ email }, { deletedAt: true });
 		} catch (err) {
 			next(err);
 		}
@@ -47,7 +53,18 @@ const UserController = {
 		});
 	},
 
-	userGetInformation: (req, res, next) => {},
+	getUserInformation: async (req, res, next) => {
+		//헤더에 토큰값 체크
+		try {
+			// await User.findOne()
+		} catch (err) {
+			next(err);
+		}
+		return res.status(200).json({
+			msg: '회원 정보 조회 완료',
+			userInformation: { user: 'user' },
+		});
+	},
 };
 
-module.exports = UserController;
+module.exports = { UserController };
