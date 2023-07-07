@@ -30,7 +30,7 @@ if (products?.length === 0 || products === null) {
 		const newLi = document.createElement('li');
 		const newItem = `<article>
 		<div class="thumbnail">
-			<input type="checkbox" id="${product.id}" name="cartItem" />
+			<input type="checkbox" id="${product.id}" name="cartItemCheck" checked />
 			<label for="${product.id}">
 				<img src="${product.imageUrl}" alt="${product.title}" />
 				${product.title}
@@ -46,7 +46,7 @@ if (products?.length === 0 || products === null) {
 			/>
 			<button type="button" class="adding">+</button>
 		</div>
-		<div><span>${product.price}</span>원</div>
+		<div><span class="product-price">${product.price}</span>원</div>
 	</article>
 	<button type="button" class="delete-btn">삭제</button>`;
 		newLi.innerHTML = newItem;
@@ -54,20 +54,23 @@ if (products?.length === 0 || products === null) {
 	});
 }
 
-// 장바구니 상품 수량 변경
+// 장바구니 상품 수량, 가격 변경
 const cartItems = document.querySelectorAll('.cart-items > ul > li');
 
 [...cartItems].map(item => {
-	const amount = item.querySelector('input.amount');
-	let amountValue = Number(amount.value);
+	const amountInput = item.querySelector('input.amount');
+	let amountValue = Number(amountInput.value);
 	const addingAmount = item.querySelector('.adding');
 	const subtractingAmount = item.querySelector('.subtracting');
 
-	const updateAmount = () => {
-		const itemId = item.querySelector('input[name="cartItem"]');
+	const itemCheck = item.querySelector('input[name="cartItemCheck"]');
+	const itemPrice = item.querySelector('.product-price');
+
+	const updateItem = () => {
 		products.map(product => {
-			if (product.id === Number(itemId.id)) {
-				product.amount = Number(amount.value);
+			if (product.id === Number(itemCheck.id)) {
+				product.amount = Number(amountInput.value);
+				product.price = Number(itemPrice.innerText) * product.amount;
 			}
 		});
 		localStorage.setItem('cartProducts', JSON.stringify(products));
@@ -76,25 +79,27 @@ const cartItems = document.querySelectorAll('.cart-items > ul > li');
 	// 수량 증가
 	addingAmount.addEventListener('click', () => {
 		amountValue += 1;
-		amount.value = amountValue;
-		updateAmount();
+		amountInput.value = amountValue;
+		updateItem();
 	});
 	// 수량 증감
 	subtractingAmount.addEventListener('click', () => {
 		amountValue -= 1;
-		if (amount.value < 2) {
+		if (amountInput.value < 2) {
 			amountValue = 1;
+			alert('최소 수량은 1개 입니다!');
 		}
-		amount.value = amountValue;
-		updateAmount();
+		amountInput.value = amountValue;
+		updateItem();
 	});
 	// 수량 직접 입력
-	amount.addEventListener('change', e => {
+	amountInput.addEventListener('change', e => {
 		amountValue = Number(e.target.value);
 		if (e.target.value < 2) {
 			e.target.value = 1;
+			alert('최소 수량은 1개 입니다!');
 		}
-		updateAmount();
+		updateItem();
 	});
 });
 
