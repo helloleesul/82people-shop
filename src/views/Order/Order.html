@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- css 초기화 연결 (삭제예정) -->
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css"
+		/>
+		<!-- 작업할 css 연결 -->
+		<link rel="stylesheet" href="Order.css" />
+		<!-- 페이지에 맞는 타이틀 입력 -->
+		<title>주문하기</title>
+	</head>
+	<body>
+		<div id="global-wrap">
+			<header>header</header>
+			<main>
+				<div class="main-container">
+					<div id="order-wrap">
+						<ol class="cart-step">
+							<li>
+								<span>1</span>
+								장바구니
+							</li>
+							<li class="active">
+								<span>2</span>
+								<h2>주문하기</h2>
+							</li>
+							<li>
+								<span>3</span>
+								결제완료
+							</li>
+						</ol>
+						<!-- 주문할 장바구니 목록 -->
+						<h3>주문 상품</h3>
+						<ul class="cart-items">
+							<li>
+								<article>
+									<div class="thumbnail">
+										<img src="/" />
+										<span>상품1</span>
+									</div>
+									<div><span>1</span> 개</div>
+									<div><span>10,000</span>원</div>
+								</article>
+							</li>
+							<li>
+								<article>
+									<div class="thumbnail">
+										<img src="/" />
+										<span>상품2</span>
+									</div>
+									<div><span>1</span> 개</div>
+									<div><span>10,000</span>원</div>
+								</article>
+							</li>
+						</ul>
+						<form action="" class="cart-form">
+							<!-- 주문 정보 -->
+							<article class="order-info">
+								<h3>주문 정보</h3>
+								<fieldset>
+									<section>
+										<label class="require" for="recipient">수령인</label>
+										<input type="text" id="recipient" name="orderForm" />
+									</section>
+									<section>
+										<label class="require" for="phone">연락처</label>
+										<input type="tel" id="phone" name="orderForm" />
+									</section>
+									<section class="address-input">
+										<label class="require">배송지</label>
+										<div>
+											<section class="api-btn">
+												<input
+													type="text"
+													id="addressNumber"
+													name="orderForm"
+												/>
+												<button type="button">주소검색</button>
+											</section>
+											<input type="text" id="address" name="orderForm" />
+											<input type="text" id="detailAddress" name="orderForm" />
+										</div>
+									</section>
+									<section>
+										<label for="shippingRequest">배송 요청사항</label>
+										<input type="text" id="shippingRequest" name="orderForm" />
+									</section>
+									<!-- 비회원일경우 해당 요소 노출 -->
+									<div id="guest-mode">
+										<p>
+											비회원 주문 시 주문내역 조회용 비밀번호를 설정해야합니다.
+										</p>
+										<section>
+											<label class="require" for="guestNumber">비밀번호</label>
+											<input
+												type="password"
+												id="guestNumber"
+												name="orderForm"
+											/>
+										</section>
+									</div>
+								</fieldset>
+							</article>
+							<!-- 결제 금액 -->
+							<article>
+								<h3>결제금액</h3>
+								<div class="cart-price">
+									<div>
+										<span>상품금액</span>
+										<span>20,000 원</span>
+									</div>
+									<div>
+										<span>배송비</span>
+										<span>3,000 원</span>
+									</div>
+									<div class="total">
+										<strong>
+											<span>최종결제금액</span>
+											<span>23,000 원</span>
+										</strong>
+									</div>
+								</div>
+								<button type="submit" class="order-btn">결제하기</button>
+							</article>
+						</form>
+					</div>
+				</div>
+			</main>
+			<footer>footer</footer>
+		</div>
+	</body>
+</html>

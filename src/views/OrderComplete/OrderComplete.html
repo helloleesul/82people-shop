@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- css 초기화 연결 (삭제예정) -->
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css"
+		/>
+		<!-- 작업할 css 연결 -->
+		<link rel="stylesheet" href="OrderComplete.css" />
+		<!-- 페이지에 맞는 타이틀 입력 -->
+		<title>결제완료</title>
+	</head>
+	<body>
+		<div id="global-wrap">
+			<header>header</header>
+			<main>
+				<div class="main-container">
+					<div id="order-complete-wrap">
+						<ol class="cart-step">
+							<li>
+								<span>1</span>
+								장바구니
+							</li>
+							<li>
+								<span>2</span>
+								주문하기
+							</li>
+							<li class="active">
+								<span>3</span>
+								<h2>결제완료</h2>
+							</li>
+						</ol>
+						<!-- 결제완료 안내 -->
+						<article class="notice">
+							<p>
+								<span>회원</span>님<br />
+								주문이 완료되었습니다! 🎉
+							</p>
+							<!-- 비회원일 경우 해당요소 노출 -->
+							<p id="guest-mode">
+								주문번호 <button type="button">1234567890</button>과 비밀번호를
+								기억해주세요!
+							</p>
+							<div class="go-to-btns">
+								<a href="#" class="homt-btn">계속 쇼핑하기</a>
+								<a href="#" class="order-history-btn">주문내역 확인</a>
+							</div>
+						</article>
+					</div>
+				</div>
+			</main>
+			<footer>footer</footer>
+		</div>
+	</body>
+</html>
