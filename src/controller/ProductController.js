@@ -19,9 +19,9 @@ const ProductController = {
 
     // 카테고리별 상품 요청 및 응답
     getProductsByCategory: async (req, res, next) => {
-        try {
-            const { category } = req.params;
+        const { category } = req.params;
 
+        try {
             const categoryProducts = await ProductService.getProductsByCategory(category);
 
             res.status(200).json({
@@ -34,10 +34,10 @@ const ProductController = {
     },
 
     // 상품 id별 요청 및 응답
-    getProductById: async (req, res, next) => {        
+    getProductById: async (req, res, next) => {     
+        const { productId } = req.params;   
+        
         try {
-            const { productId } = req.params;
-            
             const product = await ProductService.getProductById(productId);
 
             res.status(200).json({

@@ -4,22 +4,29 @@ const OrderController = {
     // [회원 || 비회원] 장바구니 제품 주문 완료
     createOrder: async (req, res, next) => {
         //헤더에 토큰 값 체크
-        try {     
-            const orderInfomation = {
-                password,
-                purchase,
-                recipient,
-                phone,
-                address,
-                detailAddress,
-                shippingRequest,
-            } = await req.body;
-            // 주문한 상품 갯수 => ?? => 재고 - 산 상품 갯수
+        const { purchase, addressInformation, password } = await req.body;
 
-            await OrderService.createOrder(orderInfomation);
+        try {     
+            const createdOrderId = await OrderService.createOrder({ purchase, addressInformation, password });
 
             res.status(201).json({
-                msg: '주문 성공'
+                msg: '주문 성공',
+                createdOrderId,
+            });
+        } catch(err) {
+            next(err);
+        };
+    },
+
+    // [회원] 주문 시 배송지 확인 => 토큰 관련 미들웨어 작성 후 작업
+    checkAddress: async (req, res, next) => {
+        //헤더에 토큰 값 체크
+        try {
+            const address = await OrderService.checkAddress(); // 나중에
+
+            res.status(200).json({
+                msg: '배송지 조회 성공',
+                address
             });
         } catch(err) {
             next(err);
@@ -27,27 +34,10 @@ const OrderController = {
     },
 
     /*
-    // 주문 시 배송지 확인
-    checkAddress: async (req, res, next) => {
-        //헤더에 토큰 값 체크
-        try {
-            await OrderService.checkAddress();
-
-            res.status(200).json({
-                msg: '배송지 조회 성공'
-            });
-        } catch(err) {
-            next(err);
-        };
-    },
-
-    // 주문 시 배송지 추가
+    // [회원] 주문 시 배송지 추가 => 2주차에 작업
     addAddress: async (req, res, next) => {
         //헤더에 토큰 값 체크
         try {
-            const addedAddress = await req.body;
-
-            await OrderService.addAddress(addedAddress);
 
             res.status(200).json({
                 msg: '배송지 추가 성공',
@@ -58,13 +48,11 @@ const OrderController = {
     },
     */
 
-    // [회원] 주문 내역 전체 조회
+    // [회원] 주문 내역 전체 조회 => 토큰 관련 미들웨어 작성 후 작업
     checkOrderHistory: async (req, res, next) => {
         //헤더에 토큰 값 체크
         try {
-            //토큰 속 아이디 값으로 주문정보 뿌려주기 ??
-            //const userId = token._id =>?
-            const orderHistory = await OrderService.checkOrderHistory(userId);
+            const orderHistory = await OrderService.checkOrderHistory(); // 나중에
             
             res.status(200).json({
                 orderHistory
@@ -76,9 +64,9 @@ const OrderController = {
 
     // [회원 || 비회원] 주문 상세 조회
     checkOrderDetail: async (req, res, next) => {	
+        const { orderId } = req.params;
+
         try {
-            const { orderId } = req.params;
-            
             const orderDatail = await OrderService.checkOrderDetail(orderId);
     
             res.status(200).json({
