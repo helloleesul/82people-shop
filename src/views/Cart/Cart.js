@@ -8,12 +8,35 @@
 // 데이터 삭제
 // localStorage.removeItem('key');
 
-// 장바구니 개발용 가짜 상품데이터
-// id, 상품이름, 수량, 이미지주소, 가격
+// 현재 장바구니 기능 중 조회와 상품 수정부분만 구현했습니다.
+// 해야할 기능: 총 가격조회, 전체삭제, 부분삭제
+
+// 장바구니 개발용 더미 데이터 (id, 상품이름, 수량, 이미지주소, 가격, 수량계산된 가격)
 const cartProducts = [
-	{ id: 1, title: '상품1', amount: 1, imageUrl: '/', price: 1000 },
-	{ id: 2, title: '상품2', amount: 1, imageUrl: '/', price: 2000 },
-	{ id: 3, title: '상품3', amount: 1, imageUrl: '/', price: 3000 },
+	{
+		id: 1,
+		title: '상품1',
+		amount: 1,
+		imageUrl: '/',
+		price: 1000,
+		totalPrice: 1000,
+	},
+	{
+		id: 2,
+		title: '상품2',
+		amount: 1,
+		imageUrl: '/',
+		price: 2000,
+		totalPrice: 2000,
+	},
+	{
+		id: 3,
+		title: '상품3',
+		amount: 1,
+		imageUrl: '/',
+		price: 3000,
+		totalPrice: 3000,
+	},
 ];
 localStorage.setItem('cartProducts', JSON.stringify(cartProducts));
 
@@ -23,7 +46,7 @@ const itemsUl = document.querySelector('.cart-items > ul');
 
 if (products?.length === 0 || products === null) {
 	const emptyItems = document.createElement('li');
-	emptyItems.innerText = '상품이 없습니다.';
+	emptyItems.innerText = '장바구니에 담으신 상품이 없습니다. 🥲';
 	itemsUl.appendChild(emptyItems);
 } else {
 	products.map(product => {
@@ -36,7 +59,7 @@ if (products?.length === 0 || products === null) {
 				${product.title}
 			</label>
 		</div>
-		<div>
+		<div class="amount-btns">
 			<button type="button" class="subtracting">-</button>
 			<input
 				type="number"
@@ -46,7 +69,7 @@ if (products?.length === 0 || products === null) {
 			/>
 			<button type="button" class="adding">+</button>
 		</div>
-		<div><span class="product-price">${product.price}</span>원</div>
+		<div><span class="product-price">${product.totalPrice.toLocaleString()}</span>원</div>
 	</article>
 	<button type="button" class="delete-btn">삭제</button>`;
 		newLi.innerHTML = newItem;
@@ -63,14 +86,15 @@ const cartItems = document.querySelectorAll('.cart-items > ul > li');
 	const addingAmount = item.querySelector('.adding');
 	const subtractingAmount = item.querySelector('.subtracting');
 
-	const itemCheck = item.querySelector('input[name="cartItemCheck"]');
+	const itemCheck = item.querySelector('input[type=checkbox]');
 	const itemPrice = item.querySelector('.product-price');
 
 	const updateItem = () => {
 		products.map(product => {
 			if (product.id === Number(itemCheck.id)) {
 				product.amount = Number(amountInput.value);
-				product.price = Number(itemPrice.innerText) * product.amount;
+				product.totalPrice = product.price * product.amount;
+				itemPrice.innerText = product.totalPrice.toLocaleString();
 			}
 		});
 		localStorage.setItem('cartProducts', JSON.stringify(products));
@@ -103,10 +127,9 @@ const cartItems = document.querySelectorAll('.cart-items > ul > li');
 	});
 });
 
-// const cartItems = document.querySelectorAll('.cart-items li');
 // const allCheckbox = document.querySelector('#allItem');
 
-// // 상품 삭제
+// // 상품 삭제 기능
 // const deleteItem = item => {
 // 	const deleteBtn = item.querySelector('.delete-btn');
 // 	deleteBtn.addEventListener('click', () => {
@@ -116,28 +139,6 @@ const cartItems = document.querySelectorAll('.cart-items > ul > li');
 
 // [...cartItems].map(item => {
 // 	deleteItem(item);
-
-// 	const amount = item.querySelector('input.amount');
-// 	let amountValue = Number(amount.value);
-// 	const addingAmount = item.querySelector('.adding');
-// 	const subtractingAmount = item.querySelector('.subtracting');
-// 	// 수량 증가
-// 	addingAmount.addEventListener('click', () => {
-// 		amountValue += 1;
-// 		amount.value = amountValue;
-// 	});
-// 	// 수량 감소
-// 	subtractingAmount.addEventListener('click', () => {
-// 		amountValue -= 1;
-// 		if (amount.value < 2) {
-// 			return (amountValue = 1);
-// 		}
-// 		amount.value = amountValue;
-// 	});
-// 	// 수량 직접 입력
-// 	amount.addEventListener('change', e => {
-// 		amountValue = Number(e.target.value);
-// 	});
 
 // 	const itemCheck = item.querySelector('input[type=checkbox]');
 // 	// 상품 중 하나라도 선택해제라면 전체선택해제
