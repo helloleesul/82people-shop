@@ -19,5 +19,5 @@ ehthumbs_vista.db
 *.msm
 *.msp
 
-node_modules/
+node_modules
 .env
