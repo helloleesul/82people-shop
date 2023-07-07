@@ -1,19 +1,15 @@
 const { Router } = require('express');
+const { ProductController }  = require('../controller');
 
 const ProductRouter = Router();
 
-ProductRouter.get('/products', async (req, res, next) => {
-	// res.json();
-});
+// [사용자] 전체 상품 조회
+ProductRouter.get('/products', ProductController.getAllProducts);
 
-ProductRouter.get('/products/:category', async (req, res, next) => {
-	const { category } = await req.params;
-	//Product.find({category})
-});
+// [사용자] 카테고리별 상품 조회
+ProductRouter.get('/products/:category', ProductController.getProductsByCategory);
 
-ProductRouter.get('/products/:productId', async (req, res, next) => {
-	const { productId } = await req.params;
-	//Product.find({productId})
-});
+// [사용자] 상품 상세 조회
+ProductRouter.get('/products/:productId', ProductController.getProductById);
 
 module.exports = ProductRouter;
