@@ -82,7 +82,7 @@ const cartItems = document.querySelectorAll('.cart-items > ul > li');
 		amountInput.value = amountValue;
 		updateItem();
 	});
-	// 수량 증감
+	// 수량 감소
 	subtractingAmount.addEventListener('click', () => {
 		amountValue -= 1;
 		if (amountInput.value < 2) {
@@ -126,7 +126,7 @@ const cartItems = document.querySelectorAll('.cart-items > ul > li');
 // 		amountValue += 1;
 // 		amount.value = amountValue;
 // 	});
-// 	// 수량 증감
+// 	// 수량 감소
 // 	subtractingAmount.addEventListener('click', () => {
 // 		amountValue -= 1;
 // 		if (amount.value < 2) {
