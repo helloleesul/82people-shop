@@ -34,6 +34,13 @@ main {
 
 /* 여기서 부터 각자 레이아웃 스타일 작업 */
 /* 장바구니 스타일 */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
 button {
 	border: none;
 	background: none;
@@ -136,4 +143,21 @@ button {
 	color: #fff;
 	font-weight: 900;
 	padding: 20px 0;
+}
+.amount-btns {
+	background-color: #fff;
+	display: flex;
+	align-items: center;
+}
+.amount-btns input {
+	width: 50px;
+	border: none;
+	text-align: center;
+	padding: 0;
+	outline: none;
+}
+.amount-btns button {
+	font-size: 20px;
+	width: 30px;
+	height: 30px;
 }

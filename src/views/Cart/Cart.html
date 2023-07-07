@@ -39,60 +39,18 @@
 							<!-- 장바구니 목록 -->
 							<fieldset>
 								<div class="cart-control-btn">
-									<input type="checkbox" id="allItem" name="cartItem" />
-									<label for="allItem">전체 선택</label>
+									<input
+										type="checkbox"
+										id="allItems"
+										name="cartItemCheck"
+										checked
+									/>
+									<label for="allItems">전체 선택</label>
 									<button type="button">선택 삭제</button>
 								</div>
 								<section class="cart-items">
 									<ul>
-										<li>
-											<article>
-												<div class="thumbnail">
-													<input type="checkbox" id="item1" name="cartItem" />
-													<label for="item1">
-														<img src="/" />
-														상품1
-													</label>
-												</div>
-												<div>
-													<button type="button">-</button>
-													<input
-														type="number"
-														name=""
-														id=""
-														value="1"
-														min="1"
-													/>
-													<button type="button">+</button>
-												</div>
-												<div><span>1,000</span>원</div>
-											</article>
-											<button type="button">삭제</button>
-										</li>
-										<li>
-											<article>
-												<div class="thumbnail">
-													<input type="checkbox" id="item2" name="cartItem" />
-													<label for="item2">
-														<img src="/" />
-														상품2
-													</label>
-												</div>
-												<div>
-													<button type="button">-</button>
-													<input
-														type="number"
-														name=""
-														id=""
-														value="1"
-														min="1"
-													/>
-													<button type="button">+</button>
-												</div>
-												<div><span>1,000</span>원</div>
-											</article>
-											<button type="button">삭제</button>
-										</li>
+										<!-- 상품리스트 -->
 									</ul>
 								</section>
 							</fieldset>
@@ -101,16 +59,16 @@
 						<section class="cart-price">
 							<div>
 								<span>상품금액</span>
-								<span>20,000 원</span>
+								<span id="products-price">20,000 원</span>
 							</div>
 							<div>
 								<span>배송비</span>
-								<span>3,000 원</span>
+								<span id="shipping-price">3,000 원</span>
 							</div>
 							<div class="total">
 								<strong>
 									<span>결제예정금액</span>
-									<span>23,000 원</span>
+									<span id="total-price">23,000 원</span>
 								</strong>
 							</div>
 						</section>
@@ -124,5 +82,6 @@
 			</main>
 			<footer>footer</footer>
 		</div>
+		<script src="Cart.js"></script>
 	</body>
 </html>
