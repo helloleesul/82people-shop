@@ -23,7 +23,7 @@ const ProductSchema = new Schema({
 		required: true,
 	},
 	imageURL: [String],
-	amount: {
+	currentAmount: {
 		type: Number,
 		required: true,
 	},
