@@ -10,13 +10,13 @@ const UserController = {
 			}
 
 			await User.updateOne({ email }, { password, address });
+
+			return res.status(200).json({
+				message: '회원 정보 수정 성공',
+			});
 		} catch (err) {
 			next(err);
 		}
-
-		return res.status(200).json({
-			message: '회원 정보 수정 성공',
-		});
 	},
 
 	deleteUser: async (req, res, next) => {
@@ -24,12 +24,13 @@ const UserController = {
 
 		try {
 			await User.updateOne({ email }, { deletedAt: true });
+
+			return res.status(200).json({
+				message: '회원 탈퇴 성공',
+			});
 		} catch (err) {
 			next(err);
 		}
-		return res.status(200).json({
-			message: '회원 탈퇴 성공',
-		});
 	},
 
 	userSignup: async (req, res, next) => {
@@ -45,13 +46,13 @@ const UserController = {
 				name,
 				password,
 			});
+
+			return res.status(201).json({
+				msg: '가입 완료',
+			});
 		} catch (err) {
 			next(err);
 		}
-
-		return res.status(201).json({
-			msg: '가입 완료',
-		});
 	},
 
 	getUserInformation: async (req, res, next) => {
