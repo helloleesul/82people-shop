@@ -1,8 +1,6 @@
 const jwt = require('jsonwebtoken');
-const dotenv = require('dotenv');
-const { User } = require('../db/models');
 
-dotenv.config();
+const { User } = require('../db/models');
 
 const AuthController = {
 	login: async (req, res, next) => {
@@ -29,10 +27,17 @@ const AuthController = {
 					name: searchedUser.name,
 				},
 				process.env.JSONSECRETKEY,
-				{ test: 'public Claim' }
+				{
+					algorithm: 'HS256',
+					expiresIn: '1h',
+				}
 			);
+
+			return res.status(200).json({ msg: '로그인 성공', jwt: token });
 		} catch (err) {
 			next(err);
 		}
 	},
+
+	logout: async (req, res, next) => {},
 };
