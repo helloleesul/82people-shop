@@ -17,7 +17,6 @@ const UserSchema = new Schema(
 			type: String,
 			required: true,
 		},
-
 		addressInformation: [
 			{
 				recipient: { type: String, required: true },

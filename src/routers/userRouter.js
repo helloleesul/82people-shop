@@ -1,11 +1,12 @@
 const { Router } = require('express');
 const { UserController } = require('../controller');
+const VerifyToken = require('../middleware/VerifyToken');
 
 const UserRouter = Router();
 
-UserRouter.patch('/users', UserController.updateUser);
-UserRouter.delete('/users', UserController.deleteUser);
+UserRouter.patch('/users', VerifyToken, UserController.updateUser);
+UserRouter.delete('/users', VerifyToken, UserController.deleteUser);
 UserRouter.post('/users/signUp', UserController.userSignup);
-UserRouter.get('/users/myPage', UserController.getUserInformation);
+UserRouter.get('/users/myPage', VerifyToken, UserController.getUserInformation);
 
 module.exports = UserRouter;
