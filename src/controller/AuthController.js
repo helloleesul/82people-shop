@@ -39,5 +39,8 @@ const AuthController = {
 		}
 	},
 
-	logout: async (req, res, next) => {},
+	// logout: async (req, res, next) => {
+	//토큰값 체크
+	// },
 };
+module.exports = { AuthController };
