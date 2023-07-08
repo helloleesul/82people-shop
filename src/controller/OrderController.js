@@ -71,10 +71,10 @@ const OrderController = {
 		const { orderId } = req.params;
 
 		try {
-			const orderDatail = await OrderService.checkOrderDetail(orderId);
+			const orderDetail = await OrderService.checkOrderDetail(orderId);
 
 			res.status(200).json({
-				orderDatail,
+				orderDetail,
 			});
 		} catch (err) {
 			next(err);

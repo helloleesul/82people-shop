@@ -17,7 +17,6 @@ const UserSchema = new Schema(
 			type: String,
 			required: true,
 		},
-
 		addressInformation: [
 			{
 				recipient: { type: String, required: true },
@@ -37,6 +36,7 @@ const UserSchema = new Schema(
 			type: Boolean,
 			default: false,
 		},
+		refreshToken: { type: String },
 	},
 	{
 		timestamps: true,
