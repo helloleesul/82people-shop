@@ -65,4 +65,4 @@ const OrderService = {
 	},
 };
 
-module.exports = OrderService;
+module.exports = { OrderService };
