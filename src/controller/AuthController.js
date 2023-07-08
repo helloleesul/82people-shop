@@ -28,12 +28,11 @@ const AuthController = {
 				},
 				process.env.JSONSECRETKEY,
 				{
-					algorithm: 'HS256',
 					expiresIn: '1h',
 				}
 			);
 
-			return res.status(200).json({ msg: '로그인 성공', jwt: token });
+			return res.status(200).json({ msg: '로그인 성공', Authorization: token });
 		} catch (err) {
 			next(err);
 		}
