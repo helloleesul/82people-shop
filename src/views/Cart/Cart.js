@@ -31,7 +31,8 @@ const PRODUCT_KEY = 'cartProducts';
 // 테스트용 더미데이터 불러오기 버튼(삭제예정)
 const form = document.querySelector('form');
 const dummyBtn = document.createElement('button');
-dummyBtn.innerHTML = '<button>테스트용 더미데이터 불러오기</button>';
+dummyBtn.innerHTML =
+	'<span style="background:#000;color:#fff;padding:2px 10px;">테스트용 더미데이터 불러오기(삭제예정)</span>';
 form.prepend(dummyBtn);
 const importDummyProducts = () => {
 	localStorage.setItem(PRODUCT_KEY, JSON.stringify(data));
@@ -99,7 +100,7 @@ const itemsCheck = document.querySelectorAll('input[name=cart-item-check]');
 const productsPrice = document.querySelector('#products-price');
 // 배송비
 const shippingPrice = document.querySelector('#shipping-price');
-let shippingPriceNumber;
+let shippingPriceNumber = 0;
 // 결제예정금액
 const orderPrice = document.querySelector('#order-price');
 // 상품 아이템
