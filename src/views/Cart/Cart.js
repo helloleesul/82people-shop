@@ -1,18 +1,5 @@
-// 데이터 저장
-// localStorage.setItem('key', 'value');
-// 데이터 가져오기
-// const existingData = localStorage.getItem('key');
-// 데이터 추가
-// const newData = 'new value';
-// localStorage.setItem('key', existingData + newData);
-// 데이터 삭제
-// localStorage.removeItem('key');
-
-// 현재 장바구니 기능 중 조회와 상품 수정부분만 구현했습니다.
-// 해야할 기능: 총 가격조회, 전체삭제, 부분삭제
-
-// 장바구니 개발용 더미 데이터 (id, 상품이름, 수량, 이미지주소, 가격, 수량계산된 가격)
-const cartProducts = [
+// 장바구니 테스트용 더미 데이터 (id, 상품이름, 수량, 이미지주소, 가격, 수량계산된 가격)
+let data = [
 	{
 		id: 1,
 		title: '상품1',
@@ -38,72 +25,129 @@ const cartProducts = [
 		totalPrice: 3000,
 	},
 ];
-localStorage.setItem('cartProducts', JSON.stringify(cartProducts));
 
-// 장바구니 상품 불러오기
-const products = JSON.parse(localStorage.getItem('cartProducts'));
-const itemsUl = document.querySelector('.cart-items > ul');
+const PRODUCT_KEY = 'cartProducts';
 
-if (products?.length === 0 || products === null) {
-	const emptyItems = document.createElement('li');
-	emptyItems.innerText = '장바구니에 담으신 상품이 없습니다. 🥲';
-	itemsUl.appendChild(emptyItems);
+// 테스트용 더미데이터 불러오기 버튼(삭제예정)
+const form = document.querySelector('form');
+const dummyBtn = document.createElement('button');
+dummyBtn.innerHTML = '<button>테스트용 더미데이터 불러오기</button>';
+form.prepend(dummyBtn);
+const importDummyProducts = () => {
+	localStorage.setItem(PRODUCT_KEY, JSON.stringify(data));
+};
+dummyBtn.addEventListener('click', importDummyProducts);
+
+// 로컬스토리지 장바구니 데이터
+let products = JSON.parse(localStorage.getItem(PRODUCT_KEY));
+// 상품 리스트 요소
+const itemsList = document.querySelector('.cart-items > ul');
+let items = '';
+
+// 로컬스토리지 장바구니 데이터 유무 확인
+if (products?.length > 0) {
+	console.log('장바구니에 상품 있음');
+	products.map(getProducts);
 } else {
-	products.map(product => {
-		const newLi = document.createElement('li');
-		const newItem = `<article>
-		<div class="thumbnail">
-			<input type="checkbox" id="${product.id}" name="cart-item-check" checked />
-			<label for="${product.id}">
-				<img src="${product.imageUrl}" alt="${product.title}" />
-				${product.title}
-			</label>
-		</div>
-		<div class="amount-btns">
-			<button type="button" class="subtracting">-</button>
-			<input
-				type="number"
-				class="amount"
-				value="1"
-				min="1"
-			/>
-			<button type="button" class="adding">+</button>
-		</div>
-		<div><span class="product-price">${product.totalPrice.toLocaleString()}</span>원</div>
-	</article>
-	<button type="button" class="delete-btn">삭제</button>`;
-		newLi.innerHTML = newItem;
-		itemsUl.appendChild(newLi);
-	});
+	console.log('장바구니에 상품 없음');
+	const emptyItems = itemsList.parentElement;
+	emptyItems.innerHTML =
+		'<span class="empty-items">장바구니에 담으신 상품이 없습니다. 🥲</span>';
 }
 
-const allChecked = document.querySelector('#all-checked');
+// 장바구니 상품들 화면 그려주기
+function getProducts(newProducts) {
+	const newItem = `<li>
+			<article>
+				<div class="thumbnail">
+					<input type="checkbox" id="${newProducts.id}" name="cart-item-check" checked />
+					<label for="${newProducts.id}">
+						<img src="${newProducts.imageUrl}" alt="${newProducts.title}" />
+						${newProducts.title}
+					</label>
+				</div>
+				<div class="amount-btns">
+					<button type="button" class="subtracting">-</button>
+					<input
+						type="number"
+						class="amount"
+						value="${newProducts.amount}"
+						min="1"
+					/>
+					<button type="button" class="adding">+</button>
+				</div>
+				<div><span class="product-price">${newProducts.totalPrice.toLocaleString()}</span>원</div>
+			</article>
+			<button type="button" class="delete-btn">삭제</button>
+			</li>`;
+	items += newItem;
+	itemsList.innerHTML = items;
+}
+
+// 전체선택 요소
+const allChecked = document.querySelector('input#all-checked');
+// 개별선택 요소
 const itemsCheck = document.querySelectorAll('input[name=cart-item-check]');
+// 선택된 상품금액
 const productsPrice = document.querySelector('#products-price');
+// 배송비
 const shippingPrice = document.querySelector('#shipping-price');
-const orderPrice = document.querySelector('#order-price');
-
 let shippingPriceNumber;
+// 결제예정금액
+const orderPrice = document.querySelector('#order-price');
+// 상품 아이템
+const cartItems = itemsList.querySelectorAll('li');
 
-// 상품금액, 배송비, 결제예정금액 업데이트
-const updateTotalPrice = () => {
-	const checkFilter = [...itemsCheck].filter(item => item.checked);
+cartUpdate();
 
-	checkFilter.length !== itemsCheck.length
+// 체크여부 확인해서 체크된 것들만 필터링
+function checkedProducts(items) {
+	return [...items].filter(item => item.checked);
+}
+
+// 선택 상품들 삭제
+const checkedDelBtn = document.querySelector('#checked-delete');
+checkedDelBtn.addEventListener('click', () => {
+	const deleteProducts = checkedProducts(itemsCheck);
+
+	const checkedProductsArr = [];
+
+	deleteProducts.map(product => {
+		checkedProductsArr.push(Number(product.id));
+		const li = product.closest('li');
+		li.remove();
+	});
+
+	products = products.filter(obj => !checkedProductsArr.includes(obj.id));
+	localStorage.setItem(PRODUCT_KEY, JSON.stringify(products));
+	alert('삭제되었습니다!');
+
+	// 남은 상품들 다시 전체선택
+	const remainingProducts = [...itemsCheck].filter(item => !item.checked);
+	remainingProducts.map(product => (product.checked = true));
+	cartUpdate();
+});
+
+// 선택 상품들 업데이트
+function cartUpdate() {
+	const updateProducts = checkedProducts(itemsCheck);
+
+	// 개별선택 모두 선택되었을때 전체선택 체크유무 제어
+	updateProducts.length !== itemsCheck.length
 		? (allChecked.checked = false)
 		: (allChecked.checked = true);
 
-	// console.log(checkFilter);
+	// 상품금액, 배송비, 결제예정금액 변경
 	let totalPrice = 0;
-	if (checkFilter.length === 0) {
+	if (updateProducts.length === 0) {
 		totalPrice = 0;
 		shippingPriceNumber = 0;
 	} else {
 		shippingPriceNumber = 3000;
 	}
-	for (let i = 0; i < checkFilter.length; i++) {
+	for (let i = 0; i < updateProducts.length; i++) {
 		products.map(product => {
-			if (product.id === Number(checkFilter[i].id)) {
+			if (product.id === Number(updateProducts[i].id)) {
 				totalPrice += product.totalPrice;
 			}
 		});
@@ -113,64 +157,73 @@ const updateTotalPrice = () => {
 	orderPrice.innerText = `${(
 		totalPrice + shippingPriceNumber
 	).toLocaleString()} 원`;
-};
+}
 
-updateTotalPrice();
-
-// 상품 전체선택
+// 전체선택 시 금액 업데이트
 allChecked.addEventListener('click', () => {
+	// 전체선택 시 개별선택 제어
 	[...itemsCheck].map(item => {
 		!allChecked.checked ? (item.checked = false) : (item.checked = true);
 	});
-	updateTotalPrice();
-});
-// 개별 선택 시 전체선택 인풋 제어
-[...itemsCheck].map(item => {
-	item.addEventListener('click', () => {
-		updateTotalPrice();
-	});
+	console.log('전체선택 시 금액 업데이트');
+	cartUpdate();
 });
 
-// 장바구니 상품 수량, 가격 변경
-const cartItems = document.querySelectorAll('.cart-items > ul > li');
-
-[...cartItems].map(item => {
+// 장바구니 상품 수량, 가격 변경, 삭제
+function itemUpdate(item) {
+	// 수량
 	const amountInput = item.querySelector('input.amount');
 	let amountValue = Number(amountInput.value);
-	const addingAmount = item.querySelector('.adding');
-	const subtractingAmount = item.querySelector('.subtracting');
+	const addingBtn = item.querySelector('button.adding');
+	const subtractingBtn = item.querySelector('button.subtracting');
 
+	// 가격
 	const itemCheck = item.querySelector('input[type=checkbox]');
 	const itemPrice = item.querySelector('.product-price');
 
-	const updateItem = () => {
-		products.map(product => {
-			if (product.id === Number(itemCheck.id)) {
-				product.amount = Number(amountInput.value);
-				product.totalPrice = product.price * product.amount;
-				itemPrice.innerText = product.totalPrice.toLocaleString();
-			}
-		});
-		localStorage.setItem('cartProducts', JSON.stringify(products));
+	// 수량*가격 계산
+	const amountCalc = product => {
+		if (product.id === Number(itemCheck.id)) {
+			product.amount = Number(amountInput.value);
+			product.totalPrice = product.price * product.amount;
+			itemPrice.innerText = product.totalPrice.toLocaleString();
+		}
+		localStorage.setItem(PRODUCT_KEY, JSON.stringify(products));
 	};
 
+	// 개별삭제
+	const deleteBtn = item.querySelector('button.delete-btn');
+	deleteBtn.addEventListener('click', e => {
+		const li = e.target.parentElement;
+		li.remove();
+		products = products.filter(obj => obj.id !== Number(itemCheck.id));
+		localStorage.setItem(PRODUCT_KEY, JSON.stringify(products));
+		cartUpdate();
+	});
+
+	// 개별선택 시 금액 업데이트
+	itemCheck.addEventListener('click', () => {
+		console.log('개별 선택 시 금액 업데이트');
+		cartUpdate();
+	});
+
 	// 수량 증가
-	addingAmount.addEventListener('click', () => {
+	addingBtn.addEventListener('click', () => {
 		amountValue += 1;
 		amountInput.value = amountValue;
-		updateItem();
-		updateTotalPrice();
+		products.map(amountCalc);
+		cartUpdate();
 	});
 	// 수량 감소
-	subtractingAmount.addEventListener('click', () => {
+	subtractingBtn.addEventListener('click', () => {
 		amountValue -= 1;
 		if (amountInput.value < 2) {
 			amountValue = 1;
 			alert('최소 수량은 1개 입니다!');
 		}
 		amountInput.value = amountValue;
-		updateItem();
-		updateTotalPrice();
+		products.map(amountCalc);
+		cartUpdate();
 	});
 	// 수량 직접 입력
 	amountInput.addEventListener('change', e => {
@@ -179,27 +232,8 @@ const cartItems = document.querySelectorAll('.cart-items > ul > li');
 			e.target.value = 1;
 			alert('최소 수량은 1개 입니다!');
 		}
-		updateItem();
-		updateTotalPrice();
+		products.map(amountCalc);
+		cartUpdate();
 	});
-});
-
-// // 상품 삭제 기능
-// const deleteItem = item => {
-// 	const deleteBtn = item.querySelector('.delete-btn');
-// 	deleteBtn.addEventListener('click', () => {
-// 		item.remove();
-// 	});
-// };
-
-// [...cartItems].map(item => {
-// 	deleteItem(item);
-
-// 	const itemCheck = item.querySelector('input[type=checkbox]');
-// 	// 상품 중 하나라도 선택해제라면 전체선택해제
-// 	itemCheck.addEventListener('click', () => {
-// 		if (!itemCheck.checked) {
-// 			allCheckbox.checked = false;
-// 		}
-// 	});
-// });
+}
+[...cartItems].map(itemUpdate);
