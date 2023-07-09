@@ -84,6 +84,10 @@ button {
 .cart-control-btn {
 	border-bottom: 1px solid #000;
 }
+.cart-items .empty-items {
+	display: block;
+	margin-top: 20px;
+}
 .cart-items img {
 	width: 100px;
 	height: 80px;
