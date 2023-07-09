@@ -50,7 +50,14 @@ if (products?.length > 0) {
 	products.map(getProducts);
 } else {
 	console.log('장바구니에 상품 없음');
+	emptyProducts();
+}
+
+// 장바구니 비었을 때
+function emptyProducts() {
 	const emptyItems = itemsList.parentElement;
+	const cartControl = document.querySelector('.cart-control-btn').children;
+	[...cartControl].map(el => (el.style.display = 'none'));
 	emptyItems.innerHTML =
 		'<span class="empty-items">장바구니에 담으신 상품이 없습니다. 🥲</span>';
 }
@@ -126,6 +133,10 @@ checkedDelBtn.addEventListener('click', () => {
 	const remainingProducts = [...itemsCheck].filter(item => !item.checked);
 	remainingProducts.map(product => (product.checked = true));
 	cartUpdate();
+
+	if (products.length <= 0) {
+		emptyProducts();
+	}
 });
 
 // 선택 상품들 업데이트
@@ -199,6 +210,10 @@ function itemUpdate(item) {
 		products = products.filter(obj => obj.id !== Number(itemCheck.id));
 		localStorage.setItem(PRODUCT_KEY, JSON.stringify(products));
 		cartUpdate();
+
+		if (products.length <= 0) {
+			emptyProducts();
+		}
 	});
 
 	// 개별선택 시 금액 업데이트
