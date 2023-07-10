@@ -86,7 +86,7 @@ button {
 }
 .cart-items .empty-items {
 	display: block;
-	margin-top: 20px;
+	margin: 20px 0;
 }
 .cart-items img {
 	width: 100px;
@@ -147,6 +147,9 @@ button {
 	color: #fff;
 	font-weight: 900;
 	padding: 20px 0;
+}
+.order-btn:disabled {
+	opacity: 0.5;
 }
 .amount-info {
 	display: flex;
