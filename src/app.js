@@ -16,6 +16,7 @@ dotenv.config();
 
 const port = process.env.PORT || 3000;
 
+mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGODB);
 const db = mongoose.connection;
 

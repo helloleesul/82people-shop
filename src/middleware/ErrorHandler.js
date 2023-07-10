@@ -1,26 +1,37 @@
-/* class badRequestError extends Error {
+class badRequestError extends Error {
   constructor(message) {
-    super();
-    this.statusCode = 400;
-    this.message = message;
+    super(message);
+    this.status = 400;
   }
-}
+};
+
+class notFoundError extends Error {
+  constructor(message) {
+    super(message);
+    this.status = 404;
+  }
+};
 
 class conflictError extends Error {
   constructor(message) {
-    super();
-    this.statusCode = 409;
-    this.message = message;
+    super(message);
+    this.status = 409;
   }
-} */
+};
+
+class internalServerError extends Error {
+  constructor(message) {
+    super(message);
+    this.status = 500;
+  }
+};
 
 const errorHandler = (err, req, res, next) => {
 
-    res.status(400).json({ 
-      result: 'error', 
-      msg: err.message
+    res.status(err.status).json({ 
+        message: err.message
     });
 };
 
-export { errorHandler };
+export { badRequestError, notFoundError, conflictError, internalServerError, errorHandler };
 

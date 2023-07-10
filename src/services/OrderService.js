@@ -1,17 +1,24 @@
-const { Order, User } = require('../db/models');
+const { Order, User, Product } = require('../db/models');
+const { badRequestError } = require('../middleware/ErrorHandler');
 
 const OrderService = {
 	// [회원 비회원 공통] 장바구니 제품 주문 완료
-	createOrder: async ({ purchase, addressInformation, password }) => {
-		// 비회원은 비밀번호 있어야함
-		// if (토큰이 없으면서 && !비밀번호) { throw new Error('비회원은 비밀번호 입력이 필요합니다.'); }
+	createOrder: async (email, { purchase, addressInformation, password }) => {
+		if (!email && !password) { 
+			throw new badRequestError('비회원은 비밀번호 입력이 필요합니다.'); 
+		}
 		if (!purchase || !addressInformation) {
-			throw new Error('누락된 정보가 있습니다. 다시 한 번 확인해주세요.');
+			throw new badRequestError('누락된 정보가 있습니다. 다시 한 번 확인해주세요.');
 		}
 
+		// salseAmount Update
+		Promise.all(purchase.map(async product => {
+			await Product.updateOne({ productId: product.productId }, { '$inc': { 'salesAmount': product.orderAmount }});
+        }));
+
 		// 총 상품 가격 계산
-		const totalProductsPrice = purchase.reduce((acc, purchase) => {
-			return acc + purchase.price * purchase.orderAmount;
+		const totalProductsPrice = purchase.reduce((acc, product) => {
+			return acc + product.price * product.orderAmount;
 		}, 0);
 
 		const orderInformation = {
@@ -25,31 +32,42 @@ const OrderService = {
 		};
 
 		const newOrder = await Order.create(orderInformation);
+		const newOrderId = await Order.findOne({ newOrder }).project({ orderId: 1 });
+		
+		// 회원의 경우 회원 주문 내역에 저장
+		if(email) {
+			await User.updateOne({ email: email }, { '$push': { orderHistory: newOrderId }});
+		}
 
-		return await Order.findOne({ newOrder }, { orderId : 1 });
+		return newOrderId;
 	},
 
-	// [회원] 배송지 확인 => 토큰 관련 미들웨어 생성 후 작업
-	checkAddress: async () => {
-		const address = await User.findOne({ email: email }, { addressInformation: 1 }); // 토큰에 담긴 유저 정보 기준으로 addressInformation 검색
+	// [회원] 배송지 확인
+	checkAddress: async email => {
+		const address = await User.findOne({ email: email }).project({ addressInformation: 1 });
 		if (!address) {
-			throw new Error('배송지가 존재하지 않습니다.');
+			throw new badRequestError('배송지가 존재하지 않습니다.');
 		}
 
 		return address;
 	},
 
-	/* 2주차에 작업
-    // [회원] 주문 시 배송지 추가
-    addAddress: async (userId) => {
-        await User.create({
-          // 
-        })
-    }, */
+	// [회원] 주문 내역 전체 조회
+	checkOrderHistory: async email => {
+		const orderIdArray = await User.findOne({ email: email }).project({ orderHistory: 1 });
 
-	// [회원] 주문 내역 전체 조회  => 토큰 관련 미들웨어 생성 후 작업
-	checkOrderHistory: async () => {
-		orderHistory = await Order.find({}).populate('addressInformation'); // 토큰에 담긴 유저 정보 기준으로 검색
+		const orderHistory = Promise.all(orderIdArray.map(async orderId => {
+			await Order.findOne({ orderId: orderId }).project({ 
+				orderId: 1, 
+				shippingStatus: 1, 
+				createdAt: 1,
+				'purchase.productId' : 1,
+				'purchase.title' : 1,
+				'purchase.price' : 1,		
+				'purchase.orderAmount' : 1,
+				'purchase.imageURL' : { '$slice' : 1 },
+			});
+        }));
 
 		return orderHistory;
 	},
@@ -58,13 +76,21 @@ const OrderService = {
 	checkOrderDetail: async orderId => {
 		const orderDetails = Order.findById(orderId);
 		if (!orderDetails) {
-			throw new Error(
+			throw new badRequestError(
 				'주문 내역이 존재하지 않습니다. 다시 한 번 확인해주세요.'
 			);
 		}
 
 		return orderDetails;
 	},
+
+	/* 2주차에 작업
+    // [회원] 주문 시 배송지 추가
+    addAddress: async (userId) => {
+        await User.({
+          // 
+        })
+    }, */
 };
 
 module.exports = { OrderService };
