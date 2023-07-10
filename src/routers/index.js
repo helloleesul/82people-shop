@@ -3,4 +3,4 @@ const AuthRouter = require('./AuthRouter');
 const OrderRouter = require('./OrderRouter');
 const ProductRouter = require('./ProductRouter');
 
-export { UserRouter, AuthRouter, OrderRouter, ProductRouter };
+module.exports = { UserRouter, AuthRouter, OrderRouter, ProductRouter };

@@ -26,7 +26,8 @@ db.on('error', err => console.error(err));
 db.on('reconnectedFailed', () => console.error('reconnect failed'));
 
 //router
-//main router추가
+//main(root) router추가
+
 app.use('/api', ProductRouter);
 app.use('/api', UserRouter);
 app.use('/api', AuthRouter);

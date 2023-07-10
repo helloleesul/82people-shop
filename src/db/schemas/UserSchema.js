@@ -35,12 +35,12 @@ const UserSchema = new Schema(
 		isDeleted: {
 			type: Boolean,
 			default: false,
-		},   
+		},
 		orderHistory: [Schema.Types.ObjectId],
-		}, 
-		{
-			timestamps: true,
-		}
+	},
+	{
+		timestamps: true,
+	}
 );
 
-module.exports = UserSchema;
+module.exports = { UserSchema };

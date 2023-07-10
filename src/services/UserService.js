@@ -2,9 +2,7 @@ const { User } = require('../db/models');
 
 const UserService = {
 	findUser: async email => {
-		const findUser = await User.findOne({ email });
-
-		return findUser;
+		return await User.findOne({ email });
 	},
 
 	updateUser: async (email, password, address) => {
