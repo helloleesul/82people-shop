@@ -4,7 +4,7 @@ const ProductController = {
 	// 전체 상품 요청 및 응답
 	getAllProducts: async (req, res, next) => {
 		try {
-			const [ totalProducts, bestProducts ]  = await Promise.all([
+			const [ totalProducts, bestProducts ] = Promise.all([
 				ProductService.getAllProducts(),
 				ProductService.getBestProducts(),
 			]);
