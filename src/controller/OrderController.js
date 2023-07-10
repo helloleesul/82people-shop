@@ -14,7 +14,7 @@ const OrderController = {
 			});
 
 			res.status(201).json({
-				msg: '주문 성공',
+				message: '주문 성공',
 				createdOrderId,
 			});
 		} catch (err) {
@@ -29,7 +29,7 @@ const OrderController = {
 			const address = await OrderService.checkAddress(); // 나중에
 
 			res.status(200).json({
-				msg: '배송지 조회 성공',
+				message: '배송지 조회 성공',
 				address,
 			});
 		} catch (err) {
@@ -44,7 +44,7 @@ const OrderController = {
         try {
 
             res.status(200).json({
-                msg: '배송지 추가 성공',
+                message: '배송지 추가 성공',
             });
         } catch(err) {
             next(err);

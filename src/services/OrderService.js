@@ -3,6 +3,8 @@ const { Order, User } = require('../db/models');
 const OrderService = {
 	// [회원 비회원 공통] 장바구니 제품 주문 완료
 	createOrder: async ({ purchase, addressInformation, password }) => {
+		// 비회원은 비밀번호 있어야함
+		// if (토큰이 없으면서 && !비밀번호) { throw new Error('비회원은 비밀번호 입력이 필요합니다.'); }
 		if (!purchase || !addressInformation) {
 			throw new Error('누락된 정보가 있습니다. 다시 한 번 확인해주세요.');
 		}
@@ -22,14 +24,14 @@ const OrderService = {
 			},
 		};
 
-		const createdOrder = await Order.create(orderInformation);
+		const newOrder = await Order.create(orderInformation);
 
-		return await Order.findById(createdOrder);
+		return await Order.findOne({ newOrder }, { orderId : 1 });
 	},
 
 	// [회원] 배송지 확인 => 토큰 관련 미들웨어 생성 후 작업
 	checkAddress: async () => {
-		const address = await User.find({}, {}); // 토큰에 담긴 유저 정보 기준으로 addressInformation 검색
+		const address = await User.findOne({ email: email }, { addressInformation: 1 }); // 토큰에 담긴 유저 정보 기준으로 addressInformation 검색
 		if (!address) {
 			throw new Error('배송지가 존재하지 않습니다.');
 		}
@@ -47,7 +49,7 @@ const OrderService = {
 
 	// [회원] 주문 내역 전체 조회  => 토큰 관련 미들웨어 생성 후 작업
 	checkOrderHistory: async () => {
-		orderHistory = await Order.find({}); // 토큰에 담긴 유저 정보 기준으로 검색
+		orderHistory = await Order.find({}).populate('addressInformation'); // 토큰에 담긴 유저 정보 기준으로 검색
 
 		return orderHistory;
 	},
