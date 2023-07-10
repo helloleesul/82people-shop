@@ -1,12 +1,8 @@
-const { Router } = require('express');
-const { AuthController } = require('../controller');
+const express = require('express');
+const AuthController = require('../controller/AuthController');
 
-const AuthRouter = Router();
+const AuthRouter = express.Router();
 
-// AuthRouter.get('/login', AuthController.login);
+AuthRouter.get('/login', AuthController.login);
 
-// AuthRouter.put('/logout', async (req, res, next) => {
-//header에 토큰값 받기
-// });
-
-module.exports = { AuthRouter };
+module.exports = AuthRouter;

@@ -1,10 +1,10 @@
 const jwt = require('jsonwebtoken');
 
-const { User } = require('../db/models');
+const User = require('../db/models/UserModel');
 
 const AuthController = {
 	login: async (req, res, next) => {
-		const { email, password } = await req.body;
+		const { email, password } = req.body;
 
 		try {
 			const searchedUser = await User.findOne({ email });
@@ -37,9 +37,5 @@ const AuthController = {
 			next(err);
 		}
 	},
-
-	// logout: async (req, res, next) => {
-	//토큰값 체크
-	// },
 };
-module.exports = { AuthController };
+module.exports = AuthController;

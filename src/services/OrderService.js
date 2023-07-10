@@ -1,4 +1,6 @@
-const { Order, User, Product } = require('../db/models');
+const Order = require('../db/models/OrderModel');
+const User = require('../db/models/UserModel');
+const Product = require('../db/models/ProductModel');
 const { badRequestError } = require('../middleware/ErrorHandler');
 
 const OrderService = {
@@ -13,7 +15,8 @@ const OrderService = {
 			);
 		}
 
-		// salseAmount Update
+		// salesAmount Update
+		//로직 수정 필요
 		Promise.all(
 			purchase.map(async product => {
 				await Product.updateOne(
@@ -111,4 +114,4 @@ const OrderService = {
     }, */
 };
 
-module.exports = { OrderService };
+module.exports = OrderService;

@@ -3,4 +3,4 @@ const { OrderSchema } = require('../schemas');
 
 const Order = mongoose.model('UserOrder', OrderSchema);
 
-module.exports = { Order };
+module.exports = Order;

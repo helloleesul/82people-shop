@@ -1,4 +1,4 @@
-const { User } = require('../db/models');
+const User = require('../db/models/UserModel');
 
 const UserService = {
 	findUser: async email => {
@@ -10,6 +10,9 @@ const UserService = {
 	},
 
 	deleteUser: async email => {
+		if (!(await this.findUser(email))) {
+			console.log('User not found');
+		}
 		await User.updateOne({ email }, { isDeleted: true });
 	},
 };

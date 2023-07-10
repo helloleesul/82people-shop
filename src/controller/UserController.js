@@ -1,5 +1,5 @@
-const { User } = require('../db/models');
-const { UserService } = require('../services');
+const User = require('../db/models/UserModel');
+const UserService = require('../services/UserService');
 
 const UserController = {
 	getUserInformation: async (req, res, next) => {
@@ -18,7 +18,7 @@ const UserController = {
 	},
 
 	updateUser: async (req, res, next) => {
-		const { email, password, address } = await req.body; //address:Object[] = required:false
+		const { email, password, address } = req.body; //address:Object[] = required:false
 
 		try {
 			if (!email || !password) {
@@ -36,7 +36,7 @@ const UserController = {
 	},
 
 	deleteUser: async (req, res, next) => {
-		const { email } = await req.body;
+		const { email } = req.body;
 
 		try {
 			UserService.deleteUser(email);
@@ -51,17 +51,19 @@ const UserController = {
 
 	userSignup: async (req, res, next) => {
 		const { email, name, password } = req.body;
+
 		const isSignup = await User.findOne({ email });
 
 		try {
-			if (isSignup) {
+			if (!isSignup) {
 				throw new Error('이미 가입 된 이메일 입니다.');
 			}
-			// await User.create({
-			// 	email,
-			// 	name,
-			// 	password,
-			// });
+
+			await User.create({
+				email,
+				name,
+				password,
+			});
 
 			return res.status(201).json({
 				msg: '가입 완료',
@@ -72,7 +74,7 @@ const UserController = {
 	},
 
 	emailOverlapCheck: async (req, res, next) => {
-		const { email } = await req.body;
+		const { email } = req.body;
 		try {
 			const searchedEmail = await UserService.findUser(email);
 

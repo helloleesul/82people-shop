@@ -1,4 +1,4 @@
-const { Product } = require('../db/models');
+const Product = require('../db/models/ProductModel');
 const { badRequestError } = require('../middleware/ErrorHandler');
 
 const ProductService = {
@@ -27,11 +27,13 @@ const ProductService = {
 	getProductById: async productId => {
 		const product = await Product.findById(productId);
 		if (!product) {
-			throw new badRequestError('상품이 존재하지 않습니다. 다시 한 번 확인해주세요.');
+			throw new badRequestError(
+				'상품이 존재하지 않습니다. 다시 한 번 확인해주세요.'
+			);
 		}
 
 		return product;
 	},
 };
 
-module.exports = { ProductService };
+module.exports = ProductService;

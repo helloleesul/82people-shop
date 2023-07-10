@@ -1,14 +1,13 @@
-const { OrderService } = require('../services');
+const OrderService = require('../services/OrderService');
 
 const OrderController = {
 	// [회원 || 비회원] 장바구니 제품 주문 완료
 	createOrder: async (req, res, next) => {
 		const email = req.currentUserEmail;
-		const { purchase, addressInformation, password } = await req.body;
+		const { purchase, addressInformation, password } = req.body;
 
 		try {
-			const newOrderId = await OrderService.createOrder(
-				email, {
+			const newOrderId = await OrderService.createOrder(email, {
 				purchase,
 				addressInformation,
 				password,
@@ -16,7 +15,7 @@ const OrderController = {
 
 			res.status(201).json({
 				message: '주문 성공',
-				newOrderId
+				newOrderId,
 			});
 		} catch (err) {
 			next(err);
@@ -42,7 +41,7 @@ const OrderController = {
 	// [회원] 주문 내역 전체 조회
 	checkOrderHistory: async (req, res, next) => {
 		const email = req.currentUserEmail;
-		
+
 		try {
 			const orderHistory = await OrderService.checkOrderHistory(email);
 
@@ -86,4 +85,4 @@ const OrderController = {
     */
 };
 
-module.exports = { OrderController };
+module.exports = OrderController;

@@ -1,10 +1,10 @@
-const { ProductService } = require('../services');
+const ProductService = require('../services/ProductService');
 
 const ProductController = {
 	// 전체 상품 요청 및 응답
 	getAllProducts: async (req, res, next) => {
 		try {
-			const [ totalProducts, bestProducts ] = Promise.all([
+			const [totalProducts, bestProducts] = Promise.all([
 				ProductService.getAllProducts(),
 				ProductService.getBestProducts(),
 			]);
@@ -12,7 +12,7 @@ const ProductController = {
 			res.status(200).json({
 				message: '전체 제품 목록 조회 성공',
 				totalProducts,
-				bestProducts
+				bestProducts,
 			});
 		} catch (err) {
 			next(err);
@@ -54,4 +54,4 @@ const ProductController = {
 	},
 };
 
-module.exports = { ProductController };
+module.exports = ProductController;
