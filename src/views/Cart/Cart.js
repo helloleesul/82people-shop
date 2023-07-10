@@ -1,4 +1,4 @@
-// 장바구니 테스트용 더미 데이터 (id, 상품이름, 수량, 이미지주소, 가격, 수량계산된 가격)
+// 🚫 장바구니 테스트용 더미 데이터 (id, 상품이름, 수량, 이미지주소, 가격, 수량계산된 가격)
 let data = [
 	{
 		id: 1,
@@ -26,18 +26,91 @@ let data = [
 	},
 ];
 
-const PRODUCT_KEY = 'cartProducts';
+// checkJWTTokenInCookie를 공통 js로 만들어서 header,footer 불러올때 함께 사용하면 좋을 듯 함
+// 쿠키에서 JWT 토큰 확인
+function checkJWTTokenInCookie() {
+	const cookies = document.cookie.split(';'); // 모든 쿠키 가져오기
+	// console.log(cookies);
+	for (let i = 0; i < cookies.length; i++) {
+		const cookie = cookies[i].trim();
+		// JWT 토큰 쿠키인지 확인
+		if (cookie.startsWith('jwt=')) {
+			const jwtToken = cookie.split('=')[1]; // JWT 토큰 값 가져오기
+			// 토큰이 유효한지 여부 확인
+			if (validateJWTToken(jwtToken)) {
+				return true; // 유효한 토큰이 존재함
+			}
+		}
+	}
+	return false; // 토큰이 없거나 유효하지 않음
+}
 
-// 테스트용 더미데이터 불러오기 버튼(삭제예정)
-const form = document.querySelector('#cart-wrap');
+// JWT 토큰 유효성 검사 로직
+function validateJWTToken(jwtToken) {
+	// 예를 들어, 토큰의 시그니처 검증, 만료 여부 확인 등을 수행
+	// 유효한 토큰이면 true, 그렇지 않으면 false 반환
+	// 실제 구현은 JWT 라이브러리를 사용하거나 직접 로직을 작성
+	return true; // 임시로 항상 유효한 토큰으로 가정
+}
+
+// 쿠키에서 JWT 토큰 확인
+const hasToken = checkJWTTokenInCookie();
+const guestModeEl = document.querySelector('#guest-mode');
+
+if (hasToken) {
+	console.log('JWT 토큰이 쿠키에 존재합니다.');
+	guestModeEl.innerText = '';
+} else {
+	console.log('JWT 토큰이 쿠키에 존재하지 않습니다.');
+	guestModeEl.innerText = '비회원으로';
+}
+
+// 테스트용 JWT 토큰 생성 함수
+function setCookie(name, value, days) {
+	const expires = new Date();
+	expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
+	const expiresStr = expires.toUTCString();
+	document.cookie =
+		name +
+		'=' +
+		encodeURIComponent(value) +
+		'; expires=' +
+		expiresStr +
+		'; path=/';
+}
+
+// 테스트용 JWT 토큰
+const jwtToken = 'your-jwt-token';
+
+// 🚫 테스트용 요소 생성(삭제예정)
+const wrap = document.querySelector('#cart-wrap');
+const testDiv = document.createElement('div');
+testDiv.setAttribute('style', 'display: flex;justify-content: space-between;');
+wrap.prepend(testDiv);
+
+// 🚫 테스트용 토큰 생성 버튼(삭제예정)
+const tokenBtn = document.createElement('button');
+tokenBtn.setAttribute('style', 'background:#000;color:#fff;padding:2px 10px;');
+tokenBtn.innerText = '테스트용 토큰 생성';
+testDiv.prepend(tokenBtn);
+function importToken() {
+	// JWT 토큰을 쿠키에 설정
+	setCookie('jwt', jwtToken, 7); // 7일 동안 유효한 쿠키로 설정
+}
+tokenBtn.addEventListener('click', importToken);
+
+// 🚫 테스트용 더미데이터 불러오기 버튼(삭제예정)
 const dummyBtn = document.createElement('button');
-dummyBtn.innerHTML =
-	'<span style="background:#000;color:#fff;padding:2px 10px;">테스트용 더미데이터 불러오기(삭제예정)</span>';
-form.prepend(dummyBtn);
-const importDummyProducts = () => {
+dummyBtn.setAttribute('style', 'background:#000;color:#fff;padding:2px 10px;');
+dummyBtn.innerText = '테스트용 더미데이터 생성';
+testDiv.prepend(dummyBtn);
+function importDummyProducts() {
 	localStorage.setItem(PRODUCT_KEY, JSON.stringify(data));
-};
+}
 dummyBtn.addEventListener('click', importDummyProducts);
+
+// 👉 개발 시작 코드
+const PRODUCT_KEY = 'cartProducts';
 
 // 로컬스토리지 장바구니 데이터
 let products = JSON.parse(localStorage.getItem(PRODUCT_KEY));
