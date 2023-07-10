@@ -29,7 +29,7 @@ let data = [
 const PRODUCT_KEY = 'cartProducts';
 
 // 테스트용 더미데이터 불러오기 버튼(삭제예정)
-const form = document.querySelector('form');
+const form = document.querySelector('#cart-wrap');
 const dummyBtn = document.createElement('button');
 dummyBtn.innerHTML =
 	'<span style="background:#000;color:#fff;padding:2px 10px;">테스트용 더미데이터 불러오기(삭제예정)</span>';
@@ -74,15 +74,18 @@ function getProducts(newProducts) {
 						${newProducts.title}
 					</label>
 				</div>
-				<div class="amount-btns">
-					<button type="button" class="subtracting">-</button>
-					<input
-						type="number"
-						class="amount"
-						value="${newProducts.amount}"
-						min="1"
-					/>
-					<button type="button" class="adding">+</button>
+				<div class="amount-info">
+					<div class="amount-btns">
+						<button type="button" class="subtracting">-</button>
+						<input
+							type="number"
+							class="amount"
+							value="${newProducts.amount}"
+							min="1"
+						/>
+						<button type="button" class="adding">+</button>
+					</div>
+					<div>&#215; <span>${newProducts.price.toLocaleString()}</span>원</div>
 				</div>
 				<div><span class="product-price">${newProducts.totalPrice.toLocaleString()}</span>원</div>
 			</article>
@@ -243,11 +246,12 @@ function itemUpdate(item) {
 	});
 	// 수량 직접 입력
 	amountInput.addEventListener('change', e => {
-		amountValue = Number(e.target.value);
-		if (e.target.value < 2) {
+		e.preventDefault();
+		if (e.target.value < 1) {
 			e.target.value = 1;
 			alert('최소 수량은 1개 입니다!');
 		}
+		amountValue = Number(e.target.value);
 		products.map(amountCalc);
 		cartUpdate();
 	});

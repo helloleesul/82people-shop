@@ -148,10 +148,15 @@ button {
 	font-weight: 900;
 	padding: 20px 0;
 }
-.amount-btns {
-	background-color: #fff;
+.amount-info {
 	display: flex;
 	align-items: center;
+	gap: 10px;
+}
+.amount-btns {
+	display: flex;
+	align-items: center;
+	background-color: #fff;
 }
 .amount-btns input {
 	width: 50px;
