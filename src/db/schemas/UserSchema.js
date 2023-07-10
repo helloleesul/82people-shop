@@ -35,11 +35,12 @@ const UserSchema = new Schema(
 		deletedAt: {
 			type: Boolean,
 			default: false,
-		},
-	},
-	{
-		timestamps: true,
-	}
+		},   
+		orderHistory: [Schema.Types.ObjectId],
+		}, 
+		{
+			timestamps: true,
+		}
 );
 
 module.exports = UserSchema;
