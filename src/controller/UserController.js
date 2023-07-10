@@ -50,19 +50,18 @@ const UserController = {
 	},
 
 	userSignup: async (req, res, next) => {
-		const { email, name, password } = await req.body;
-
-		const isSignup = User.findOne({ email });
+		const { email, name, password } = req.body;
+		const isSignup = await User.findOne({ email });
 
 		try {
 			if (isSignup) {
 				throw new Error('이미 가입 된 이메일 입니다.');
 			}
-			await User.create({
-				email,
-				name,
-				password,
-			});
+			// await User.create({
+			// 	email,
+			// 	name,
+			// 	password,
+			// });
 
 			return res.status(201).json({
 				msg: '가입 완료',
@@ -90,4 +89,4 @@ const UserController = {
 	},
 };
 
-module.exports = { UserController };
+module.exports = UserController;
