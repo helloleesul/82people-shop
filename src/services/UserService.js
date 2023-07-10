@@ -12,7 +12,7 @@ const UserService = {
 	},
 
 	deleteUser: async email => {
-		await User.updateOne({ email }, { deletedAt: true });
+		await User.updateOne({ email }, { isDeleted: true });
 	},
 };
 

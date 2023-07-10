@@ -32,7 +32,7 @@ const UserSchema = new Schema(
 			enum: userRole,
 			default: 'customer',
 		},
-		deletedAt: {
+		isDeleted: {
 			type: Boolean,
 			default: false,
 		},
