@@ -9,4 +9,4 @@ AuthRouter.get('/login', AuthController.login);
 //header에 토큰값 받기
 // });
 
-module.exports = AuthRouter;
+module.exports = { AuthRouter };

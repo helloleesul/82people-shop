@@ -25,7 +25,6 @@ const UserController = {
 				throw new Error('누락된 값이 있습니다.');
 			}
 
-			// await User.updateOne({ email }, { password, address });
 			UserService.updateUser(email, password, address);
 
 			return res.status(200).json({
@@ -40,7 +39,6 @@ const UserController = {
 		const { email } = await req.body;
 
 		try {
-			// await User.updateOne({ email }, { deletedAt: true });
 			UserService.deleteUser(email);
 
 			return res.status(200).json({

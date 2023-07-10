@@ -10,4 +10,4 @@ UserRouter.get('/users/signUp', UserController.emailOverlapCheck);
 UserRouter.post('/users/signUp', UserController.userSignup);
 UserRouter.get('/users/myPage', VerifyToken, UserController.getUserInformation);
 
-module.exports = UserRouter;
+module.exports = { UserRouter };

@@ -14,4 +14,4 @@ OrderRouter.get('orders/history', OrderController.checkOrderHistory);
 
 OrderRouter.get('orders/history:orderId', OrderController.checkOrderDetail);
 
-module.exports = OrderRouter;
+module.exports = { OrderRouter };
