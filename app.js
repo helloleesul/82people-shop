@@ -4,14 +4,10 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 
 //module
-// const {
-// 	ProductRouter,
-// 	UserRouter,
-// 	AuthRouter,
-// 	OrderRouter,
-// } = require('./src/routers');
-
 const UserRouter = require('./src/routers/UserRouter');
+const ProductRouter = require('./src/routers/ProductRouter');
+const AuthRouter = require('./src/routers/AuthRouter');
+const OrderRouter = require('./src/routers/OrderRouter');
 
 const app = express();
 dotenv.config();
@@ -33,10 +29,10 @@ db.on('reconnectedFailed', () => console.error('reconnect failed'));
 //router
 //main(root) router추가
 
-// app.use('/api', ProductRouter);
 app.use('/api', UserRouter);
-// app.use('/api', AuthRouter);
-// app.use('/api', OrderRouter);
+app.use('/api', ProductRouter);
+app.use('/api', AuthRouter);
+app.use('/api', OrderRouter);
 
 app.listen(port, () => {
 	console.log(`connecting to ${port}`);
