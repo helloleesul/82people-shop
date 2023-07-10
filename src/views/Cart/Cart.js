@@ -257,3 +257,9 @@ function itemUpdate(item) {
 	});
 }
 [...cartItems].map(itemUpdate);
+
+// 주문하기 버튼 이동
+const orderBtn = document.querySelector('.order-btn');
+orderBtn.addEventListener('click', () => {
+	console.log('주문하기');
+});
