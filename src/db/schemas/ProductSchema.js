@@ -1,7 +1,7 @@
 const { Schema } = require('mongoose');
 
 const ProductSchema = new Schema({
-	// _id 부분은 자동으로 Object.id를 넣어주기 때문에 생략
+	productId: Schema.Types.ObjectId,
 	title: {
 		type: String,
 		required: true,
@@ -23,7 +23,7 @@ const ProductSchema = new Schema({
 		required: true,
 	},
 	imageURL: [String],
-	amount: {
+	currentAmount: {
 		type: Number,
 		required: true,
 	},

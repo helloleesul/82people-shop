@@ -1,8 +1,10 @@
 const { Schema } = require('mongoose');
 
+const userRole = ['customer', 'admin'];
+
 const UserSchema = new Schema(
 	{
-		// _id 부분은 자동으로 Object.id를 넣어주기 때문에 생략
+		userId: Schema.Types.ObjectId,
 		email: {
 			type: String,
 			required: true,
@@ -16,17 +18,20 @@ const UserSchema = new Schema(
 			required: true,
 		},
 
-		addressInformation: {
-			recipient: { type: String, required: true },
-			Phone: { type: String, required: true },
-			address: { type: String, required: true },
-			detailAddress: { type: String, required: true },
-			shippingRequest: { type: String },
-		},
+		addressInformation: [
+			{
+				recipient: { type: String, required: true },
+				Phone: { type: String, required: true },
+				address: { type: String, required: true },
+				detailAddress: { type: String, required: true },
+				shippingRequest: { type: String },
+			},
+		],
 
-		grade: {
+		role: {
 			type: String,
-			default: 1,
+			enum: userRole,
+			default: 'customer',
 		},
 		deletedAt: {
 			type: Boolean,

@@ -1,0 +1,92 @@
+/* 레이아웃 기본 스타일 (FE-dev로 병합 후 따로 common.css로 뺄 예정)*/
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+#global-wrap {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+}
+
+/* 헤더 */
+header {
+  height: 100px;
+  background-color: #fff;
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.07);
+}
+
+.header-container {
+  width: 80%;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.header-container .header-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.header-container .header-group .logo {
+  background-color: #FF5675;
+  border-radius: 0 20px 0 10px;
+  padding: 5px;
+}
+
+.header-container .header-group .logo a {
+  font-size: 30px;
+  font-weight: 300;
+  color: #fff;
+}
+
+.header-container .header-group .logo span {
+  font-weight: 900;
+}
+
+.header-container .header-group ul {
+  display: flex;
+}
+
+.header-container .header-group ul li {
+  padding: 0 40px;
+}
+
+.header-container .header-group ul li a {
+  font-size: 20px;
+  color: #000;
+}
+
+.header-container .header-group ul li a:hover {
+  border-bottom: 1px solid #000;
+}
+
+.header-container .header-group .menu-group {
+  display: flex;
+}
+
+.header-container .header-group .menu-group>div {
+  padding: 10px;
+}
+
+.header-container .header-group .menu-group a {
+  color: #999;
+}

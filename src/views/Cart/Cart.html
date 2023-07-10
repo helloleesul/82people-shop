@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- css 초기화 연결 (삭제예정) -->
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css"
+		/>
+		<!-- 작업할 css 연결 -->
+		<link rel="stylesheet" href="Cart.css" />
+		<!-- 페이지에 맞는 타이틀 입력 -->
+		<title>장바구니</title>
+	</head>
+	<body>
+		<div id="global-wrap">
+			<header>header</header>
+			<main>
+				<div class="main-container">
+					<!-- 클래스명 main-container까지 공통, id값은 페이지에 맞게 이름설정해서 사용 -->
+					<!-- 해당 위치에 페이지 마크업 -->
+					<div id="cart-wrap">
+						<ol class="cart-step">
+							<li class="active">
+								<span>1</span>
+								<h2>장바구니</h2>
+							</li>
+							<li>
+								<span>2</span>
+								주문하기
+							</li>
+							<li>
+								<span>3</span>
+								결제완료
+							</li>
+						</ol>
+						<form>
+							<!-- 장바구니 목록 -->
+							<fieldset>
+								<div class="cart-control-btn">
+									<input
+										type="checkbox"
+										id="allItems"
+										name="cartItemCheck"
+										checked
+									/>
+									<label for="allItems">전체 선택</label>
+									<button type="button">선택 삭제</button>
+								</div>
+								<section class="cart-items">
+									<ul>
+										<!-- 상품리스트 -->
+									</ul>
+								</section>
+							</fieldset>
+						</form>
+						<!-- 금액 정보 -->
+						<section class="cart-price">
+							<div>
+								<span>상품금액</span>
+								<span id="products-price">20,000 원</span>
+							</div>
+							<div>
+								<span>배송비</span>
+								<span id="shipping-price">3,000 원</span>
+							</div>
+							<div class="total">
+								<strong>
+									<span>결제예정금액</span>
+									<span id="total-price">23,000 원</span>
+								</strong>
+							</div>
+						</section>
+						<button type="submit" class="order-btn">
+							<!-- 비회원 상태일 경우 해당 요소 노출-->
+							<span id="guest-mode">비회원으로</span>
+							주문하기
+						</button>
+					</div>
+				</div>
+			</main>
+			<footer>footer</footer>
+		</div>
+		<script src="Cart.js"></script>
+	</body>
+</html>

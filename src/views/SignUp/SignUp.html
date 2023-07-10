@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- css 초기화 연결 (삭제예정) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" />
+  <!-- 작업할 css 연결 -->
+  <link rel="stylesheet" href="SignUp.css" />
+  <!-- 작업할 JS 연결 -->
+  <script defer type="javascript" src="./SignUp.js"></script>
+  <!-- 페이지에 맞는 타이틀 입력 -->
+  <title>회원가입</title>
+</head>
+
+<body>
+  <div id="global-wrap">
+    <header>header</header>
+    <main>
+      <div class="main-container" id="signup-wrap">
+        <!-- 클래스명 main-container까지 공통, id값은 페이지에 맞게 이름설정해서 사용 -->
+        <!-- 해당 위치에 페이지 마크업 -->
+        <section class="signup">
+          <h1>회원가입</h1>
+          <div class="signup-card">
+            <form>
+              <div>
+                <div>
+                  <label for="form-email" />이메일</label>
+                </div>
+                <div class="signup-email">
+                  <input type="email" id="form-email" class="form-email" name="form-email" required />
+                  <!-- 이메일 중복체크 어떻게 할 것인지? -->
+                  <button type="button">중복확인</button>
+                </div>
+              </div>
+              <div>
+                <label for="form-name" />이름</label>
+                <input type="text" id="form-name" class="form-name" name="form-name" required />
+              </div>
+              <div>
+                <label for="form-pw" />비밀번호</label>
+                <input type="password" id="form-pw" class="form-pw" name="form-pw" minlength="8"
+                  pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$" required />
+              </div>
+              <div>
+                <label for="form-pwCheck" />비밀번호 확인</label>
+                <input type="password" id="form-pwCheck" class="form-pwCheck" name="form-pwCheck" minlength="8"
+                  required />
+              </div>
+              <button type="button" class="form-submit">가입하기</button>
+            </form>
+          </div>
+        </section>
+      </div>
+    </main>
+    <footer>footer</footer>
+  </div>
+</body>
+
+</html>
