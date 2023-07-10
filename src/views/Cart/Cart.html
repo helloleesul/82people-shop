@@ -39,14 +39,9 @@
 							<!-- 장바구니 목록 -->
 							<fieldset>
 								<div class="cart-control-btn">
-									<input
-										type="checkbox"
-										id="allItems"
-										name="cartItemCheck"
-										checked
-									/>
-									<label for="allItems">전체 선택</label>
-									<button type="button">선택 삭제</button>
+									<input type="checkbox" id="all-checked" checked />
+									<label for="all-checked">전체 선택</label>
+									<button type="button" id="checked-delete">선택 삭제</button>
 								</div>
 								<section class="cart-items">
 									<ul>
@@ -59,16 +54,16 @@
 						<section class="cart-price">
 							<div>
 								<span>상품금액</span>
-								<span id="products-price">20,000 원</span>
+								<span id="products-price"></span>
 							</div>
 							<div>
 								<span>배송비</span>
-								<span id="shipping-price">3,000 원</span>
+								<span id="shipping-price"></span>
 							</div>
 							<div class="total">
 								<strong>
 									<span>결제예정금액</span>
-									<span id="total-price">23,000 원</span>
+									<span id="order-price"></span>
 								</strong>
 							</div>
 						</section>
