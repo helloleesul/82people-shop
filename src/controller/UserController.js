@@ -4,7 +4,7 @@ const UserService = require('../services/UserService');
 const UserController = {
 	getUserInformation: async (req, res, next) => {
 		const email = req.currentUserEmail;
-
+		// console.log(email);
 		try {
 			const findUser = await UserService.findUser(email);
 
@@ -18,8 +18,8 @@ const UserController = {
 	},
 
 	updateUser: async (req, res, next) => {
-		const { email, password, address } = req.body; //address:Object[] = required:false
-
+		const { email, password, address } = req.body;
+		// console.log(email, password, address);
 		try {
 			if (!email || !password) {
 				throw new Error('누락된 값이 있습니다.');
@@ -53,9 +53,9 @@ const UserController = {
 		const { email, name, password } = req.body;
 
 		const isSignup = await User.findOne({ email });
-
+		// console.log(isSignup);
 		try {
-			if (!isSignup) {
+			if (isSignup) {
 				throw new Error('이미 가입 된 이메일 입니다.');
 			}
 
