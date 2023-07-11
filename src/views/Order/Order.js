@@ -234,26 +234,32 @@ function orderBtn(e) {
 			detailAddress.value !== ''
 		) {
 			// 회원 주문 POST 요청 전송
-			axios
-				.post(
-					'/api/orders',
-					{
-						purchase: orderProducts,
-						recipient: recipient.value,
-						phone: onlyPhoneNumbers,
-						address: address.value,
-						detailAddress: detailAddress.value,
-						shippingRequest: shippingRequest.value,
-						shippingPrice: shippingPriceNumber,
-					},
-					{ headers: { Authorization: jwtToken } }
-				)
+			fetch('/api/orders', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: jwtToken,
+				},
+				body: JSON.stringify({
+					purchase: orderProducts,
+					recipient: recipient.value,
+					phone: onlyPhoneNumbers,
+					address: address.value,
+					detailAddress: detailAddress.value,
+					shippingRequest: shippingRequest.value,
+					shippingPrice: shippingPriceNumber,
+				}),
+			})
 				.then(res => {
-					console.log('주문성공', res);
-					// viewRouter로 변경예정 (회원)
-					window.location.href = '/orders/complete';
+					if (res.ok) {
+						alert('회원주문 완료');
+						window.location.href = '/orders/complete';
+					} else {
+						throw new Error('회원주문 실패');
+					}
 				})
 				.catch(err => console.log(err));
+			// res, json부분 dev에서 확인 다시 필요함! res 에러 컨트롤 작업 필요함.. 볼수없어서 이렇게.. 했어요
 		} else {
 			console.log('필수입력을 적어주세요!');
 		}
@@ -268,8 +274,12 @@ function orderBtn(e) {
 			guestPwd.value !== ''
 		) {
 			// 비회원 주문 POST 요청 전송
-			axios
-				.post('/api/orders/guest', {
+			fetch('/api/orders/guest', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
 					purchase: orderProducts,
 					recipient: recipient.value,
 					phone: onlyPhoneNumbers,
@@ -278,13 +288,15 @@ function orderBtn(e) {
 					detailAddress: detailAddress.value,
 					shippingRequest: shippingRequest.value,
 					shippingPrice: shippingPriceNumber,
-				})
-				.then(res => {
-					console.log('주문성공', res);
-					// viewRouter로 변경예정 (비회원) params로 넘기기
-					window.location.href = '/orders/complete?orderId=' + res.orderId;
+				}),
+			})
+				.then(res => res.json())
+				.then(json => {
+					window.location.href =
+						'/orders/complete?orderId=' + json.data.orderId;
 				})
 				.catch(err => console.log(err));
+			// res, json부분 dev에서 확인 다시 필요함! res 에러 컨트롤 작업 필요함.. 볼수없어서 이렇게.. 했어요
 		} else {
 			console.log('필수입력을 적어주세요!');
 		}
