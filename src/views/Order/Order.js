@@ -208,7 +208,7 @@ function orderBtn(e) {
 			address.value !== '' &&
 			detailAddress.value !== ''
 		) {
-			// 비회원 주문 POST 요청 전송
+			// 회원 주문 POST 요청 전송
 			axios
 				.post(
 					'/api/orders',
@@ -219,6 +219,7 @@ function orderBtn(e) {
 						address: address.value,
 						detailAddress: detailAddress.value,
 						shippingRequest: shippingRequest.value,
+						shippingPrice: shippingPriceNumber,
 					},
 					{ headers: { Authorization: jwtToken } }
 				)
@@ -250,6 +251,7 @@ function orderBtn(e) {
 					address: address.value,
 					detailAddress: detailAddress.value,
 					shippingRequest: shippingRequest.value,
+					shippingPrice: shippingPriceNumber,
 				})
 				.then(res => {
 					console.log('주문성공', res);
