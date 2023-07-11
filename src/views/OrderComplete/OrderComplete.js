@@ -65,3 +65,13 @@ if (!orderId && !hasToken) {
 	alert('잘못된 접근입니다!');
 	window.location.href = '/';
 }
+
+const orderIdCopy = document.querySelector('#order-id');
+orderIdCopy.addEventListener('click', async () => {
+	try {
+		await navigator.clipboard.writeText(orderId);
+		alert(`주문번호: ${orderId}`);
+	} catch (err) {
+		console.log('복사실패', err);
+	}
+});
