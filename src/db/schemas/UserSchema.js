@@ -20,7 +20,7 @@ const UserSchema = new Schema(
 		addressInformation: [
 			{
 				recipient: { type: String, required: true },
-				Phone: { type: String, required: true },
+				phone: { type: String, required: true },
 				address: { type: String, required: true },
 				detailAddress: { type: String, required: true },
 				shippingRequest: { type: String },

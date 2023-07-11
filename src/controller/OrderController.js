@@ -1,23 +1,34 @@
 const OrderService = require('../services/OrderService');
+const { badRequestError } = require('../middleware/ErrorHandler');
 
 const OrderController = {
 	// [회원 || 비회원] 장바구니 제품 주문 완료
 	createOrder: async (req, res, next) => {
 		const email = req.currentUserEmail;
-		// const name = req.currentUserName;
-		const { purchase, addressInformation, password } = req.body;
+		const { purchase, recipient, phone, password, address, detailAddress, shippingRequest, shippingPrice } = req.body;
 
 		try {
-			const newOrderId = await OrderService.createOrder(email, {
-				purchase,
-				addressInformation,
-				password,
+			if (!email && !password) {
+				throw new badRequestError('비회원은 비밀번호 입력이 필요합니다.');
+			}
+			if (!purchase || !recipient || !phone || !password || !address || !detailAddress || !shippingPrice) {
+				throw new badRequestError('누락된 정보가 있습니다. 다시 한 번 확인해주세요.');
+			}
+
+			const newOrderId = await OrderService.createOrder({
+				purchase, 
+				recipient, 
+				phone,
+				password, 
+				address, 
+				detailAddress, 
+				shippingRequest,
+				shippingPrice
 			});
 
 			res.status(201).json({
 				message: '주문 성공',
-				newOrderId,
-				// name,
+				newOrderId
 			});
 		} catch (err) {
 			next(err);
@@ -31,6 +42,10 @@ const OrderController = {
 		try {
 			const address = await OrderService.checkAddress(email);
 
+			if (!address) {
+				throw new badRequestError('배송지가 존재하지 않습니다.');
+			}
+	
 			res.status(200).json({
 				message: '배송지 조회 성공',
 				address,
@@ -42,10 +57,16 @@ const OrderController = {
 
 	// [회원] 주문 내역 전체 조회
 	checkOrderHistory: async (req, res, next) => {
-		const email = req.currentUserEmail;
+		const email = req.body;
 
 		try {
 			const orderHistory = await OrderService.checkOrderHistory(email);
+
+			if (!orderHistory) {
+				throw new badRequestError(
+					'주문 내역이 존재하지 않습니다. 다시 한 번 확인해주세요.'
+				);
+			}
 
 			res.status(200).json({
 				orderHistory,
@@ -61,6 +82,12 @@ const OrderController = {
 
 		try {
 			const orderDetail = await OrderService.checkOrderDetail(orderId);
+
+			if (!orderDetail) {
+				throw new badRequestError(
+					'주문 상세 내역이 존재하지 않습니다. 다시 한 번 확인해주세요.'
+				);
+			}
 
 			res.status(200).json({
 				orderDetail,
