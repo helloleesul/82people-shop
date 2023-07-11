@@ -1,5 +1,20 @@
+axios({
+	method: '',
+	url: `/api`,
+})
+	.then(res => {
+		const items = res.data.info;
+		const list = document.querySelector('#bring-list');
+		items.forEach(item => {
+			list.innerHTML += itemDetailsPage(item);
+		});
+	})
+	.catch(err => {
+		alert(err.response.data.message);
+	});
+
 //상품상세 불러오기
-const createItem = item => {
+const itemDetailsPage = item => {
 	return `
     <li class='icons'>
     <a class='icon-img'
