@@ -8,6 +8,8 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" />
   <!-- 작업할 css 연결 -->
   <link rel="stylesheet" href="./SignIn.css">
+  <!-- 작업할 js 연결 -->
+  <script src="SignUp.js" defer></script>
   <!-- 페이지에 맞는 타이틀 입력 -->
   <title>장바구니</title>
 </head>
@@ -25,9 +27,9 @@
             <form action="">
               <input type="email" placeholder="이메일을 입력하세요." />
               <input type="password" placeholder="비밀번호를 입력하세요." />
-              <div class="button">
-                <button type="button">로그인</button>
-                <button type="button" class="outline-btn">회원가입</button>
+              <button type="submit">로그인</button>
+              <div class="btn-link">
+                <a href="/SignUp" class="outline-btn">회원가입</a>
               </div>
             </form>
           </div>

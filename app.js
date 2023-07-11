@@ -4,18 +4,20 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 
 //module
-const {
-	ProductRouter,
-	UserRouter,
-	AuthRouter,
-	OrderRouter,
-} = require('./routers');
+const UserRouter = require('./src/routers/UserRouter');
+const ProductRouter = require('./src/routers/ProductRouter');
+const AuthRouter = require('./src/routers/AuthRouter');
+const OrderRouter = require('./src/routers/OrderRouter');
 
 const app = express();
 dotenv.config();
 
+app.use(express.urlencoded({ extended: false })); // Content-Type: application/x-www-form-urlencoded 형태의 데이터를 인식하고 핸들링할 수 있게 함.
+app.use(express.json()); // Content-Type: application/json 형태의 데이터를 인식하고 핸들링할 수 있게 함.
+
 const port = process.env.PORT || 3000;
 
+// mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGODB);
 const db = mongoose.connection;
 
@@ -25,9 +27,10 @@ db.on('error', err => console.error(err));
 db.on('reconnectedFailed', () => console.error('reconnect failed'));
 
 //router
-//main router추가
-app.use('/api', ProductRouter);
+//main(root) router추가
+
 app.use('/api', UserRouter);
+app.use('/api', ProductRouter);
 app.use('/api', AuthRouter);
 app.use('/api', OrderRouter);
 
