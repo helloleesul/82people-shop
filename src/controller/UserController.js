@@ -81,7 +81,7 @@ const UserController = {
 	},
 
 	emailOverlapCheck: async (req, res, next) => {
-		const { email } = req.body;
+		const { email } = req.params;
 		try {
 			const searchedEmail = await UserService.findUser(email);
 
