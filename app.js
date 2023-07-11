@@ -4,8 +4,9 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 
 //module
-const UserRouter = require('./src/routers/UserRouter');
+const ViewRouter = require('./src/routers/ViewRouter');
 const ProductRouter = require('./src/routers/ProductRouter');
+const UserRouter = require('./src/routers/UserRouter');
 const AuthRouter = require('./src/routers/AuthRouter');
 const OrderRouter = require('./src/routers/OrderRouter');
 
@@ -29,8 +30,9 @@ db.on('reconnectedFailed', () => console.error('reconnect failed'));
 //router
 //main(root) router추가
 
-app.use('/api', UserRouter);
+app.use(ViewRouter);
 app.use('/api', ProductRouter);
+app.use('/api', UserRouter);
 app.use('/api', AuthRouter);
 app.use('/api', OrderRouter);
 
