@@ -10,6 +10,11 @@
 		/>
 		<!-- 작업할 css 연결 -->
 		<link rel="stylesheet" href="Order.css" />
+		<script src="Order.js" defer></script>
+		<!-- 우편번호 서비스 -->
+		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+		<!-- Axios -->
+		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 		<!-- 페이지에 맞는 타이틀 입력 -->
 		<title>주문하기</title>
 	</head>
@@ -35,29 +40,11 @@
 						</ol>
 						<!-- 주문할 장바구니 목록 -->
 						<h3>주문 상품</h3>
+						<a href="/src/views/Cart/Cart.html">장바구니 수정</a>
 						<ul class="cart-items">
-							<li>
-								<article>
-									<div class="thumbnail">
-										<img src="/" />
-										<span>상품1</span>
-									</div>
-									<div><span>1</span> 개</div>
-									<div><span>10,000</span>원</div>
-								</article>
-							</li>
-							<li>
-								<article>
-									<div class="thumbnail">
-										<img src="/" />
-										<span>상품2</span>
-									</div>
-									<div><span>1</span> 개</div>
-									<div><span>10,000</span>원</div>
-								</article>
-							</li>
+							<!-- 상품리스트 -->
 						</ul>
-						<form action="" class="cart-form">
+						<form id="cart-form">
 							<!-- 주문 정보 -->
 							<article class="order-info">
 								<h3>주문 정보</h3>
@@ -76,13 +63,21 @@
 											<section class="api-btn">
 												<input
 													type="text"
-													id="addressNumber"
+													id="address-postcode"
 													name="orderForm"
+													readonly
 												/>
-												<button type="button">주소검색</button>
+												<button type="button" id="search-address">
+													주소검색
+												</button>
 											</section>
-											<input type="text" id="address" name="orderForm" />
-											<input type="text" id="detailAddress" name="orderForm" />
+											<input
+												type="text"
+												readonly
+												id="address"
+												name="orderForm"
+											/>
+											<input type="text" id="detail-address" name="orderForm" />
 										</div>
 									</section>
 									<section>
@@ -90,19 +85,7 @@
 										<input type="text" id="shippingRequest" name="orderForm" />
 									</section>
 									<!-- 비회원일경우 해당 요소 노출 -->
-									<div id="guest-mode">
-										<p>
-											비회원 주문 시 주문내역 조회용 비밀번호를 설정해야합니다.
-										</p>
-										<section>
-											<label class="require" for="guestNumber">비밀번호</label>
-											<input
-												type="password"
-												id="guestNumber"
-												name="orderForm"
-											/>
-										</section>
-									</div>
+									<div id="guest-mode"></div>
 								</fieldset>
 							</article>
 							<!-- 결제 금액 -->
@@ -111,16 +94,16 @@
 								<div class="cart-price">
 									<div>
 										<span>상품금액</span>
-										<span>20,000 원</span>
+										<span id="products-price"></span>
 									</div>
 									<div>
 										<span>배송비</span>
-										<span>3,000 원</span>
+										<span id="shipping-price"></span>
 									</div>
 									<div class="total">
 										<strong>
 											<span>최종결제금액</span>
-											<span>23,000 원</span>
+											<span id="order-price"></span>
 										</strong>
 									</div>
 								</div>

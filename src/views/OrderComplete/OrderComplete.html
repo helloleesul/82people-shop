@@ -10,6 +10,7 @@
 		/>
 		<!-- 작업할 css 연결 -->
 		<link rel="stylesheet" href="OrderComplete.css" />
+		<script src="OrderComplete.js" defer></script>
 		<!-- 페이지에 맞는 타이틀 입력 -->
 		<title>결제완료</title>
 	</head>
@@ -36,14 +37,11 @@
 						<!-- 결제완료 안내 -->
 						<article class="notice">
 							<p>
-								<span>회원</span>님<br />
+								<span id="user-name">회원</span>님<br />
 								주문이 완료되었습니다! 🎉
 							</p>
 							<!-- 비회원일 경우 해당요소 노출 -->
-							<p id="guest-mode">
-								주문번호 <button type="button">1234567890</button>과 비밀번호를
-								기억해주세요!
-							</p>
+							<p id="guest-mode"></p>
 							<div class="go-to-btns">
 								<a href="#" class="homt-btn">계속 쇼핑하기</a>
 								<a href="#" class="order-history-btn">주문내역 확인</a>
