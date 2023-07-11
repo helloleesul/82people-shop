@@ -243,7 +243,7 @@ function orderBtn(e) {
 		) {
 			// 비회원 주문 POST 요청 전송
 			axios
-				.post('/api/orders', {
+				.post('/api/orders/guest', {
 					purchase: orderProducts,
 					recipient: recipient.value,
 					phone: phone.value,
