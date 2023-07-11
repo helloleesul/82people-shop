@@ -16,7 +16,7 @@ ViewRouter.use('/users/signup', ViewService.serveStatic('SignUp')); //회원가�
 // ViewRouter.use('/users/myPage'); //마이페이지
 
 //auth
-ViewRouter.use('/login', ViewService.serveStatic('SignIn')); //로그인 페이지
+ViewRouter.use('/login', ViewService.serveStatic('Login')); //로그인 페이지
 
 //order
 // ViewRouter.use('/orders'); //주문 완료 페이지

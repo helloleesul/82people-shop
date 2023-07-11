@@ -1,4 +1,3 @@
-// import axios from 'axios';
 const email = document.querySelector('.form-email');
 const userName = document.querySelector('.form-name');
 const pw = document.querySelector('.form-pw');
@@ -41,8 +40,6 @@ const signupEvent = e => {
 };
 
 const searchedEmail = () => {
-	// console.log(email.value);
-
 	fetch(`/api/users/signup/${email.value}`, {
 		method: 'GET',
 		headers: {
