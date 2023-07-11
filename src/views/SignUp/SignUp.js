@@ -2,18 +2,17 @@ const email = document.querySelector('.form-email');
 const userName = document.querySelector('.form-name');
 const pw = document.querySelector('.form-pw');
 const pwCheck = document.querySelector('.form-pwCheck');
-const submitBtn = document.querySelector('.form-submit');
+const form = document.querySelector('form');
 
 const handleSubmit = e => {
 	e.preventDefault();
 	if (pw.value !== pwCheck.value) {
 		// 비밀번호가 일치하지 않을때?
 		alert('비밀번호가 일치하지 않습니다.');
-		return;
 	} else {
 		axios({
 			method: 'post',
-			url: '/api/users/signUp', // path
+			url: '/api/users/signup', // path
 			data: {
 				email: email.value, // 아이디
 				name: userName.value, // 이름
@@ -28,8 +27,8 @@ const handleSubmit = e => {
 				}
 			})
 			.catch(err => {
-				alert(err.response.data.message);
+				alert(err);
 			});
 	}
 };
-submitBtn.addEventListener('click', handleSubmit); // 가입하기 버튼을 클릭하였을때 handleSubmit 함수가 동작
+form.addEventListener('submit', handleSubmit); // 가입하기 버튼을 클릭하였을때 handleSubmit 함수가 동작
