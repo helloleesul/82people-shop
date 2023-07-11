@@ -28,7 +28,7 @@ const OrderController = {
 
 			res.status(201).json({
 				message: '주문 성공',
-				newOrderId
+				orderId: newOrderId
 			});
 		} catch (err) {
 			next(err);
@@ -48,7 +48,7 @@ const OrderController = {
 	
 			res.status(200).json({
 				message: '배송지 조회 성공',
-				address,
+				userAddress: address
 			});
 		} catch (err) {
 			next(err);
@@ -69,7 +69,8 @@ const OrderController = {
 			}
 
 			res.status(200).json({
-				orderHistory,
+				message: '회원 주문 내역 전체 조회 성공',
+				userOrderHistory: orderHistory
 			});
 		} catch (err) {
 			next(err);
@@ -90,7 +91,8 @@ const OrderController = {
 			}
 
 			res.status(200).json({
-				orderDetail,
+				message: '주문 상세 내역 조회 성공',
+				orderDetail: orderDetail
 			});
 		} catch (err) {
 			next(err);
