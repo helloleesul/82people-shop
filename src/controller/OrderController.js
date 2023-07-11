@@ -4,6 +4,7 @@ const OrderController = {
 	// [회원 || 비회원] 장바구니 제품 주문 완료
 	createOrder: async (req, res, next) => {
 		const email = req.currentUserEmail;
+		// const name = req.currentUserName;
 		const { purchase, addressInformation, password } = req.body;
 
 		try {
@@ -16,6 +17,7 @@ const OrderController = {
 			res.status(201).json({
 				message: '주문 성공',
 				newOrderId,
+				// name,
 			});
 		} catch (err) {
 			next(err);
