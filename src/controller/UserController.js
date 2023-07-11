@@ -1,64 +1,101 @@
-const { User } = require('../db/models');
+const User = require('../db/models/UserModel');
+const UserService = require('../services/UserService');
+const {
+	badRequestError,
+	conflictError,
+} = require('../middleware/ErrorHandler');
 
 const UserController = {
-	updateUser: async (req, res, next) => {
-		//헤더에 토큰값 체크
-		const { email, password, address } = await req.body; //address:Object[] = required:false
+	getUserInformation: async (req, res, next) => {
+		const email = req.currentUserEmail;
 
 		try {
-			await User.updateOne({ email }, { password, address });
+			const findUser = await UserService.findUser(email);
+
+			return res.status(200).json({
+				msg: '회원 정보 조회 완료',
+				userInformation: findUser,
+			});
 		} catch (err) {
 			next(err);
 		}
+	},
 
-		return res.status(200).json({
-			message: '회원 정보 수정 성공',
-		});
+	updateUser: async (req, res, next) => {
+		const { email, password, address } = req.body;
+
+		try {
+			if (!email || !password) {
+				throw new badRequestError('누락된 값이 있습니다.');
+			}
+
+			await UserService.updateUser(email, password, address);
+
+			return res.status(200).json({
+				message: '회원 정보 수정 성공',
+			});
+		} catch (err) {
+			next(err);
+		}
 	},
 
 	deleteUser: async (req, res, next) => {
-		//헤더에 토큰값 체크
-		const { email } = await req.body; //필수 : validation check
+		const { email } = req.body;
+
 		try {
-			await User.updateOne({ email }, { deletedAt: true });
+			if (req.currentUserEmail !== email) {
+				throw new conflictError('토큰의 정보와 값이 다릅니다.');
+			}
+			await UserService.deleteUser(email);
+
+			return res.status(200).json({
+				message: '회원 탈퇴 성공',
+			});
 		} catch (err) {
 			next(err);
 		}
-		return res.status(200).json({
-			message: '회원 탈퇴 성공',
-		});
 	},
 
 	userSignup: async (req, res, next) => {
-		const { email, name, password } = await req.body; //필수 : 이메일 중복체크, address=required:false
+		const { email, name, password } = req.body;
+
+		const isSignup = await UserService.findUser(email);
 
 		try {
+			if (isSignup !== null) {
+				throw new conflictError('이미 가입 된 이메일 입니다.');
+			}
+
 			await User.create({
 				email,
 				name,
 				password,
 			});
+
+			return res.status(201).json({
+				msg: '가입 완료',
+			});
 		} catch (err) {
 			next(err);
 		}
-
-		return res.status(201).json({
-			msg: '가입 완료',
-		});
 	},
 
-	getUserInformation: async (req, res, next) => {
-		//헤더에 토큰값 체크
+	emailOverlapCheck: async (req, res, next) => {
+		const { email } = req.body;
 		try {
-			// await User.findOne()
+			const searchedEmail = await UserService.findUser(email);
+
+			if (searchedEmail) {
+				return res.status(400).json({ msg: '이미 가입된 email입니다.' });
+			}
+
+			return res.status(200).json({
+				msg: '사용 가능한 email입니다.',
+			});
 		} catch (err) {
 			next(err);
 		}
-		return res.status(200).json({
-			msg: '회원 정보 조회 완료',
-			userInformation: { user: 'user' },
-		});
 	},
 };
 
-module.exports = { UserController };
+module.exports = UserController;

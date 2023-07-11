@@ -17,7 +17,6 @@ const UserSchema = new Schema(
 			type: String,
 			required: true,
 		},
-
 		addressInformation: [
 			{
 				recipient: { type: String, required: true },
@@ -33,14 +32,15 @@ const UserSchema = new Schema(
 			enum: userRole,
 			default: 'customer',
 		},
-		deletedAt: {
+		isDeleted: {
 			type: Boolean,
 			default: false,
 		},
+		orderHistory: [Schema.Types.ObjectId],
 	},
 	{
 		timestamps: true,
 	}
 );
 
-module.exports = UserSchema;
+module.exports = { UserSchema };
