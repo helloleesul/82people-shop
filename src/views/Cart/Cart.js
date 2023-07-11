@@ -124,7 +124,7 @@ const orderBtn = document.querySelector('.order-btn');
 orderBtn.addEventListener('click', () => {
 	console.log('주문하기');
 	// 확인용 경로
-	window.location.href = '/src/views/Order/Order.html';
+	window.location.href = '/orders';
 });
 
 // 로컬스토리지 장바구니 데이터 유무 확인

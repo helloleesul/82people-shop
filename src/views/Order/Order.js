@@ -70,7 +70,7 @@ if (products?.length > 0) {
 // 장바구니 비었을 때
 function emptyProducts() {
 	alert('장바구니가 비었습니다!');
-	window.location.href = '/src/views/Cart/Cart.html';
+	window.location.href = '/cart';
 }
 
 // 장바구니 상품들 화면 그려주기
@@ -251,7 +251,7 @@ function orderBtn(e) {
 				.then(res => {
 					console.log('주문성공', res);
 					// viewRouter로 변경예정 (회원)
-					window.location.href = '/src/views/OrderComplete/OrderComplete.html';
+					window.location.href = '/orders/complete';
 				})
 				.catch(err => console.log(err));
 		} else {
@@ -282,9 +282,7 @@ function orderBtn(e) {
 				.then(res => {
 					console.log('주문성공', res);
 					// viewRouter로 변경예정 (비회원) params로 넘기기
-					window.location.href =
-						'/src/views/OrderComplete/OrderComplete.html?orderId=' +
-						res.orderId;
+					window.location.href = '/orders/complete?orderId=' + res.orderId;
 				})
 				.catch(err => console.log(err));
 		} else {
