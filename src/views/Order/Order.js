@@ -184,11 +184,35 @@ const phone = document.querySelector('#phone');
 const shippingRequest = document.querySelector('#shippingRequest');
 const guestPwd = document.querySelector('#guestPwd');
 
+phone.addEventListener('input', e => {
+	const phoneValue = e.target.value;
+	const onlyNumbers = phoneValue.replace(/[^0-9]/g, '');
+
+	const formattedValue = onlyNumbers.replace(
+		/(\d{3})(\d{0,4})(\d{0,4})/,
+		function (_, first, second, third) {
+			let formattedNumber = '';
+			if (first) {
+				formattedNumber += first;
+			}
+			if (second) {
+				formattedNumber += '-' + second;
+			}
+			if (third) {
+				formattedNumber += '-' + third;
+			}
+			return formattedNumber;
+		}
+	);
+	e.target.value = formattedValue;
+});
+
 // 결제하기 버튼 클릭
 function orderBtn(e) {
 	e.preventDefault();
+	const onlyPhoneNumbers = phone.value.replace(/[^0-9]/g, '');
 	// console.log('수령인', recipient.value);
-	// console.log('연락처', phone.value);
+	// console.log('연락처', onlyPhoneNumbers);
 	// console.log('배송지', address.value + detailAddress.value);
 	// console.log('배송시 요청사항', shippingRequest.value);
 	// console.log('비회원 비밀번호', guestPwd?.value);
@@ -202,6 +226,7 @@ function orderBtn(e) {
 
 	if (hasToken) {
 		console.log('회원이시네요.');
+
 		if (
 			recipient.value !== '' &&
 			phone.value !== '' &&
@@ -215,7 +240,7 @@ function orderBtn(e) {
 					{
 						purchase: orderProducts,
 						recipient: recipient.value,
-						phone: phone.value,
+						phone: onlyPhoneNumbers,
 						address: address.value,
 						detailAddress: detailAddress.value,
 						shippingRequest: shippingRequest.value,
@@ -234,19 +259,20 @@ function orderBtn(e) {
 		}
 	} else {
 		console.log('비회원이시네요.');
+
 		if (
 			recipient.value !== '' &&
 			phone.value !== '' &&
 			address.value !== '' &&
 			detailAddress.value !== '' &&
-			guestPwd !== ''
+			guestPwd.value !== ''
 		) {
 			// 비회원 주문 POST 요청 전송
 			axios
 				.post('/api/orders/guest', {
 					purchase: orderProducts,
 					recipient: recipient.value,
-					phone: phone.value,
+					phone: onlyPhoneNumbers,
 					password: guestPwd.value,
 					address: address.value,
 					detailAddress: detailAddress.value,
