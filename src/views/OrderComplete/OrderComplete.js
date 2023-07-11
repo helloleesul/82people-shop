@@ -31,9 +31,9 @@ const jwtToken = 'your-jwt-token';
 // 👉 개발 시작 코드
 
 // 비회원 파라미터 정보
-const url = window.location.search;
-const orderId = url.split('=')[1];
-// console.log(orderId);
+const urlStr = window.location.href;
+const orderId = new URL(urlStr).searchParams.get('orderId');
+console.log(orderId);
 
 // 쿠키에서 JWT 토큰 확인
 const hasToken = checkJWTTokenInCookie();
