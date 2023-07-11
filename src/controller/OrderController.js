@@ -1,5 +1,6 @@
 const OrderService = require('../services/OrderService');
 const { badRequestError } = require('../middleware/ErrorHandler');
+const { badRequestError } = require('../middleware/ErrorHandler');
 
 const OrderController = {
 	// [회원 || 비회원] 장바구니 제품 주문 완료
@@ -47,7 +48,7 @@ const OrderController = {
 
 			res.status(201).json({
 				message: '주문 성공',
-				newOrderId,
+				orderId: newOrderId,
 			});
 		} catch (err) {
 			next(err);
@@ -67,7 +68,7 @@ const OrderController = {
 
 			res.status(200).json({
 				message: '배송지 조회 성공',
-				address,
+				userAddress: address,
 			});
 		} catch (err) {
 			next(err);
@@ -87,8 +88,15 @@ const OrderController = {
 				);
 			}
 
+			if (!orderHistory) {
+				throw new badRequestError(
+					'주문 내역이 존재하지 않습니다. 다시 한 번 확인해주세요.'
+				);
+			}
+
 			res.status(200).json({
-				orderHistory,
+				message: '회원 주문 내역 전체 조회 성공',
+				userOrderHistory: orderHistory,
 			});
 		} catch (err) {
 			next(err);
@@ -108,8 +116,15 @@ const OrderController = {
 				);
 			}
 
+			if (!orderDetail) {
+				throw new badRequestError(
+					'주문 상세 내역이 존재하지 않습니다. 다시 한 번 확인해주세요.'
+				);
+			}
+
 			res.status(200).json({
-				orderDetail,
+				message: '주문 상세 내역 조회 성공',
+				orderDetail: orderDetail,
 			});
 		} catch (err) {
 			next(err);

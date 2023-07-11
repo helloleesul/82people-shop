@@ -5,12 +5,17 @@ const { badRequestError } = require('../middleware/ErrorHandler');
 
 const OrderService = {
 	// [회원 비회원 공통] 장바구니 제품 주문 완료
-	createOrder: async ({ email, purchase, recipient, phone, password, address, detailAddress, shippingRequest, shippingPrice }) => {
-		// salesAmount Update
-		purchase.map(async product => { 
-			await Product.updateOne({ productId: product.productId },{ '$inc': { salesAmount: product.orderAmount }});
-		}); 
-
+	createOrder: async ({
+		email,
+		purchase,
+		recipient,
+		phone,
+		password,
+		address,
+		detailAddress,
+		shippingRequest,
+		shippingPrice,
+	}) => {
 		const totalProductsPrice = purchase.reduce((acc, product) => {
 			return acc + product.price * product.orderAmount;
 		}, 0);
@@ -25,10 +30,17 @@ const OrderService = {
 				detailAddress,
 				shippingRequest,
 			},
+			addressInformation: {
+				recipient,
+				phone,
+				address,
+				detailAddress,
+				shippingRequest,
+			},
 			totalPrice: {
 				totalProductsPrice: totalProductsPrice,
-				shippingPrice: shippingPrice
-			}
+				shippingPrice: shippingPrice,
+			},
 		};
 
 		const newOrderId = await Order.create(orderInformation);
@@ -41,26 +53,41 @@ const OrderService = {
 			);
 		}
 
+		// salesAmount Update
+		purchase.map(async product => {
+			await Product.updateOne(
+				{ productId: product.productId },
+				{ $inc: { salesAmount: product.orderAmount } }
+			);
+		});
+
 		return newOrderId;
 	},
 
 	// [회원] 배송지 확인
 	checkAddress: async email => {
-		const address = await User.find({ email: email }, { _id: 0, addressInformation: 1 })
+		const address = await User.find(
+			{ email: email },
+			{ _id: 0, addressInformation: 1 }
+		);
 
 		return address;
 	},
 
 	// [회원] 주문 내역 전체 조회
 	checkOrderHistory: async email => {
-		const orderIdArray = await User.find({ email: email }, { _id: 0, orderHistory: 1 })
+		const orderIdArray = await User.find(
+			{ email: email },
+			{ _id: 0, orderHistory: 1 }
+		);
 		if (!orderIdArray) {
 			throw new badRequestError('주문 내역이 없습니다.');
 		}
 
-		const orderHistory = orderIdArray.map(async orderId => {
-			await Order.find({ orderId: orderId });
-		});
+		const orderHistory = await Order.find(
+			{ orderId: { $in: orderIdArray } },
+			{ _id: 0 }
+		);
 
 		return orderHistory;
 	},
