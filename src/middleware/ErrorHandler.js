@@ -4,6 +4,12 @@ class badRequestError extends Error {
 		this.status = 400;
 	}
 }
+class unauthorizedError extends Error {
+	constructor(message) {
+		super(message);
+		this.status = 401;
+	}
+}
 
 class notFoundError extends Error {
 	constructor(message) {
@@ -34,6 +40,7 @@ const errorHandler = (err, req, res, next) => {
 
 module.exports = {
 	badRequestError,
+	unauthorizedError,
 	notFoundError,
 	conflictError,
 	internalServerError,

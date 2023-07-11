@@ -29,7 +29,7 @@ const UserController = {
 				throw new badRequestError('누락된 값이 있습니다.');
 			}
 
-			UserService.updateUser(email, password, address);
+			await UserService.updateUser(email, password, address);
 
 			return res.status(200).json({
 				message: '회원 정보 수정 성공',
@@ -43,7 +43,10 @@ const UserController = {
 		const { email } = req.body;
 
 		try {
-			UserService.deleteUser(email);
+			if (req.currentUserEmail !== email) {
+				throw new conflictError('토큰의 정보와 값이 다릅니다.');
+			}
+			await UserService.deleteUser(email);
 
 			return res.status(200).json({
 				message: '회원 탈퇴 성공',
@@ -56,10 +59,10 @@ const UserController = {
 	userSignup: async (req, res, next) => {
 		const { email, name, password } = req.body;
 
-		const isSignup = await User.findOne({ email });
-		// console.log(isSignup);
+		const isSignup = await UserService.findUser(email);
+
 		try {
-			if (isSignup) {
+			if (isSignup !== null) {
 				throw new conflictError('이미 가입 된 이메일 입니다.');
 			}
 
