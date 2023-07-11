@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 const id = document.querySelector('.form__id');
 const pw = document.querySelector('.form__pw');
 const submitBtn = document.querySelector('.form__submit');

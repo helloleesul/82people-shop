@@ -1,4 +1,5 @@
-const axios = require('axios');
+import axios from 'axios';
+
 const email = document.querySelector('.form-email');
 const userName = document.querySelector('.form-name');
 const pw = document.querySelector('.form-pw');

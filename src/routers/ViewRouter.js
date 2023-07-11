@@ -1,31 +1,22 @@
 const express = require('express');
-
+const ViewService = require('../services/ViewService');
 const ViewRouter = express.Router();
 
 //root
-// ViewRouter.use('/');
+ViewRouter.use('/', ViewService.serveStatic('Home'));
 
 //product
-ViewRouter.use(
-	'/products',
-	express.static('../views/Home', { index: 'Home.html' })
-); // 메인 화면
+// ViewRouter.use('/products', ViewService.serveStatic()); // 메인 화면
 // ViewRouter.use('/products/:productId'); //제품 상세 보기
 // ViewRouter.use('/products/category'); //카테고리별 제품
 
 //user
 // ViewRouter.use('/users');
-ViewRouter.use(
-	'/users/signup',
-	express.static('../views/SignUp', { index: 'SignUp.html' })
-); //회원가입 페이지
+ViewRouter.use('/users/signup', ViewService.serveStatic('SignUp')); //회원가입 페이지
 // ViewRouter.use('/users/myPage'); //마이페이지
 
 //auth
-ViewRouter.use(
-	'/login',
-	express.static('../views/SignIn', { index: 'SignIn.html' })
-); //로그인 페이지
+ViewRouter.use('/login', ViewService.serveStatic('SignIn')); //로그인 페이지
 
 //order
 // ViewRouter.use('/orders'); //주문 완료 페이지
