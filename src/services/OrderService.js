@@ -30,13 +30,6 @@ const OrderService = {
 				detailAddress,
 				shippingRequest,
 			},
-			addressInformation: {
-				recipient,
-				phone,
-				address,
-				detailAddress,
-				shippingRequest,
-			},
 			totalPrice: {
 				totalProductsPrice: totalProductsPrice,
 				shippingPrice: shippingPrice,
