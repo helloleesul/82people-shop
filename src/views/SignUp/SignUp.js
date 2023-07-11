@@ -1,5 +1,4 @@
-import axios from 'axios';
-
+const axios = require('axios');
 const email = document.querySelector('.form-email');
 const userName = document.querySelector('.form-name');
 const pw = document.querySelector('.form-pw');
@@ -12,15 +11,16 @@ const handleSubmit = e => {
 		// 비밀번호가 일치하지 않을때?
 		alert('비밀번호가 일치하지 않습니다.');
 	} else {
-		axios({
-			method: 'post',
-			url: '/api/users/signup', // path
-			data: {
-				email: email.value, // 아이디
-				name: userName.value, // 이름
-				password: pw.value, // 비밀번호
-			},
-		})
+		axios
+			.post({
+				// method: 'post',
+				url: '/api/users/signup', // path
+				data: {
+					email: email.value, // 아이디
+					name: userName.value, // 이름
+					password: pw.value, // 비밀번호
+				},
+			})
 			.then(res => {
 				if (res.status === 201) {
 					alert(`성공적으로 회원가입이 되었습니다.`);
