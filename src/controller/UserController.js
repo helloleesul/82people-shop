@@ -1,5 +1,9 @@
 const User = require('../db/models/UserModel');
 const UserService = require('../services/UserService');
+const {
+	badRequestError,
+	conflictError,
+} = require('../middleware/ErrorHandler');
 
 const UserController = {
 	getUserInformation: async (req, res, next) => {
@@ -18,14 +22,14 @@ const UserController = {
 	},
 
 	updateUser: async (req, res, next) => {
-		const { email, password, address } = req.body; //address:Object[] = required:false
+		const { email, password, address } = req.body;
 
 		try {
 			if (!email || !password) {
-				throw new Error('누락된 값이 있습니다.');
+				throw new badRequestError('누락된 값이 있습니다.');
 			}
 
-			UserService.updateUser(email, password, address);
+			await UserService.updateUser(email, password, address);
 
 			return res.status(200).json({
 				message: '회원 정보 수정 성공',
@@ -39,7 +43,10 @@ const UserController = {
 		const { email } = req.body;
 
 		try {
-			UserService.deleteUser(email);
+			if (req.currentUserEmail !== email) {
+				throw new conflictError('토큰의 정보와 값이 다릅니다.');
+			}
+			await UserService.deleteUser(email);
 
 			return res.status(200).json({
 				message: '회원 탈퇴 성공',
@@ -52,11 +59,11 @@ const UserController = {
 	userSignup: async (req, res, next) => {
 		const { email, name, password } = req.body;
 
-		const isSignup = await User.findOne({ email });
+		const isSignup = await UserService.findUser(email);
 
 		try {
-			if (!isSignup) {
-				throw new Error('이미 가입 된 이메일 입니다.');
+			if (isSignup !== null) {
+				throw new conflictError('이미 가입 된 이메일 입니다.');
 			}
 
 			await User.create({

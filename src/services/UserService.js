@@ -10,9 +10,6 @@ const UserService = {
 	},
 
 	deleteUser: async email => {
-		if (!(await this.findUser(email))) {
-			console.log('User not found');
-		}
 		await User.updateOne({ email }, { isDeleted: true });
 	},
 };
