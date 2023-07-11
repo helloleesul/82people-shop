@@ -38,9 +38,8 @@ const OrderService = {
 
 		// salesAmount Update
 		purchase.map(async product => {
-			await Product.updateOne({ productId: product.productId },{ '$inc': { salesAmount: product.orderAmount }});
+			await Product.updateOne({ productId: product.productId },{ $inc: { salesAmount: product.orderAmount }});
 		}); 
-
 
 		return newOrderId;
 	},
