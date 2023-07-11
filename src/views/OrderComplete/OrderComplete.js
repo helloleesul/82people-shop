@@ -63,5 +63,5 @@ if (hasToken) {
 // 비회원이고 주문하지않고 주문완료 페이지로 들어왔을때 홈으로 내쫓기
 if (!orderId && !hasToken) {
 	alert('잘못된 접근입니다!');
-	window.location.href = '/src/views/Home/Home.html';
+	window.location.href = '/';
 }
