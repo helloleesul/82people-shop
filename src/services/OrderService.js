@@ -6,11 +6,6 @@ const { badRequestError } = require('../middleware/ErrorHandler');
 const OrderService = {
 	// [회원 비회원 공통] 장바구니 제품 주문 완료
 	createOrder: async ({ email, purchase, recipient, phone, password, address, detailAddress, shippingRequest, shippingPrice }) => {
-		// salesAmount Update
-		purchase.map(async product => { 
-			await Product.updateOne({ productId: product.productId },{ '$inc': { salesAmount: product.orderAmount }});
-		}); 
-
 		const totalProductsPrice = purchase.reduce((acc, product) => {
 			return acc + product.price * product.orderAmount;
 		}, 0);
@@ -41,6 +36,11 @@ const OrderService = {
 			);
 		}
 
+		// salesAmount Update
+		purchase.map(async product => {
+			await Product.updateOne({ productId: product.productId },{ $inc: { salesAmount: product.orderAmount }});
+		}); 
+
 		return newOrderId;
 	},
 
@@ -58,10 +58,8 @@ const OrderService = {
 			throw new badRequestError('주문 내역이 없습니다.');
 		}
 
-		const orderHistory = orderIdArray.map(async orderId => {
-			await Order.find({ orderId: orderId });
-		});
-
+		const orderHistory = await Order.find({ orderId: { $in: orderIdArray }}, { _id: 0 });
+		
 		return orderHistory;
 	},
 
