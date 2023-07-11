@@ -12,8 +12,10 @@ const VerifyToken = async (req, res, next) => {
 		try {
 			const verified = jwt.verify(token, process.env.JSONSECRETKEY);
 			const currentUserEmail = verified.email;
+			const currentUserName = verified.name;
 
 			req.currentUserEmail = currentUserEmail;
+			req.currentUserName = currentUserName;
 
 			next();
 		} catch (err) {
