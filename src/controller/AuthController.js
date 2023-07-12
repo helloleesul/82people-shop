@@ -5,19 +5,21 @@ const User = require('../db/models/UserModel');
 const AuthController = {
 	login: async (req, res, next) => {
 		const { email, password } = req.body;
-
+		console.log('body', req.body);
+		console.log('server', email);
+		console.log('ser', password);
 		try {
 			const searchedUser = await User.findOne({ email });
+
+			if (searchedUser === null) {
+				return res.status(400).json({
+					msg: '존재하지 않는 유저입니다.',
+				});
+			}
 
 			if (searchedUser.password !== password) {
 				return res.status(401).json({
 					msg: '비밀번호가 일치하지 않습니다.',
-				});
-			}
-
-			if (!searchedUser) {
-				return res.status(400).json({
-					msg: '존재하지 않는 유저입니다.',
 				});
 			}
 

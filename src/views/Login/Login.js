@@ -5,8 +5,8 @@ const submitBtn = document.querySelector('.form__submit');
 const login = e => {
 	e.preventDefault();
 
-	// console.log(id.value);
-	// console.log(pw.value);
+	console.log(id.value);
+	console.log(pw.value);
 
 	fetch('/api/login', {
 		method: 'POST',
@@ -19,10 +19,11 @@ const login = e => {
 		}),
 	})
 		.then(res => {
+			console.log('res', res);
 			if (res.ok) {
 				alert(`성공적으로 로그인 되었습니다.`);
 				// 로그인 페이지 이동
-				console.log(res);
+
 				// window.location.href = '/';
 			} else {
 				throw new Error('로그인 실패');

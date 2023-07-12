@@ -77,7 +77,7 @@ const OrderController = {
 
 	// [회원] 주문 내역 전체 조회
 	checkOrderHistory: async (req, res, next) => {
-		const email = req.body;
+		const { email } = req.body;
 
 		try {
 			const orderHistory = await OrderService.checkOrderHistory(email);

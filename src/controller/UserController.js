@@ -40,7 +40,7 @@ const UserController = {
 	},
 
 	deleteUser: async (req, res, next) => {
-		const { email } = req.body;
+		const email = req.currentUserEmail;
 
 		try {
 			if (req.currentUserEmail !== email) {

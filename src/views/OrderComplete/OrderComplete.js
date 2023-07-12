@@ -69,6 +69,7 @@ if (!orderId && !hasToken) {
 const orderIdCopy = document.querySelector('#order-id');
 orderIdCopy.addEventListener('click', async () => {
 	try {
+		//alert2번
 		await navigator.clipboard.writeText(orderId);
 		alert(`주문번호: ${orderId}`);
 	} catch (err) {
