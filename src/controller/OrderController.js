@@ -1,6 +1,5 @@
 const OrderService = require('../services/OrderService');
 const { badRequestError } = require('../middleware/ErrorHandler');
-const { badRequestError } = require('../middleware/ErrorHandler');
 
 const OrderController = {
 	// [회원 || 비회원] 장바구니 제품 주문 완료
