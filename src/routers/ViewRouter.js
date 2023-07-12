@@ -43,4 +43,7 @@ ViewRouter.use('/login', ViewService.serveStatic('Login')); //로그인 페이�
 // ViewRouter.use('/orders/history'); //회원 주문 조회 페이지
 // ViewRouter.use('/orders/history/:orderId'); //주문 상세 조회 페이지
 
+//common
+ViewRouter.use('/common', ViewService.serveStatic('Common'));
+
 module.exports = ViewRouter;
