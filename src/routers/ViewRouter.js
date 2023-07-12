@@ -6,8 +6,9 @@ const ViewRouter = express.Router();
 ViewRouter.use('/', ViewService.serveStatic('Home')); //메인화면
 
 //product
-// ViewRouter.use('/products/:productId'); //제품 상세 보기
-// ViewRouter.use('/products/category'); //카테고리별 제품
+ViewRouter.use('/products', ViewService.serveStatic('Home')); // 메인 화면
+ViewRouter.use('/products/category', ViewService.serveStatic('Home')); // 카테고리별 제품
+ViewRouter.use('/products/:productId', ViewService.serveStatic('HomeDetails')); // 제품 상세 보기
 
 //user
 // ViewRouter.use('/users');
