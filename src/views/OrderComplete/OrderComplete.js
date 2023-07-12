@@ -33,7 +33,7 @@ const jwtToken = 'your-jwt-token';
 // 비회원 파라미터 정보
 const urlStr = window.location.href;
 const orderId = new URL(urlStr).searchParams.get('orderId');
-console.log(orderId);
+// console.log(orderId);
 
 // 쿠키에서 JWT 토큰 확인
 const hasToken = checkJWTTokenInCookie();
@@ -66,13 +66,9 @@ if (!orderId && !hasToken) {
 	window.location.href = '/';
 }
 
+async function copy(orderId) {
+	return await navigator.clipboard.writeText(orderId);
+}
+
 const orderIdCopy = document.querySelector('#order-id');
-orderIdCopy.addEventListener('click', async () => {
-	try {
-		//alert2번
-		await navigator.clipboard.writeText(orderId);
-		alert(`주문번호: ${orderId}`);
-	} catch (err) {
-		console.log('복사실패', err);
-	}
-});
+orderIdCopy.addEventListener('click', copy(orderId));
