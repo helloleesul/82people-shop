@@ -1,7 +1,7 @@
 // 🚫 장바구니 테스트용 더미 데이터 (id, 상품이름, 수량, 이미지주소, 가격, 수량계산된 가격)
 let data = [
 	{
-		id: 1,
+		id: '1',
 		title: '상품1',
 		amount: 1,
 		imageUrl: '/',
@@ -9,7 +9,7 @@ let data = [
 		totalPrice: 1000,
 	},
 	{
-		id: 2,
+		id: '2',
 		title: '상품2',
 		amount: 1,
 		imageUrl: '/',
@@ -17,7 +17,7 @@ let data = [
 		totalPrice: 2000,
 	},
 	{
-		id: 3,
+		id: '3',
 		title: '상품3',
 		amount: 1,
 		imageUrl: '/',
@@ -210,7 +210,7 @@ checkedDelBtn.addEventListener('click', () => {
 	const checkedProductsArr = [];
 
 	deleteProducts.map(product => {
-		checkedProductsArr.push(Number(product.id));
+		checkedProductsArr.push(product.id);
 		const li = product.closest('li');
 		li.remove();
 	});
@@ -248,7 +248,7 @@ function cartUpdate() {
 	}
 	for (let i = 0; i < updateProducts.length; i++) {
 		products.map(product => {
-			if (product.id === Number(updateProducts[i].id)) {
+			if (product.id === updateProducts[i].id) {
 				totalPrice += product.totalPrice;
 			}
 		});
@@ -284,7 +284,7 @@ function itemUpdate(item) {
 
 	// 수량*가격 계산
 	const amountCalc = product => {
-		if (product.id === Number(itemCheck.id)) {
+		if (product.id === itemCheck.id) {
 			product.amount = Number(amountInput.value);
 			product.totalPrice = product.price * product.amount;
 			itemPrice.innerText = product.totalPrice.toLocaleString();
@@ -297,7 +297,7 @@ function itemUpdate(item) {
 	deleteBtn.addEventListener('click', e => {
 		const li = e.target.parentElement;
 		li.remove();
-		products = products.filter(obj => obj.id !== Number(itemCheck.id));
+		products = products.filter(obj => obj.id !== itemCheck.id);
 		localStorage.setItem(PRODUCT_KEY, JSON.stringify(products));
 		cartUpdate();
 
