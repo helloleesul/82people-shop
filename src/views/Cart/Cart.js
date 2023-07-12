@@ -1,31 +1,3 @@
-// 🚫 장바구니 테스트용 더미 데이터 (id, 상품이름, 수량, 이미지주소, 가격, 수량계산된 가격)
-let data = [
-	{
-		id: '1',
-		title: '상품1',
-		amount: 1,
-		imageUrl: '/',
-		price: 1000,
-		totalPrice: 1000,
-	},
-	{
-		id: '2',
-		title: '상품2',
-		amount: 1,
-		imageUrl: '/',
-		price: 2000,
-		totalPrice: 2000,
-	},
-	{
-		id: '3',
-		title: '상품3',
-		amount: 1,
-		imageUrl: '/',
-		price: 3000,
-		totalPrice: 3000,
-	},
-];
-
 // checkJWTTokenInCookie를 공통 js로 만들어서 header,footer 불러올때 함께 사용하면 좋을 듯 함
 // 쿠키에서 JWT 토큰 확인
 function checkJWTTokenInCookie() {
@@ -98,16 +70,6 @@ function importToken() {
 	setCookie('jwt', jwtToken, 7); // 7일 동안 유효한 쿠키로 설정
 }
 tokenBtn.addEventListener('click', importToken);
-
-// 🚫 테스트용 더미데이터 불러오기 버튼(삭제예정)
-const dummyBtn = document.createElement('button');
-dummyBtn.setAttribute('style', 'background:#000;color:#fff;padding:2px 10px;');
-dummyBtn.innerText = '테스트용 더미데이터 생성';
-testDiv.prepend(dummyBtn);
-function importDummyProducts() {
-	localStorage.setItem(PRODUCT_KEY, JSON.stringify(data));
-}
-dummyBtn.addEventListener('click', importDummyProducts);
 
 // 👉 개발 시작 코드
 const PRODUCT_KEY = 'cartProducts';
