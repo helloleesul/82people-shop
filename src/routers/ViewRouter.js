@@ -13,7 +13,11 @@ ViewRouter.use('/', ViewService.serveStatic('Home'));
 //user
 // ViewRouter.use('/users');
 ViewRouter.use('/signup', ViewService.serveStatic('SignUp')); //회원가입 페이지
-// ViewRouter.use('/users/myPage'); //마이페이지
+ViewRouter.use('/my-page', ViewService.serveStatic('MemberInfo')); //마이페이지
+ViewRouter.use(
+	'/my-page/delete-membership',
+	ViewService.serveStatic('MemberDelete')
+); //회원 탈퇴
 
 //order
 ViewRouter.use('/cart', ViewService.serveStatic('Cart')); // 장바구니 페이지
