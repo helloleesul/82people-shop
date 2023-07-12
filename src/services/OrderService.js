@@ -5,7 +5,7 @@ const { badRequestError } = require('../middleware/ErrorHandler');
 
 const OrderService = {
 	// [회원 비회원 공통] 장바구니 제품 주문 완료
-	createOrder: async ({
+	createOrder: async (
 		email,
 		purchase,
 		recipient,
@@ -15,7 +15,7 @@ const OrderService = {
 		detailAddress,
 		shippingRequest,
 		shippingPrice,
-	}) => {
+	) => {
 		const totalProductsPrice = purchase.reduce((acc, product) => {
 			return acc + product.price * product.orderAmount;
 		}, 0);
@@ -46,11 +46,11 @@ const OrderService = {
 			);
 		}
 
-		// salesAmount Update
+		// salesAmount, curruntAmount Update
 		purchase.map(async product => {
 			await Product.updateOne(
-				{ productId: product.productId },
-				{ $inc: { salesAmount: product.orderAmount } }
+				{ _id: product.productId },
+				{ $inc: { salesAmount: product.orderAmount, curruntAmount: -product.orderAmount }, }
 			);
 		});
 
@@ -77,28 +77,27 @@ const OrderService = {
 			throw new badRequestError('주문 내역이 없습니다.');
 		}
 
-		const orderHistory = await Order.find(
-			{ orderId: { $in: orderIdArray } },
-			{ _id: 0 }
-		);
+		const orderHistory = await Order.find({ _id: { $in: orderIdArray }}, {
+			_id : 1,
+			shippingStatus : 1,
+			purchase: 1,
+			createdAt: 1
+		});
 
 		return orderHistory;
 	},
 
 	// [회원 비회원 공통] 주문 상세 조회
 	checkOrderDetail: async orderId => {
-		const orderDetails = await Order.findOne({ orderId: orderId });
+		const orderDetails = await Order.findOne({ _id: orderId }, { _id: 1, password: 0 });
 
 		return orderDetails;
 	},
 
-	/* 2주차에 작업
     // [회원] 주문 시 배송지 추가
-    addAddress: async (userId) => {
-        await User.({
-          // 
-        })
-    }, */
+    addAddress: async (email, addressInformation) => {
+		await User.updateOne({ email: email }, { $push: { addressInformation: addressInformation }});
+    },
 };
 
 module.exports = OrderService;

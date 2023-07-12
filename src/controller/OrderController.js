@@ -1,6 +1,5 @@
 const OrderService = require('../services/OrderService');
 const { badRequestError } = require('../middleware/ErrorHandler');
-const { badRequestError } = require('../middleware/ErrorHandler');
 
 const OrderController = {
 	// [회원 || 비회원] 장바구니 제품 주문 완료
@@ -35,7 +34,8 @@ const OrderController = {
 				);
 			}
 
-			const newOrderId = await OrderService.createOrder({
+			const newOrderId = await OrderService.createOrder(
+				email,
 				purchase,
 				recipient,
 				phone,
@@ -44,7 +44,7 @@ const OrderController = {
 				detailAddress,
 				shippingRequest,
 				shippingPrice,
-			});
+			);
 
 			res.status(201).json({
 				message: '주문 성공',
@@ -116,12 +116,6 @@ const OrderController = {
 				);
 			}
 
-			if (!orderDetail) {
-				throw new badRequestError(
-					'주문 상세 내역이 존재하지 않습니다. 다시 한 번 확인해주세요.'
-				);
-			}
-
 			res.status(200).json({
 				message: '주문 상세 내역 조회 성공',
 				orderDetail: orderDetail,
@@ -131,12 +125,13 @@ const OrderController = {
 		}
 	},
 
-	/*
-    // [회원] 주문 시 배송지 추가 => 2주차에 작업
+    // [회원] 주문 시 배송지 추가
     addAddress: async (req, res, next) => {		
 		const email = req.currentUserEmail;
+		const { addressInformation } = req.body
 
         try {
+			await OrderService.addAddress(email, addressInformation);
 
             res.status(200).json({
                 message: '배송지 추가 성공',
@@ -145,7 +140,6 @@ const OrderController = {
             next(err);
         };
     },
-    */
 };
 
 module.exports = OrderController;

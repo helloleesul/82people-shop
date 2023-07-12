@@ -4,7 +4,6 @@ const userRole = ['customer', 'admin'];
 
 const UserSchema = new Schema(
 	{
-		userId: Schema.Types.ObjectId,
 		email: {
 			type: String,
 			required: true,
@@ -43,4 +42,4 @@ const UserSchema = new Schema(
 	}
 );
 
-module.exports = { UserSchema };
+module.exports = UserSchema;
