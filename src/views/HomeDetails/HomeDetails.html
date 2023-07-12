@@ -10,6 +10,7 @@
 		/>
 		<!-- 작업할 css 연결 -->
 		<link rel="stylesheet" href="HomeDetails.css" />
+		<script src="./HomeDetails.js" defer></script>
 		<!-- 페이지에 맞는 타이틀 입력 -->
 		<title>물품 상세</title>
 	</head>
@@ -21,8 +22,7 @@
 					<!-- 클래스명 main-container까지 공통, id값은 페이지에 맞게 이름설정해서 사용 -->
 					<!-- 해당 위치에 페이지 마크업 -->
 					<div class="product-icon-image">
-						<a href="http://www.naver.com" target="_self"></a
-						><img
+						<img
 							class="item-img"
 							src="https://image.auction.co.kr/itemimage/18/41/a3/1841a37b16.jpg"
 							alt="main_item1"
@@ -33,23 +33,23 @@
 					<div class="field">
 						<span class="maker">파티피플</span>
 						<span class="product-title">완전멋진 상품명</span>
-						<span class="product-price">10,000원</span>
+						<span class="product-price">1000</span>
 						<span class="product-detail"
 							>아니 이게 아직도 없으시다구요?아니 이게 아직도
 							없으시다구요?</span
 						>
 						<strong>
 							<span class="product-count">수량</span>
-							<input class="input" />
+							<input type="number" id="amount" value="1" min="1" />
 						</strong>
 						<strong>
 							<span class="product-total-price">총 상품금액 :</span>
-							<span class="product-total-cash">100,000원</span>
+							<span class="product-total-cash"></span>
 						</strong>
 						<div class="product-put-shoppingcart">
-							<a id="add-to-cart" href="http://www.naver.com">
+							<button id="add-to-cart">
 								<span>장바구니 담기</span>
-							</a>
+							</button>
 						</div>
 					</div>
 				</div>
