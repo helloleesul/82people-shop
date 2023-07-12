@@ -262,7 +262,7 @@ function orderBtn(e) {
 				.catch(err => console.log(err));
 			// res, json부분 dev에서 확인 다시 필요함! res 에러 컨트롤 작업 필요함.. 볼수없어서 이렇게.. 했어요
 		} else {
-			console.log('필수입력을 적어주세요!');
+			alert('필수입력을 적어주세요!');
 		}
 	} else {
 		console.log('비회원이시네요.');
@@ -293,13 +293,13 @@ function orderBtn(e) {
 			})
 				.then(res => res.json())
 				.then(json => {
-					// console.log(json);
+					console.log(json);
 					window.location.href = '/orders/complete?orderId=' + json.orderId._id;
 				})
 				.catch(err => console.log(err));
 			// res, json부분 dev에서 확인 다시 필요함! res 에러 컨트롤 작업 필요함.. 볼수없어서 이렇게.. 했어요
 		} else {
-			console.log('필수입력을 적어주세요!');
+			alert('필수입력을 적어주세요!');
 		}
 	}
 }
