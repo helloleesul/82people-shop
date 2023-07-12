@@ -4,22 +4,31 @@ const VerifyToken = require('../middleware/VerifyToken');
 
 const OrderRouter = express.Router();
 
-OrderRouter.post('/orders', VerifyToken, OrderController.createOrder);
+// [회원] 주문
+OrderRouter.post('/orders', VerifyToken, OrderController.createOrder);	
 
+// [비회원] 주문
+OrderRouter.post('/orders/guest', OrderController.createOrder);
+
+// [회원] 배송지 조회
 OrderRouter.get(
 	'/orders/checkAddress',
 	VerifyToken,
 	OrderController.checkAddress
 );
 
+// [회원] 배송지 추가
 // OrderRouter.post('/orders/addAddress', VerifyToken, OrderController.addAddress);
 
+
+// [회원] 주문 내역 조회
 OrderRouter.get(
 	'/orders/history',
 	VerifyToken,
 	OrderController.checkOrderHistory
 );
 
-OrderRouter.get('/orders/history:orderId', OrderController.checkOrderDetail);
+// [회원 || 비회원] 주문 상세 내역 조회
+OrderRouter.get('/orders/history/:orderId', OrderController.checkOrderDetail);
 
 module.exports = OrderRouter;

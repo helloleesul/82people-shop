@@ -1,10 +1,11 @@
 const ProductService = require('../services/ProductService');
+const { badRequestError } = require('../middleware/ErrorHandler');
 
 const ProductController = {
 	// 전체 상품 요청 및 응답
 	getAllProducts: async (req, res, next) => {
 		try {
-			const [totalProducts, bestProducts] = Promise.all([
+			const [totalProducts, bestProducts] = await Promise.all([
 				ProductService.getAllProducts(),
 				ProductService.getBestProducts(),
 			]);
@@ -21,7 +22,7 @@ const ProductController = {
 
 	// 카테고리별 상품 요청 및 응답
 	getProductsByCategory: async (req, res, next) => {
-		const { category } = req.params;
+		const { category } = req.query;
 
 		try {
 			const categoryProducts = await ProductService.getProductsByCategory(
@@ -37,12 +38,17 @@ const ProductController = {
 		}
 	},
 
-	// 상품 id별 요청 및 응답
 	getProductById: async (req, res, next) => {
 		const { productId } = req.params;
 
 		try {
 			const product = await ProductService.getProductById(productId);
+
+			if (!product) {
+				throw new badRequestError(
+					'상품이 존재하지 않습니다. 다시 한 번 확인해주세요.'
+				);
+			}
 
 			res.status(200).json({
 				message: '제품 상세 보기 조회 성공',
