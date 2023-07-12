@@ -66,9 +66,22 @@ if (!orderId && !hasToken) {
 	window.location.href = '/';
 }
 
+const orderIdCopy = document.querySelector('#order-id');
+orderIdCopy.addEventListener('click', copy(orderId));
+
 async function copy(orderId) {
 	return await navigator.clipboard.writeText(orderId);
 }
 
-const orderIdCopy = document.querySelector('#order-id');
-orderIdCopy.addEventListener('click', copy(orderId));
+const orderHistoryBtn = document.querySelector('.order-history-btn');
+if (hasToken) {
+	orderHistoryBtn.setAttribute(
+		'href',
+		`/myPage/orders/history/?orderId=${orderId}`
+	);
+} else {
+	orderHistoryBtn.setAttribute(
+		'href',
+		`/guest/orders/history/?orderId=${orderId}`
+	);
+}
