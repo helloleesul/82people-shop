@@ -11,9 +11,9 @@ const ProductController = {
 			]);
 
 			res.status(200).json({
-				message: '전체 제품 목록 조회 성공',
+				message: '전체 + 베스트 제품 목록 조회 성공',
 				totalProducts: totalProducts,
-				totalProducts: bestProducts
+				bestProducts: bestProducts
 			});
 		} catch (err) {
 			next(err);

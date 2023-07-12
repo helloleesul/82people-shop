@@ -293,8 +293,8 @@ function orderBtn(e) {
 			})
 				.then(res => res.json())
 				.then(json => {
-					window.location.href =
-						'/orders/complete?orderId=' + json.data.orderId;
+					// console.log(json);
+					window.location.href = '/orders/complete?orderId=' + json.orderId._id;
 				})
 				.catch(err => console.log(err));
 			// res, json부분 dev에서 확인 다시 필요함! res 에러 컨트롤 작업 필요함.. 볼수없어서 이렇게.. 했어요
