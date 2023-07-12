@@ -6,7 +6,7 @@ const UserRouter = express.Router();
 
 UserRouter.patch('/users', VerifyToken, UserController.updateUser);
 UserRouter.delete('/users', VerifyToken, UserController.deleteUser);
-UserRouter.get('/users/signup', UserController.emailOverlapCheck);
+UserRouter.get('/users/signup/:email', UserController.emailOverlapCheck);
 UserRouter.post('/users/signup', UserController.userSignup);
 UserRouter.get('/users/myPage', VerifyToken, UserController.getUserInformation);
 
