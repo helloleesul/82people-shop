@@ -11,9 +11,9 @@ const ProductController = {
 			]);
 
 			res.status(200).json({
-				message: '전체 제품 목록 조회 성공',
+				message: '전체 + 베스트 제품 목록 조회 성공',
 				totalProducts: totalProducts,
-				totalProducts: bestProducts
+				bestProducts: bestProducts
 			});
 		} catch (err) {
 			next(err);
@@ -29,6 +29,7 @@ const ProductController = {
 				category
 			);
 
+			console.log(categoryProducts)
 			res.status(200).json({
 				message: `${category} 카테고리 제품 조회 성공`,
 				categoryProducts: categoryProducts
@@ -50,6 +51,7 @@ const ProductController = {
 				);
 			}
 
+			console.log(product)
 			res.status(200).json({
 				message: '제품 상세 보기 조회 성공',
 				productInfo: product,
