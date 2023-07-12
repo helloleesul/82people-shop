@@ -37,4 +37,4 @@ const OrderSchema = new Schema(
 	}
 );
 
-module.exports = { OrderSchema };
+module.exports = OrderSchema;

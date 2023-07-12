@@ -1,6 +1,5 @@
 const OrderService = require('../services/OrderService');
 const { badRequestError } = require('../middleware/ErrorHandler');
-const { badRequestError } = require('../middleware/ErrorHandler');
 
 const OrderController = {
 	// [회원 || 비회원] 장바구니 제품 주문 완료
@@ -109,12 +108,6 @@ const OrderController = {
 
 		try {
 			const orderDetail = await OrderService.checkOrderDetail(orderId);
-
-			if (!orderDetail) {
-				throw new badRequestError(
-					'주문 상세 내역이 존재하지 않습니다. 다시 한 번 확인해주세요.'
-				);
-			}
 
 			if (!orderDetail) {
 				throw new badRequestError(

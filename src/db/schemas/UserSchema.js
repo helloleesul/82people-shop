@@ -43,4 +43,4 @@ const UserSchema = new Schema(
 	}
 );
 
-module.exports = { UserSchema };
+module.exports = UserSchema;
