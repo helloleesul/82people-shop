@@ -46,11 +46,11 @@ const OrderService = {
 			);
 		}
 
-		// salesAmount Update
+		// salesAmount, curruntAmount Update
 		purchase.map(async product => {
 			await Product.updateOne(
-				{ productId: product.productId },
-				{ $inc: { salesAmount: product.orderAmount } }
+				{ _id: product.productId },
+				{ $inc: { salesAmount: product.orderAmount, curruntAmount: -product.orderAmount }, }
 			);
 		});
 
@@ -78,7 +78,7 @@ const OrderService = {
 		}
 
 		const orderHistory = await Order.find(
-			{ orderId: { $in: orderIdArray } },
+			{ _id: { $in: orderIdArray } },
 			{ _id: 0 }
 		);
 
@@ -87,7 +87,7 @@ const OrderService = {
 
 	// [회원 비회원 공통] 주문 상세 조회
 	checkOrderDetail: async orderId => {
-		const orderDetails = await Order.findOne({ orderId: orderId });
+		const orderDetails = await Order.findOne({ _id: orderId });
 
 		return orderDetails;
 	},
