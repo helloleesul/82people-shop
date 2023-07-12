@@ -5,7 +5,7 @@ const { badRequestError } = require('../middleware/ErrorHandler');
 
 const OrderService = {
 	// [회원 비회원 공통] 장바구니 제품 주문 완료
-	createOrder: async ({
+	createOrder: async (
 		email,
 		purchase,
 		recipient,
@@ -15,7 +15,7 @@ const OrderService = {
 		detailAddress,
 		shippingRequest,
 		shippingPrice,
-	}) => {
+	) => {
 		const totalProductsPrice = purchase.reduce((acc, product) => {
 			return acc + product.price * product.orderAmount;
 		}, 0);
@@ -94,13 +94,10 @@ const OrderService = {
 		return orderDetails;
 	},
 
-	/* 2주차에 작업
     // [회원] 주문 시 배송지 추가
-    addAddress: async (userId) => {
-        await User.({
-          // 
-        })
-    }, */
+    addAddress: async (email, addressInformation) => {
+		await User.updateOne({ email: email }, { $push: { addressInformation: addressInformation }});
+    },
 };
 
 module.exports = OrderService;

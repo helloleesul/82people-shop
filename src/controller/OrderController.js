@@ -34,7 +34,8 @@ const OrderController = {
 				);
 			}
 
-			const newOrderId = await OrderService.createOrder({
+			const newOrderId = await OrderService.createOrder(
+				email,
 				purchase,
 				recipient,
 				phone,
@@ -43,7 +44,7 @@ const OrderController = {
 				detailAddress,
 				shippingRequest,
 				shippingPrice,
-			});
+			);
 
 			res.status(201).json({
 				message: '주문 성공',
@@ -124,12 +125,13 @@ const OrderController = {
 		}
 	},
 
-	/*
     // [회원] 주문 시 배송지 추가 => 2주차에 작업
     addAddress: async (req, res, next) => {		
 		const email = req.currentUserEmail;
+		const { addressInformation } = req.body
 
         try {
+			await OrderService.addAddress(email, addressInformation);
 
             res.status(200).json({
                 message: '배송지 추가 성공',
