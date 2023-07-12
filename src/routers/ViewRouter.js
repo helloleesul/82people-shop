@@ -12,7 +12,7 @@ ViewRouter.use('/', ViewService.serveStatic('Home'));
 
 //user
 // ViewRouter.use('/users');
-ViewRouter.use('/users/signup', ViewService.serveStatic('SignUp')); //회원가입 페이지
+ViewRouter.use('/signup', ViewService.serveStatic('SignUp')); //회원가입 페이지
 // ViewRouter.use('/users/myPage'); //마이페이지
 
 //order
@@ -20,8 +20,10 @@ ViewRouter.use('/cart', ViewService.serveStatic('Cart')); // 장바구니 페이
 ViewRouter.use('/orders', ViewService.serveStatic('Order')); // 주문 페이지
 ViewRouter.use('/orders/complete', ViewService.serveStatic('OrderComplete')); //주 문 완료 페이지
 ViewRouter.use('/orders/history', ViewService.serveStatic('OrderHistory')); // 회원 주문 조회 페이지
-ViewRouter.use('/orders/history/:orderId', ViewService.serveStatic('OrderDetail')); // 주문 상세 조회 페이지
-
+ViewRouter.use(
+	'/orders/history/:orderId',
+	ViewService.serveStatic('OrderDetail')
+); // 주문 상세 조회 페이지
 
 //auth
 ViewRouter.use('/login', ViewService.serveStatic('Login')); //로그인 페이지
@@ -30,6 +32,5 @@ ViewRouter.use('/login', ViewService.serveStatic('Login')); //로그인 페이�
 // ViewRouter.use('/orders'); //주문 완료 페이지
 // ViewRouter.use('/orders/history'); //회원 주문 조회 페이지
 // ViewRouter.use('/orders/history/:orderId'); //주문 상세 조회 페이지
-
 
 module.exports = ViewRouter;
