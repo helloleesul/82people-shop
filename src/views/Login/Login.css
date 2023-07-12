@@ -6,6 +6,20 @@ body {
   height: 100%;
 }
 
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
 header,
 footer {
   text-align: center;
@@ -80,8 +94,18 @@ main {
   cursor: pointer;
 }
 
-.signin-card form .outline-btn {
+.signin-card form .btn-link {
+  margin-bottom: 12px;
+  padding: 15px;
   background-color: #fff;
   border: 1px solid #FF5675;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.signin-card form .outline-btn {
   color: #FF5675;
 }

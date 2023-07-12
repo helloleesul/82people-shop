@@ -1,17 +1,34 @@
-const { Router } = require('express');
-const { OrderController } = require('../controller');
+const express = require('express');
+const OrderController = require('../controller/OrderController');
+const VerifyToken = require('../middleware/VerifyToken');
 
-const OrderRouter = Router();
+const OrderRouter = express.Router();
 
-// 토큰 값 체크는 middleware로 분리
-OrderRouter.post('/orders', OrderController.createOrder);
+// [회원] 주문
+OrderRouter.post('/orders', VerifyToken, OrderController.createOrder);	
 
-OrderRouter.get('/order/checkAddress', OrderController.checkAddress);
+// [비회원] 주문
+OrderRouter.post('/orders/guest', OrderController.createOrder);
 
-OrderRouter.post('/order/addAddress', OrderController.addAddress);
+// [회원] 배송지 조회
+OrderRouter.get(
+	'/orders/checkAddress',
+	VerifyToken,
+	OrderController.checkAddress
+);
 
-OrderRouter.get('orders/history', OrderController.checkOrderHistory);
+// [회원] 배송지 추가
+// OrderRouter.post('/orders/addAddress', VerifyToken, OrderController.addAddress);
 
-OrderRouter.get('orders/history:orderId', OrderController.checkOrderDetail);
+
+// [회원] 주문 내역 조회
+OrderRouter.get(
+	'/orders/history',
+	VerifyToken,
+	OrderController.checkOrderHistory
+);
+
+// [회원 || 비회원] 주문 상세 내역 조회
+OrderRouter.get('/orders/history/:orderId', OrderController.checkOrderDetail);
 
 module.exports = OrderRouter;

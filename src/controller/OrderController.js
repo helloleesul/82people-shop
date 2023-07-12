@@ -1,65 +1,101 @@
-const { OrderService } = require('../services');
+const OrderService = require('../services/OrderService');
+const { badRequestError } = require('../middleware/ErrorHandler');
 
 const OrderController = {
 	// [회원 || 비회원] 장바구니 제품 주문 완료
 	createOrder: async (req, res, next) => {
-		//헤더에 토큰 값 체크
-		const { purchase, addressInformation, password } = await req.body;
+		const email = req.currentUserEmail;
+		const {
+			purchase,
+			recipient,
+			phone,
+			password,
+			address,
+			detailAddress,
+			shippingRequest,
+			shippingPrice,
+		} = req.body;
 
 		try {
-			const createdOrderId = await OrderService.createOrder({
+			if (!email && !password) {
+				throw new badRequestError('비회원은 비밀번호 입력이 필요합니다.');
+			}
+			if (
+				!purchase ||
+				!recipient ||
+				!phone ||
+				!password ||
+				!address ||
+				!detailAddress ||
+				!shippingPrice
+			) {
+				throw new badRequestError(
+					'누락된 정보가 있습니다. 다시 한 번 확인해주세요.'
+				);
+			}
+
+			const newOrderId = await OrderService.createOrder({
 				purchase,
-				addressInformation,
+				recipient,
+				phone,
 				password,
+				address,
+				detailAddress,
+				shippingRequest,
+				shippingPrice,
 			});
 
 			res.status(201).json({
-				msg: '주문 성공',
-				createdOrderId,
+				message: '주문 성공',
+				orderId: newOrderId,
 			});
 		} catch (err) {
 			next(err);
 		}
 	},
 
-	// [회원] 주문 시 배송지 확인 => 토큰 관련 미들웨어 작성 후 작업
+	// [회원] 주문 시 배송지 확인
 	checkAddress: async (req, res, next) => {
-		//헤더에 토큰 값 체크
+		const email = req.currentUserEmail;
+
 		try {
-			const address = await OrderService.checkAddress(); // 나중에
+			const address = await OrderService.checkAddress(email);
+
+			if (!address) {
+				throw new badRequestError('배송지가 존재하지 않습니다.');
+			}
 
 			res.status(200).json({
-				msg: '배송지 조회 성공',
-				address,
+				message: '배송지 조회 성공',
+				userAddress: address,
 			});
 		} catch (err) {
 			next(err);
 		}
 	},
 
-	/*
-    // [회원] 주문 시 배송지 추가 => 2주차에 작업
-    addAddress: async (req, res, next) => {
-        //헤더에 토큰 값 체크
-        try {
-
-            res.status(200).json({
-                msg: '배송지 추가 성공',
-            });
-        } catch(err) {
-            next(err);
-        };
-    },
-    */
-
-	// [회원] 주문 내역 전체 조회 => 토큰 관련 미들웨어 작성 후 작업
+	// [회원] 주문 내역 전체 조회
 	checkOrderHistory: async (req, res, next) => {
-		//헤더에 토큰 값 체크
+		const { email } = req.body;
+
 		try {
-			const orderHistory = await OrderService.checkOrderHistory(); // 나중에
+			const orderHistory = await OrderService.checkOrderHistory(email);
+
+			if (!orderHistory) {
+				throw new badRequestError(
+					'주문 내역이 존재하지 않습니다. 다시 한 번 확인해주세요.'
+				);
+			}
+
+			if (!orderHistory) {
+				throw new badRequestError(
+					'주문 내역이 존재하지 않습니다. 다시 한 번 확인해주세요.'
+				);
+			}
 
 			res.status(200).json({
-				orderHistory,
+				message: '회원 주문 내역 전체 조회 성공',
+				userOrderHistory: orderHistory,
 			});
 		} catch (err) {
 			next(err);
@@ -71,15 +107,38 @@ const OrderController = {
 		const { orderId } = req.params;
 
 		try {
-			const orderDatail = await OrderService.checkOrderDetail(orderId);
+			const orderDetail = await OrderService.checkOrderDetail(orderId);
+
+			if (!orderDetail) {
+				throw new badRequestError(
+					'주문 상세 내역이 존재하지 않습니다. 다시 한 번 확인해주세요.'
+				);
+			}
 
 			res.status(200).json({
-				orderDatail,
+				message: '주문 상세 내역 조회 성공',
+				orderDetail: orderDetail,
 			});
 		} catch (err) {
 			next(err);
 		}
 	},
+
+	/*
+    // [회원] 주문 시 배송지 추가 => 2주차에 작업
+    addAddress: async (req, res, next) => {		
+		const email = req.currentUserEmail;
+
+        try {
+
+            res.status(200).json({
+                message: '배송지 추가 성공',
+            });
+        } catch(err) {
+            next(err);
+        };
+    },
+    */
 };
 
-module.exports = { OrderController };
+module.exports = OrderController;

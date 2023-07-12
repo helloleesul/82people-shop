@@ -17,11 +17,10 @@ const UserSchema = new Schema(
 			type: String,
 			required: true,
 		},
-
 		addressInformation: [
 			{
 				recipient: { type: String, required: true },
-				Phone: { type: String, required: true },
+				phone: { type: String, required: true },
 				address: { type: String, required: true },
 				detailAddress: { type: String, required: true },
 				shippingRequest: { type: String },
@@ -33,14 +32,15 @@ const UserSchema = new Schema(
 			enum: userRole,
 			default: 'customer',
 		},
-		deletedAt: {
+		isDeleted: {
 			type: Boolean,
 			default: false,
 		},
+		orderHistory: [Schema.Types.ObjectId],
 	},
 	{
 		timestamps: true,
 	}
 );
 
-module.exports = UserSchema;
+module.exports = { UserSchema };

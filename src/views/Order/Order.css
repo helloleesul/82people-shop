@@ -47,7 +47,10 @@ h3 {
 	font-weight: 700;
 	margin-bottom: 10px;
 }
-
+#order-wrap {
+	width: 80%;
+	margin: 0 auto;
+}
 .cart-step {
 	display: flex;
 	align-items: center;
@@ -100,13 +103,13 @@ h3 {
 	align-items: center;
 	gap: 10px;
 }
-.cart-form {
+#cart-form {
 	display: flex;
 	justify-content: space-between;
 	margin-top: 30px;
 	gap: 20px;
 }
-.cart-form > article {
+#cart-form > article {
 	flex: 1;
 }
 .order-info section {
