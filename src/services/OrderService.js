@@ -77,17 +77,19 @@ const OrderService = {
 			throw new badRequestError('주문 내역이 없습니다.');
 		}
 
-		const orderHistory = await Order.find(
-			{ _id: { $in: orderIdArray } },
-			{ _id: 0 }
-		);
+		const orderHistory = await Order.find({ _id: { $in: orderIdArray }}, {
+			_id : 1,
+			shippingStatus : 1,
+			purchase: 1,
+			createdAt: 1
+		});
 
 		return orderHistory;
 	},
 
 	// [회원 비회원 공통] 주문 상세 조회
 	checkOrderDetail: async orderId => {
-		const orderDetails = await Order.findOne({ _id: orderId });
+		const orderDetails = await Order.findOne({ _id: orderId }, { _id: 1, password: 0 });
 
 		return orderDetails;
 	},
