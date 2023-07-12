@@ -18,7 +18,7 @@ const ProductService = {
 
 	// [사용자] 상품 상세 조회
 	getProductById: async productId => {
-		const product = await Product.findOne({ productId: productId });
+		const product = await Product.findOne({ _id: productId });
 
 		return product;
 	},
