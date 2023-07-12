@@ -125,7 +125,7 @@ const OrderController = {
 		}
 	},
 
-    // [회원] 주문 시 배송지 추가 => 2주차에 작업
+    // [회원] 주문 시 배송지 추가
     addAddress: async (req, res, next) => {		
 		const email = req.currentUserEmail;
 		const { addressInformation } = req.body
@@ -140,7 +140,6 @@ const OrderController = {
             next(err);
         };
     },
-    */
 };
 
 module.exports = OrderController;
