@@ -29,7 +29,6 @@ const ProductController = {
 				category
 			);
 
-			console.log(categoryProducts)
 			res.status(200).json({
 				message: `${category} 카테고리 제품 조회 성공`,
 				categoryProducts: categoryProducts
@@ -51,7 +50,6 @@ const ProductController = {
 				);
 			}
 
-			console.log(product)
 			res.status(200).json({
 				message: '제품 상세 보기 조회 성공',
 				productInfo: product,
