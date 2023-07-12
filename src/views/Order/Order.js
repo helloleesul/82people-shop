@@ -234,7 +234,7 @@ function orderBtn(e) {
 			detailAddress.value !== ''
 		) {
 			// 회원 주문 POST 요청 전송
-<<<<<<< HEAD
+
 			fetch('/api/orders', {
 				method: 'POST',
 				headers: {
@@ -251,22 +251,6 @@ function orderBtn(e) {
 					shippingPrice: shippingPriceNumber,
 				}),
 			})
-=======
-			axios
-				.post(
-					'/api/orders',
-					{
-						purchase: orderProducts,
-						recipient: recipient.value,
-						phone: onlyPhoneNumbers,
-						address: address.value,
-						detailAddress: detailAddress.value,
-						shippingRequest: shippingRequest.value,
-						shippingPrice: shippingPriceNumber,
-					},
-					{ headers: { Authorization: jwtToken } }
-				)
->>>>>>> 08dfc81 (Feat: 연락처 숫자만 입력가능, 자동 '-'입력)
 				.then(res => {
 					if (res.ok) {
 						alert('회원주문 완료');
