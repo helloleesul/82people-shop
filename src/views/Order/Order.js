@@ -275,8 +275,14 @@ function orderBtn(e) {
 
 	const orderProducts = [];
 	products.map(product => {
-		const { id: productId, title, amount: orderAmount, price } = product;
-		orderProducts.push({ productId, title, orderAmount, price });
+		const {
+			id: productId,
+			title,
+			amount: orderAmount,
+			price,
+			imageUrl: imageURL,
+		} = product;
+		orderProducts.push({ productId, title, orderAmount, price, imageURL });
 	});
 	// console.log(orderProducts);
 
