@@ -10,7 +10,7 @@ function checkJWTTokenInCookie() {
 	for (let i = 0; i < cookies.length; i++) {
 		const cookie = cookies[i].trim();
 		// 	JWT 토큰 쿠키인지 확인
-		if (cookie.startsWith('uesetToken=')) {
+		if (cookie.startsWith('userToken=')) {
 			const jwtToken = cookie.split('=')[1]; // JWT 토큰 값 가져오기
 			// 토큰이 유효한지 여부 확인
 			if (jwtToken) {
