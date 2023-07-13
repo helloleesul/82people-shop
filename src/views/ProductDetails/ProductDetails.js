@@ -1,68 +1,75 @@
 import { main } from '/Common/index.js';
 await main();
 
-const url = window.location.search;
-const itemId = url.split('=')[1];
-console.log(itemId);
+const urlStr = window.location.href;
+const productId = new URL(urlStr).searchParams.get('productId');
 
-// axios({
-// 	method: 'get',
-// 	url: `/api/products/${productId}`,
-// }).then(res => {
-// 	const item = res.data.info;
-// 	const itemImg = document.querySelectorAll('.item-img');
-// 	const title = document.querySelectorAll('.product-title');
-// 	const price = document.querySelectorAll('.product-price');
-// 	const itemDescription = document.querySelectorAll('.product-detail');
-// 	const productCount = document.querySelectorAll('.product-count');
-// 	const productTotalPrice = document.querySelectorAll('.product-total-price');
-
-// 	itemImg.forEach(data => data.setAttribute('src', item.imageUrl));
-
-// 	title.forEach(data => (data.innerText = item.title));
-
-// 	price.forEach(data => (data.innerText = item.price.toLocaleString()));
-
-// 	itemDescription.forEach(data => (data.innerText = item.itemDescription));
-
-// 	productCount.forEach((data, index) => {
-// 		data.addEventListener('input', () => {
-// 			const count = parseInt(data.value);
-// 			const totalPrice = item.price * count;
-// 			productTotalPrice[index].innerText = totalPrice.toLocaleString();
-// 		});
-// 	});
-// });
+console.log(productId);
 
 // 장바구니 작업
+const productMaker = document.querySelector('.maker');
+const productTitle = document.querySelector('.product-title');
+const productPrice = document.querySelector('.product-price');
+const productDescription = document.querySelector('.product-detail');
 const addToCart = document.querySelector('#add-to-cart');
 const productAmount = document.querySelector('#amount');
 const totalCash = document.querySelector('.product-total-cash');
-const price = document.querySelector('.product-price');
-// 임의로 넣어준 상품가격
-const priceValue = Number(price.innerText);
-price.innerText = priceValue.toLocaleString() + '원';
-totalCash.innerText = price.innerText;
+let imageURL;
+
+fetch(`/api/products/${productId}`, {
+	method: 'GET',
+	headers: {
+		'Content-Type': 'application/json',
+	},
+})
+	.then(res => {
+		console.log(res);
+		if (res.ok) {
+			return res.json();
+			// 로그인 페이지 이동
+		} else {
+			throw new Error('조회 실패');
+		}
+	})
+	.catch(err => {
+		alert(err);
+	})
+	.then(({ productInfo }) => {
+		//{ manufacturer, title, price, description }
+
+		productMaker.innerText = productInfo.manufacturer;
+		productTitle.innerText = productInfo.title;
+		productPrice.innerText = productInfo.price;
+		productDescription.innerText = productInfo.description;
+		//  productInfo._id;
+		imageURL = productInfo.imageURL[0];
+		totalCash.innerText = productPrice.innerText + ' 원';
+	})
+	.catch(err => console.log(err));
 
 const PRODUCT_KEY = 'cartProducts';
 let products = JSON.parse(localStorage.getItem(PRODUCT_KEY)) || [];
 
 productAmount.addEventListener('change', e => {
 	productAmount.value = e.target.value;
-	totalCash.innerText =
-		(priceValue * productAmount.value).toLocaleString() + '원';
+	// console.log('productAmount.value', productAmount.value);
+	// console.log('productPrice.value', productPrice.textContent);
+	totalCash.innerText = `	${
+		Number(productPrice.textContent) *
+		Number(productAmount.value).toLocaleString()
+	}  원`;
 });
 
 addToCart.addEventListener('click', () => {
-	const hasProduct = products.findIndex(product => product.id === itemId);
+	const hasProduct = products.findIndex(product => product.id === productId);
 
 	let product = {
-		id: itemId, // api에서 가져온 id값
-		title: '상품1', // api에서 가져온 title값
+		id: productId, // api에서 가져온 id값
+		title: productTitle.textContent, // api에서 가져온 title값
 		amount: Number(productAmount.value),
-		imageUrl: '/', // api에서 가져온 imageUrl값
-		price: priceValue,
-		totalPrice: priceValue * Number(productAmount.value),
+		imageUrl: imageURL, // api에서 가져온 imageUrl값
+		price: Number(productPrice.textContent),
+		totalPrice: Number(productPrice.textContent) * Number(productAmount.value),
 	};
 
 	if (hasProduct !== -1) {
