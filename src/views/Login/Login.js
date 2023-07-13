@@ -1,9 +1,17 @@
-import { main } from '/Common/index.js';
+import { main, renderLogin } from '/Common/index.js';
 await main();
+await renderLogin();
 
 const id = document.querySelector('.form__id');
 const pw = document.querySelector('.form__pw');
 const submitBtn = document.querySelector('.form__submit');
+
+const setCookie = (userToken, token, days) => {
+	const expires = new Date();
+	expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
+	const cookieString = `${userToken}=${token}; expires=${expires.toUTCString()}; path=/`;
+	document.cookie = cookieString;
+};
 
 const login = e => {
 	e.preventDefault();
@@ -25,6 +33,7 @@ const login = e => {
 			console.log('res', res);
 			if (res.ok) {
 				alert(`성공적으로 로그인 되었습니다.`);
+				return res.json();
 				// 로그인 페이지 이동
 
 				// window.location.href = '/';
@@ -32,6 +41,10 @@ const login = e => {
 				throw new Error('로그인 실패');
 			}
 		})
+		.catch(err => {
+			alert(err);
+		})
+		.then(json => setCookie('userToken', json.Authorization, 1))
 		.catch(err => {
 			alert(err);
 		});

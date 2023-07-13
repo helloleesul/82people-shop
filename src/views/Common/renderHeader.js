@@ -39,7 +39,7 @@ function renderHeader() {
           </div>
           <!-- 로그인 상태일 경우 마이페이지 노출-->
           <div>
-            <a href="#">마이페이지</a>
+            <a href="/myPage">마이페이지</a>
           </div>
           <div>
             <a href="#">
