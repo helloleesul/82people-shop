@@ -204,64 +204,66 @@ phone.addEventListener('input', e => {
 	e.target.value = resultPhone;
 });
 
-// 기본배송지 유무
-fetch('/api/orders/checkAddress', {
-	method: 'GET',
-	headers: {
-		Authorization: hasToken,
-	},
-})
-	.then(res => res.json())
-	.catch(err => alert(err))
-	.then(json => {
-		// console.log(json.userAddress[0].addressInformation);
-		if (json.userAddress[0].addressInformation.length !== 0) {
-			recipient.value = json.userAddress[0].addressInformation.recipient;
-			phone.value = formattedValue(
-				json.userAddress[0].addressInformation.phone
-			);
-			address.value = json.userAddress[0].addressInformation.address;
-			detailAddress.value =
-				json.userAddress[0].addressInformation.detailAddress;
-			shippingRequest.value =
-				json.userAddress[0].addressInformation.shippingRequest;
+if (hasToken) {
+	// 기본배송지 유무
+	fetch('/api/orders/checkAddress', {
+		method: 'GET',
+		headers: {
+			Authorization: hasToken,
+		},
+	})
+		.then(res => res.json())
+		.catch(err => alert(err))
+		.then(json => {
+			// console.log(json.userAddress[0].addressInformation);
+			if (json.userAddress[0].addressInformation.length !== 0) {
+				recipient.value = json.userAddress[0].addressInformation.recipient;
+				phone.value = formattedValue(
+					json.userAddress[0].addressInformation.phone
+				);
+				address.value = json.userAddress[0].addressInformation.address;
+				detailAddress.value =
+					json.userAddress[0].addressInformation.detailAddress;
+				shippingRequest.value =
+					json.userAddress[0].addressInformation.shippingRequest;
+			}
+		});
+
+	// 기본배송지 설정
+	const addAddress = document.querySelector('#add-address');
+	addAddress.addEventListener('click', () => {
+		const onlyPhoneNumbers = phone.value.replace(/[^0-9]/g, '');
+		if (
+			recipient.value !== '' &&
+			phone.value !== '' &&
+			address.value !== '' &&
+			detailAddress.value !== ''
+		) {
+			fetch('/api/orders/addAddress', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: hasToken,
+				},
+				body: JSON.stringify({
+					addressInformation: {
+						recipient: recipient.value,
+						phone: onlyPhoneNumbers,
+						address: address.value,
+						detailAddress: detailAddress.value,
+						shippingRequest: shippingRequest.value,
+					},
+				}),
+			})
+				.then(res => res.json())
+				.catch(err => alert(err))
+				.then(json => alert(json.message))
+				.catch(err => alert(err));
+		} else {
+			alert('필수입력을 적어주세요!');
 		}
 	});
-
-// 기본배송지 설정
-const addAddress = document.querySelector('#add-address');
-addAddress.addEventListener('click', () => {
-	const onlyPhoneNumbers = phone.value.replace(/[^0-9]/g, '');
-	if (
-		recipient.value !== '' &&
-		phone.value !== '' &&
-		address.value !== '' &&
-		detailAddress.value !== ''
-	) {
-		fetch('/api/orders/addAddress', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				Authorization: hasToken,
-			},
-			body: JSON.stringify({
-				addressInformation: {
-					recipient: recipient.value,
-					phone: onlyPhoneNumbers,
-					address: address.value,
-					detailAddress: detailAddress.value,
-					shippingRequest: shippingRequest.value,
-				},
-			}),
-		})
-			.then(res => res.json())
-			.catch(err => alert(err))
-			.then(json => alert(json.message))
-			.catch(err => alert(err));
-	} else {
-		alert('필수입력을 적어주세요!');
-	}
-});
+}
 
 // 결제하기 버튼 클릭
 function orderBtn(e) {
@@ -316,6 +318,7 @@ function orderBtn(e) {
 					if (res.ok) {
 						alert('회원주문 완료');
 						window.location.href = '/orders/complete';
+						localStorage.removeItem(PRODUCT_KEY);
 					} else {
 						throw new Error('회원주문 실패');
 					}
@@ -356,6 +359,7 @@ function orderBtn(e) {
 				.then(json => {
 					console.log(json);
 					window.location.href = '/orders/complete?orderId=' + json.orderId._id;
+					localStorage.removeItem(PRODUCT_KEY);
 				})
 				.catch(err => console.log(err));
 			// res, json부분 dev에서 확인 다시 필요함! res 에러 컨트롤 작업 필요함.. 볼수없어서 이렇게.. 했어요
