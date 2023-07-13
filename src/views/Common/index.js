@@ -5,7 +5,6 @@ import { renderLogin } from './loginForm.js';
 async function main() {
 	renderHeader();
 	renderFooter();
-	renderLogin();
 }
 
 export { main };

@@ -6,11 +6,8 @@ const ViewRouter = express.Router();
 ViewRouter.use('/', ViewService.serveStatic('Home')); //메인화면
 
 //product
-ViewRouter.use(
-	'/products/:productId',
-	ViewService.serveStatic('ProductDetails')
-); //제품 상세 보기
-ViewRouter.use('/products/:category', ViewService.serveStatic('Category')); //카테고리별 제품
+ViewRouter.use('/products', ViewService.serveStatic('ProductDetails')); //제품 상세 보기
+ViewRouter.use('/products/category', ViewService.serveStatic('Category')); //카테고리별 제품
 
 //user
 // ViewRouter.use('/users');
@@ -38,11 +35,6 @@ ViewRouter.use(
 
 //auth
 ViewRouter.use('/login', ViewService.serveStatic('Login')); //로그인 페이지
-
-//order
-// ViewRouter.use('/orders'); //주문 완료 페이지
-// ViewRouter.use('/orders/history'); //회원 주문 조회 페이지
-// ViewRouter.use('/orders/history/:orderId'); //주문 상세 조회 페이지
 
 //common
 ViewRouter.use('/common', ViewService.serveStatic('Common'));
