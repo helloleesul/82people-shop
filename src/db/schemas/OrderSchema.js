@@ -4,7 +4,6 @@ const shippingStat = ['상품 준비 중', '배송 중', '배송 완료'];
 
 const OrderSchema = new Schema(
 	{
-		orderId: Schema.Types.ObjectId,
 		shippingStatus: {
 			type: String,
 			enum: shippingStat,
@@ -37,4 +36,4 @@ const OrderSchema = new Schema(
 	}
 );
 
-module.exports = { OrderSchema };
+module.exports = OrderSchema;
