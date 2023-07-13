@@ -1,41 +1,28 @@
 import { main } from '/Common/index.js';
 await main();
 
-// checkJWTTokenInCookie를 공통 js로 만들어서 header,footer 불러올때 함께 사용하면 좋을 듯 함
-// 쿠키에서 JWT 토큰 확인
 function checkJWTTokenInCookie() {
 	const cookies = document.cookie.split(';'); // 모든 쿠키 가져오기
-	// console.log(cookies);
 	for (let i = 0; i < cookies.length; i++) {
 		const cookie = cookies[i].trim();
-		// JWT 토큰 쿠키인지 확인
-		if (cookie.startsWith('jwt=')) {
+		// 	JWT 토큰 쿠키인지 확인
+		if (cookie.startsWith('uesetToken=')) {
 			const jwtToken = cookie.split('=')[1]; // JWT 토큰 값 가져오기
 			// 토큰이 유효한지 여부 확인
-			if (validateJWTToken(jwtToken)) {
-				return true; // 유효한 토큰이 존재함
+			if (jwtToken) {
+				return jwtToken; // 유효한 토큰이 존재함
 			}
 		}
 	}
-	return false; // 토큰이 없거나 유효하지 않음
 }
-
-// JWT 토큰 유효성 검사 로직
-function validateJWTToken(jwtToken) {
-	// 예를 들어, 토큰의 시그니처 검증, 만료 여부 확인 등을 수행
-	// 유효한 토큰이면 true, 그렇지 않으면 false 반환
-	// 실제 구현은 JWT 라이브러리를 사용하거나 직접 로직을 작성
-	return true; // 임시로 항상 유효한 토큰으로 가정
-}
-
-// 테스트용 JWT 토큰
-const jwtToken = 'your-jwt-token';
 
 // 👉 개발 시작 코드
 const PRODUCT_KEY = 'cartProducts';
 
 // 쿠키에서 JWT 토큰 확인
 const hasToken = checkJWTTokenInCookie();
+// console.log(hasToken);
+
 // 비회원 비밀번호 입력 요소
 const guestModeEl = document.querySelector('#guest-mode');
 
@@ -237,12 +224,11 @@ function orderBtn(e) {
 			detailAddress.value !== ''
 		) {
 			// 회원 주문 POST 요청 전송
-
 			fetch('/api/orders', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
-					Authorization: jwtToken,
+					Authorization: hasToken,
 				},
 				body: JSON.stringify({
 					purchase: orderProducts,
