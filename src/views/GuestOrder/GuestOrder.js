@@ -1,5 +1,6 @@
-import { main } from '/Common/index.js';
+import { main, renderLogin } from '/Common/index.js';
 await main();
+await renderLogin();
 
 const orderId = document.querySelector('#orderId');
 const orderPassword = document.querySelector('#orderPassword');
