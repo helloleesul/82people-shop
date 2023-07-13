@@ -15,7 +15,6 @@ function checkJWTTokenInCookie() {
 			}
 		}
 	}
-	return false; // 토큰이 없거나 유효하지 않음
 }
 
 // 확인된 토큰을 부르는 이름
