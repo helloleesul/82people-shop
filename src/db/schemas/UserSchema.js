@@ -35,7 +35,6 @@ const UserSchema = new Schema(
 			type: Boolean,
 			default: false,
 		},
-		orderHistory: [Schema.Types.ObjectId],
 	},
 	{
 		timestamps: true,
