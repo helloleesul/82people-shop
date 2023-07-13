@@ -86,7 +86,7 @@ const UserController = {
 			const searchedEmail = await UserService.findUser(email);
 
 			if (searchedEmail) {
-				return res.status(400).json({ msg: '이미 가입된 email입니다.' });
+				throw new badRequestError('이미 가입된 이메일입니다.');
 			}
 
 			return res.status(200).json({

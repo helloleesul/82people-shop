@@ -1,6 +1,9 @@
 const jwt = require('jsonwebtoken');
-
-const User = require('../db/models/UserModel');
+const UserService = require('../services/UserService');
+const {
+	badRequestError,
+	conflictError,
+} = require('../middleware/ErrorHandler');
 
 const AuthController = {
 	login: async (req, res, next) => {
@@ -9,24 +12,25 @@ const AuthController = {
 		console.log('server', email);
 		console.log('ser', password);
 		try {
-			const searchedUser = await User.findOne({ email });
+			const searchedUser = await UserService.findUser(email);
 
 			if (searchedUser === null) {
-				return res.status(400).json({
-					msg: '존재하지 않는 유저입니다.',
-				});
+				throw new badRequestError('존재하지 않는 아이디입니다.');
+			}
+
+			if (searchedUser.isDeleted) {
+				throw new badRequestError('탈퇴한 아이디입니다.');
 			}
 
 			if (searchedUser.password !== password) {
-				return res.status(401).json({
-					msg: '비밀번호가 일치하지 않습니다.',
-				});
+				throw new conflictError('비밀번호가 일치하지 않습니다.');
 			}
 
 			const token = jwt.sign(
 				{
 					email: searchedUser.email,
 					name: searchedUser.name,
+					role: searchedUser.role,
 				},
 				process.env.JSONSECRETKEY,
 				{

@@ -17,7 +17,7 @@ const ProductController = {
 					bestProducts: bestProducts,
 				});
 			} else {
-				throw new Error('제품 조회 실패!');
+				throw new badRequestError('제품 조회 실패!');
 			}
 		} catch (err) {
 			next(err);
