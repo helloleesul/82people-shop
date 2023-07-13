@@ -65,10 +65,7 @@ if (hasToken) {
 
 const orderHistoryBtn = document.querySelector('.order-history-btn');
 if (hasToken) {
-	orderHistoryBtn.setAttribute(
-		'href',
-		`/myPage/orders/history/?orderId=${orderId}`
-	);
+	orderHistoryBtn.setAttribute('href', `/myPage/orders`);
 } else {
 	orderHistoryBtn.setAttribute(
 		'href',
