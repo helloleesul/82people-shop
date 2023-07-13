@@ -254,3 +254,23 @@ h3 {
 .order-history .history-list .products-list li .title {
 	font-weight: 700;
 }
+.field {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.field > * {
+	display: flex;
+}
+.field span {
+	flex: 1;
+}
+.field input {
+	flex: 3;
+}
+.field2 {
+	justify-content: center;
+}
+.member-withdrawal-link {
+	justify-content: flex-end;
+}
