@@ -27,3 +27,7 @@ a {
 .product-price {
 	font-weight: 600;
 }
+.product-img {
+	display: block;
+	width: 100%;
+}

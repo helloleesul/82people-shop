@@ -37,7 +37,7 @@ const getProducts = newProduct => {
     <a class='product-link'
     href='/products?productId=${newProduct._id}' target='_self' id='bring-list'>
     <img class="product-img"
-    src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQE2O8ul5WH3_NdITW8bd4_7gpd6CoSVo1qUY2IHTfE8A&s' alt="product-item"/>
+    src='${newProduct.imageURL}' alt="product-item"/>
     <div class="product-title">${newProduct.title}</div>
     <div class='product-price'>${newProduct.price.toLocaleString()} 원</div>
     </div>
