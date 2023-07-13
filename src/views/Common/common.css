@@ -44,7 +44,7 @@ main {
 
 /* 헤더 */
 header {
-  height: 100px;
+  min-height: 100px;
   background-color: #fff;
   box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.07);
 }
