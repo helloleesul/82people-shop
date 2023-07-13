@@ -43,6 +43,7 @@ fetch(`/api/products/${productId}`, {
 		productDescription.innerText = productInfo.description;
 		//  productInfo._id;
 		imageURL = productInfo.imageURL[0];
+		totalCash.innerText = productPrice.innerText + ' 원';
 	})
 	.catch(err => console.log(err));
 
