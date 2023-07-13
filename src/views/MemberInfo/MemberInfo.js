@@ -30,6 +30,8 @@ const receiverAddressInput = document.querySelector('#receiver-address');
 // 회원정보수정하는 버튼
 const modifyBotton = document.querySelector('.modify-botton');
 
+const userName = document.querySelector('#user-name');
+
 // 확인된 토큰으로 서버에게 요청해서 현재 유저 정보받아오기
 fetch('/api/users/myPage', {
 	method: 'GET',
@@ -44,6 +46,7 @@ fetch('/api/users/myPage', {
 		receiverEmailInput.value = json.userInformation.email;
 		receiverPasswordInput.value = json.userInformation.password;
 		receiverAddressInput.value = json.userInformation.addressInformation;
+		userName.innerText = json.userInformation.name;
 		// console.log(json.userInformation);
 	});
 
