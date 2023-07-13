@@ -24,7 +24,6 @@ const OrderController = {
 				!purchase ||
 				!recipient ||
 				!phone ||
-				!password ||
 				!address ||
 				!detailAddress ||
 				!shippingPrice

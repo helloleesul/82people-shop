@@ -23,8 +23,11 @@ const OrderSchema = new Schema(
 			required: false,
 		},
 		addressInformation: {
-			type: Schema.Types.ObjectId,
-			ref: 'User',
+			recipient: { type: String, required: true },
+			phone: { type: String, required: true },
+			address: { type: String, required: true },
+			detailAddress: { type: String, required: true },
+			shippingRequest: { type: String },
 		},
 		totalPrice: {
 			totalProductsPrice: { type: Number, required: true },
