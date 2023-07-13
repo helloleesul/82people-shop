@@ -61,10 +61,11 @@ fetch('/api/orders/history', {
 		}
 	})
 	.catch(err => {
-		//redirect
+		window.location.href = '/';
 		console.log(err);
 	})
 	.then(json => {
+		// console.log(json);
 		// console.log(json.userOrderHistory);
 		json.userOrderHistory.map(getOrders);
 	})
@@ -74,14 +75,15 @@ fetch('/api/orders/history', {
 function getOrders(orders) {
 	let orderItem = '';
 	orders.purchase.map(order => {
+		console.log(order);
 		const orderLi = `<li>
 		<div class="thumbnail">
-			<img src="/" />
+			<img src="${order.imageURL}" />
 			<span class="title">${order.title}</span>
 		</div>
 		<div><span>${
 			order.orderAmount
-		}</span> 개 / <span>${order.price.toLocaleString()}</span>원</div>
+		}</span> 개 &#215; <span>${order.price.toLocaleString()}</span>원</div>
 	</li>`;
 		orderItem += orderLi;
 	});
