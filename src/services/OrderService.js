@@ -46,11 +46,11 @@ const OrderService = {
 			);
 		}
 
-		// salesAmount, curruntAmount Update
+		// salesAmount, currentAmount Update
 		purchase.map(async product => {
 			await Product.updateOne(
 				{ _id: product.productId },
-				{ $inc: { salesAmount: product.orderAmount, curruntAmount: -product.orderAmount }, }
+				{ $inc: { salesAmount: product.orderAmount, currentAmount: -product.orderAmount }, }
 			);
 		});
 
