@@ -25,7 +25,6 @@ const UserSchema = new Schema(
 				shippingRequest: { type: String },
 			},
 		],
-
 		role: {
 			type: String,
 			enum: userRole,
