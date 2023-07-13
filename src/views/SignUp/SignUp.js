@@ -1,4 +1,4 @@
-import { main } from '../Common/index.js';
+import { main } from '/Common/index.js';
 await main();
 
 const email = document.querySelector('.form-email');
@@ -31,7 +31,7 @@ const signupEvent = e => {
 					alert(`성공적으로 회원가입이 되었습니다.`);
 					// 로그인 페이지 이동
 					console.log(res);
-					window.location.href = '/signIn';
+					window.location.href = '/login';
 				} else {
 					throw new Error('회원가입 실패');
 				}

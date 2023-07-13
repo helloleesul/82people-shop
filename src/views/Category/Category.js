@@ -1,3 +1,6 @@
+import { main } from '/Common/index.js';
+await main();
+
 const products = document.querySelector('.icons');
 const categoryTag = document.querySelector('.category');
 const urlStr = window.location.href;
@@ -35,7 +38,7 @@ const getProducts = newProduct => {
 	// ${newProduct.imageURL}
 	return `<li>
     <a class='icon-img'
-    href='/products?id=${newProduct._id}' target='_self' id='bring-list'>
+    href='/products?productId=${newProduct._id}' target='_self' id='bring-list'>
 	<div class="icon-img">
     <img class='icon-img'
     src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQE2O8ul5WH3_NdITW8bd4_7gpd6CoSVo1qUY2IHTfE8A&s' alt="product-item"/>

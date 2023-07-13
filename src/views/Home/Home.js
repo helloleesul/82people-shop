@@ -1,7 +1,9 @@
-const total = document.querySelector('.icons.total');
-const best = document.querySelector('.icons.best');
+import { main } from '/Common/index.js';
+await main();
 
-// window.addEventListener('DOMContentLoaded', () => {
+const total = document.querySelector('.products.total');
+const best = document.querySelector('.products.best');
+
 fetch('/api/products', {
 	method: 'GET',
 	headers: {
@@ -27,20 +29,17 @@ fetch('/api/products', {
 		total.innerHTML = totalProducts.map(getProducts).join('');
 	})
 	.catch(err => console.log(err));
-// });
 
 //상품상세 불러오기
 const getProducts = newProduct => {
 	// ${newProduct.imageURL}
 	return `<li>
-    <a class='icon-img'
-    href='/products?id=${newProduct._id}' target='_self' id='bring-list'>
-	<div class="icon-img">
-    <img class='icon-img'
+    <a class='product-link'
+    href='/products?productId=${newProduct._id}' target='_self' id='bring-list'>
+    <img class="product-img"
     src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQE2O8ul5WH3_NdITW8bd4_7gpd6CoSVo1qUY2IHTfE8A&s' alt="product-item"/>
-	</div>
-    <div class="contents1-blod">${newProduct.title}</div>
-    <div class='contents3'>${newProduct.price.toLocaleString()} 원</div>
+    <div class="product-title">${newProduct.title}</div>
+    <div class='product-price'>${newProduct.price.toLocaleString()} 원</div>
     </div>
     </a>
     </li>`;

@@ -7,4 +7,4 @@ async function main() {
 	renderFooter();
 }
 
-export { main };
+export { main, renderLogin };

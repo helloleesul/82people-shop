@@ -3,60 +3,75 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<!-- css 초기화 연결 (삭제예정) -->
-		<link
-			rel="stylesheet"
-			href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css"
-		/>
+		<link rel="stylesheet" href="/Common/common.css" />
 		<!-- 작업할 css 연결 -->
-		<link rel="stylesheet" href="MemberDelete.css" />
+		<link rel="stylesheet" href="./MemberDelete.css" />
 		<!-- 페이지에 맞는 타이틀 입력 -->
 		<title>회원 탈퇴</title>
-		<script src="./MemberDelete.js" defer></script>
+		<script type="module" src="./MemberDelete.js" defer></script>
 	</head>
 	<body>
 		<div id="global-wrap">
-			<header>header</header>
-			<main role="main" id="member-withdrawal">
-				<div class="main-container" id="memberdelete">
-					<!-- 클래스명 main-container까지 공통, id값은 페이지에 맞게 이름설정해서 사용 -->
-					<!-- 해당 위치에 페이지 마크업 -->
-					<div class="member-icon-image">
-						<a href="http://www.naver.com" target="_self"></a
-						><img
-							src="https://www.catchsecu.com/wp-content/uploads/2021/02/%EC%B6%94%EA%B0%80%EC%9D%B4%EB%AF%B8%EC%A7%801-1-600x338.png"
-							alt="마이 파티"
-							width="265"
-							height="400"
-						/>
-					</div>
-					<div class="field">
-						<span class="member-name">회원 탈퇴</span>
-						<strong>
-							<div class="member-email-container">
-								<span class="member-email">이메일</span>
-								<span class="member-email2" />
+			<header></header>
+			<main>
+				<div class="main-container">
+					<div id="member-info-wrap">
+						<!-- 마이페이지 메뉴바 -->
+						<section class="myparty-menubar">
+							<h2>마이파티</h2>
+							<!-- 회원정보 -->
+							<article class="user-info">
+								<div>
+									<div class="profile" role="img">🥳</div>
+									<p class="user-name"><span>홍길동</span>님</p>
+								</div>
+								<span class="user-role">일반회원</span>
+							</article>
+							<!-- 마이페이지 메뉴 -->
+							<nav>
+								<ul>
+									<li class="active">
+										<a href="/myPage">내 정보수정</a>
+									</li>
+									<li>
+										<a href="/myPage/orders">주문 내역</a>
+									</li>
+								</ul>
+							</nav>
+						</section>
+						<!-- 회원탈퇴 -->
+						<section class="order-history">
+							<h3>회원탈퇴</h3>
+							<div class="field">
+								<strong>
+									<div class="member-email-container">
+										<span class="member-email">이메일</span>
+										<span class="member-email2"></span>
+									</div>
+								</strong>
+								<strong>
+									<div class="member-withdrawal-statement-container">
+										<span class="member-withdrawal-statement"
+											>회원 탈퇴문구</span
+										>
+										<span class="member-withdrawal-statement2"
+											>파티피플에서 탈퇴하겠습니다.</span
+										>
+									</div>
+								</strong>
+								<strong>
+									<span class="member-withdrawal-statement-enter"
+										>회원 탈퇴 문구 입력</span
+									>
+									<input class="input" />
+								</strong>
+								<button class="check-button">확인</button>
 							</div>
-						</strong>
-						<strong>
-							<div class="member-withdrawal-statement-container">
-								<span class="member-withdrawal-statement">회원 탈퇴문구</span>
-								<span class="member-withdrawal-statement2"
-									>파티피플에서 탈퇴하겠습니다.</span
-								>
-							</div>
-						</strong>
-						<strong>
-							<span class="member-withdrawal-statement-enter"
-								>회원 탈퇴 문구 입력</span
-							>
-							<input class="input" />
-						</strong>
-						<button class="check-button">확인</button>
+						</section>
 					</div>
 				</div>
 			</main>
-			<footer>footer</footer>
+			<footer></footer>
 		</div>
 	</body>
 </html>
