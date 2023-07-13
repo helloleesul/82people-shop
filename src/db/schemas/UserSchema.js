@@ -25,7 +25,6 @@ const UserSchema = new Schema(
 				shippingRequest: { type: String },
 			},
 		],
-
 		role: {
 			type: String,
 			enum: userRole,
@@ -35,7 +34,6 @@ const UserSchema = new Schema(
 			type: Boolean,
 			default: false,
 		},
-		orderHistory: [Schema.Types.ObjectId],
 	},
 	{
 		timestamps: true,

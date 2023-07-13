@@ -24,7 +24,6 @@ const OrderController = {
 				!purchase ||
 				!recipient ||
 				!phone ||
-				!password ||
 				!address ||
 				!detailAddress ||
 				!shippingPrice
@@ -77,22 +76,10 @@ const OrderController = {
 
 	// [회원] 주문 내역 전체 조회
 	checkOrderHistory: async (req, res, next) => {
-		const { email } = req.body;
+		const email = req.currentUserEmail;
 
 		try {
 			const orderHistory = await OrderService.checkOrderHistory(email);
-
-			if (!orderHistory) {
-				throw new badRequestError(
-					'주문 내역이 존재하지 않습니다. 다시 한 번 확인해주세요.'
-				);
-			}
-
-			if (!orderHistory) {
-				throw new badRequestError(
-					'주문 내역이 존재하지 않습니다. 다시 한 번 확인해주세요.'
-				);
-			}
 
 			res.status(200).json({
 				message: '회원 주문 내역 전체 조회 성공',

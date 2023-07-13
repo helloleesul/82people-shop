@@ -1,7 +1,6 @@
 const Order = require('../db/models/OrderModel');
 const User = require('../db/models/UserModel');
 const Product = require('../db/models/ProductModel');
-const { badRequestError } = require('../middleware/ErrorHandler');
 
 const OrderService = {
 	// [회원 비회원 공통] 장바구니 제품 주문 완료
@@ -22,6 +21,7 @@ const OrderService = {
 
 		const orderInformation = {
 			purchase,
+			email,
 			password,
 			addressInformation: {
 				recipient,
@@ -38,19 +38,11 @@ const OrderService = {
 
 		const newOrderId = await Order.create(orderInformation);
 
-		// 회원의 경우 회원 주문 내역에 저장
-		if (email) {
-			await User.updateOne(
-				{ email: email },
-				{ $push: { orderHistory: newOrderId } }
-			);
-		}
-
-		// salesAmount, curruntAmount Update
+		// salesAmount, currentAmount Update
 		purchase.map(async product => {
 			await Product.updateOne(
 				{ _id: product.productId },
-				{ $inc: { salesAmount: product.orderAmount, curruntAmount: -product.orderAmount }, }
+				{ $inc: { salesAmount: product.orderAmount, currentAmount: -product.orderAmount }, }
 			);
 		});
 
@@ -69,23 +61,13 @@ const OrderService = {
 
 	// [회원] 주문 내역 전체 조회
 	checkOrderHistory: async email => {
-		const orderIdArray = await User.find(
-			{ email: email },
-			{ _id: 0, orderHistory: 1 }
+        const orderHistory = await Order.find(
+			{ email: email }, 
+			{ _id : 1, shippingStatus : 1, purchase: 1, createdAt: 1 }
 		);
-		if (!orderIdArray) {
-			throw new badRequestError('주문 내역이 없습니다.');
-		}
 
-		const orderHistory = await Order.find({ _id: { $in: orderIdArray }}, {
-			_id : 1,
-			shippingStatus : 1,
-			purchase: 1,
-			createdAt: 1
-		});
-
-		return orderHistory;
-	},
+        return orderHistory;
+    },
 
 	// [회원 비회원 공통] 주문 상세 조회
 	checkOrderDetail: async orderId => {
