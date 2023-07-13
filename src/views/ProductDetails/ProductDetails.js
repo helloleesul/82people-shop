@@ -1,3 +1,6 @@
+import { main } from '/Common/index.js';
+await main();
+
 const url = window.location.search;
 const itemId = url.split('=')[1];
 console.log(itemId);

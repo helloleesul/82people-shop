@@ -1,4 +1,4 @@
-import { main } from '../Common/index.js';
+import { main } from '/Common/index.js';
 await main();
 
 const id = document.querySelector('.form__id');

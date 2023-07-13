@@ -1,3 +1,6 @@
+import { main } from '/Common/index.js';
+await main();
+
 const emailElement = document.querySelector('.member-email2');
 const inputElement = document.querySelector('.input');
 const checkButton = document.querySelector('.check-button');

@@ -3,14 +3,10 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<!-- css 초기화 연결 (삭제예정) -->
-		<link
-			rel="stylesheet"
-			href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css"
-		/>
+		<link rel="stylesheet" href="/Common/common.css" />
 		<!-- 작업할 css 연결 -->
-		<link rel="stylesheet" href="Order.css" />
-		<script src="Order.js" defer></script>
+		<link rel="stylesheet" href="./Order.css" />
+		<script type="module" src="./Order.js" defer></script>
 		<!-- 우편번호 서비스 -->
 		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 		<!-- 페이지에 맞는 타이틀 입력 -->
@@ -18,7 +14,7 @@
 	</head>
 	<body>
 		<div id="global-wrap">
-			<header>header</header>
+			<header></header>
 			<main>
 				<div class="main-container">
 					<div id="order-wrap">
@@ -116,7 +112,7 @@
 					</div>
 				</div>
 			</main>
-			<footer>footer</footer>
+			<footer></footer>
 		</div>
 	</body>
 </html>

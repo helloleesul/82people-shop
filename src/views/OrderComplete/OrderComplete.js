@@ -1,3 +1,6 @@
+import { main } from '/Common/index.js';
+await main();
+
 // checkJWTTokenInCookie를 공통 js로 만들어서 header,footer 불러올때 함께 사용하면 좋을 듯 함
 // 쿠키에서 JWT 토큰 확인
 function checkJWTTokenInCookie() {

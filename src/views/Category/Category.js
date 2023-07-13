@@ -1,3 +1,6 @@
+import { main } from '/Common/index.js';
+await main();
+
 const products = document.querySelector('.icons');
 const categoryTag = document.querySelector('.category');
 const urlStr = window.location.href;

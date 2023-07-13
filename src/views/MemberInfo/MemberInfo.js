@@ -1,3 +1,6 @@
+import { main } from '/Common/index.js';
+await main();
+
 const receiverNameInput = document.querySelector('#receiver-name');
 const receiverEmailInput = document.querySelector('#receiver-email');
 const receiverPasswordInput = document.querySelector('#receiver-password');

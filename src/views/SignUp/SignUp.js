@@ -1,4 +1,4 @@
-import { main } from '../Common/index.js';
+import { main } from '/Common/index.js';
 await main();
 
 const email = document.querySelector('.form-email');

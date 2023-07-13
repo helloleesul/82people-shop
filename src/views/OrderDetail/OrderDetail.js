@@ -1,3 +1,6 @@
+import { main } from '/Common/index.js';
+await main();
+
 const urlStr = window.location.href;
 const orderId = new URL(urlStr).searchParams.get('orderId');
 console.log(orderId);
