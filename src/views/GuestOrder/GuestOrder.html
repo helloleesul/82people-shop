@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- 공통 css -->
+		<link rel="stylesheet" href="../Common/Common.css" />
+		<!-- 작업할 css 연결 -->
+		<link rel="stylesheet" href="GuestOrder.css" />
+		<!-- 페이지에 맞는 타이틀 입력 -->
+		<script type="module" src="GuestOrder.js" defer></script>
+		<script type="module" src="../Login/Login.js" defer></script>
+		<title>장바구니</title>
+	</head>
+
+	<body>
+		<div id="global-wrap">
+			<header></header>
+			<main>
+				<div class="main-container" id="guest-wrap">
+					<!-- 클래스명 main-container까지 공통, id값은 페이지에 맞게 이름설정해서 사용 -->
+					<!-- 해당 위치에 페이지 마크업 -->
+					<section class="signin" id="loginForm"></section>
+
+					<section class="guest">
+						<h1>비회원 주문내역 조회</h1>
+						<div class="guest-card">
+							<form action="">
+								<input type="text" placeholder="주문번호를 입력하세요." />
+								<input
+									type="password"
+									placeholder="주문비밀번호를 입력하세요."
+								/>
+								<div>
+									<button type="button">조회하기</button>
+								</div>
+							</form>
+						</div>
+					</section>
+				</div>
+			</main>
+			<footer></footer>
+		</div>
+	</body>
+</html>
