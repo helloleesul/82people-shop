@@ -21,7 +21,6 @@ const OrderService = {
 
 		const orderInformation = {
 			purchase,
-			email,
 			password,
 			addressInformation: {
 				recipient,
@@ -61,13 +60,13 @@ const OrderService = {
 
 	// [회원] 주문 내역 전체 조회
 	checkOrderHistory: async email => {
-        const orderHistory = await Order.find(
-			{ email: email }, 
-			{ _id : 1, shippingStatus : 1, purchase: 1, createdAt: 1 }
+		const orderIdArray = await User.find(
+			{ email: email },
+			{ orderHistory: 1 }
 		);
 
-        return orderHistory;
-    },
+		return orderHistory;
+	},
 
 	// [회원 비회원 공통] 주문 상세 조회
 	checkOrderDetail: async orderId => {
@@ -78,7 +77,7 @@ const OrderService = {
 
     // [회원] 주문 시 배송지 추가
     addAddress: async (email, addressInformation) => {
-		await User.updateOne({ email: email }, { $push: { addressInformation: addressInformation }});
+		await User.updateOne({ email: email }, { addressInformation: addressInformation });
     },
 };
 
