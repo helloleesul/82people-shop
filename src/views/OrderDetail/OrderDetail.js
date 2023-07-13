@@ -35,7 +35,7 @@ if (hasToken) {
 // 회원이 아닐경우 경로 변경해주고, 회원인데 searchParams값이 없으면 주문 내역으로 옮기기
 
 fetch(`/api/orders/history/${orderId}`, {
-	method: 'GET',
+	method: 'POST',
 	headers: {
 		'Content-Type': 'application/json',
 	},
