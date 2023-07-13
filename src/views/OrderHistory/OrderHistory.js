@@ -20,14 +20,13 @@ function checkJWTTokenInCookie() {
 
 // 쿠키에서 JWT 토큰 확인
 const hasToken = checkJWTTokenInCookie();
-const menuBar = document.querySelector('.myparty-menubar');
 
 const itemsList = document.querySelector('.history-list');
 let items = '';
 
 if (hasToken) {
 	console.log('JWT 토큰이 쿠키에 존재합니다.');
-	menuBar.style.display = 'block';
+
 	const base64Url = hasToken.split('.')[1];
 	const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
 	const jsonPayload = decodeURIComponent(
@@ -43,7 +42,7 @@ if (hasToken) {
 	document.querySelector('#user-name').innerText = tokenData.name;
 } else {
 	console.log('JWT 토큰이 쿠키에 존재하지 않습니다.');
-	menuBar.style.display = 'hidden';
+	window.location.href = '/';
 }
 
 fetch('/api/orders/history', {
