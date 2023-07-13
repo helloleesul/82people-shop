@@ -4,33 +4,31 @@ await main();
 const total = document.querySelector('.icons.total');
 const best = document.querySelector('.icons.best');
 
-// window.addEventListener('DOMContentLoaded', () => {
-// fetch('/api/products', {
-// 	method: 'GET',
-// 	headers: {
-// 		'Content-Type': 'application/json',
-// 	},
-// })
-// 	.then(res => {
-// 		console.log(res);
-// 		if (res.ok) {
-// 			return res.json();
-// 			// 로그인 페이지 이동
-// 		} else {
-// 			throw new Error('조회 실패');
-// 		}
-// 	})
-// 	.catch(err => {
-// 		alert(err);
-// 	})
-// 	.then(({ bestProducts, totalProducts }) => {
-// 		console.log('bestProducts', bestProducts);
-// 		console.log('totalProducts', totalProducts);
-// 		best.innerHTML = bestProducts.map(getProducts).join('');
-// 		total.innerHTML = totalProducts.map(getProducts).join('');
-// 	})
-// 	.catch(err => console.log(err));
-// });
+fetch('/api/products', {
+	method: 'GET',
+	headers: {
+		'Content-Type': 'application/json',
+	},
+})
+	.then(res => {
+		console.log(res);
+		if (res.ok) {
+			return res.json();
+			// 로그인 페이지 이동
+		} else {
+			throw new Error('조회 실패');
+		}
+	})
+	.catch(err => {
+		alert(err);
+	})
+	.then(({ bestProducts, totalProducts }) => {
+		console.log('bestProducts', bestProducts);
+		console.log('totalProducts', totalProducts);
+		best.innerHTML = bestProducts.map(getProducts).join('');
+		total.innerHTML = totalProducts.map(getProducts).join('');
+	})
+	.catch(err => console.log(err));
 
 //상품상세 불러오기
 const getProducts = newProduct => {
