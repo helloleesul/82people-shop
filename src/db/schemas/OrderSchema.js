@@ -11,7 +11,7 @@ const OrderSchema = new Schema(
 		},
 		purchase: [
 			{
-				productId: { type: Schema.Types.ObjectId, required: true },
+				productId: { type: Schema.Types.ObjectId, ref: 'Product', required: true },
 				title: { type: String, required: true },
 				price: { type: Number, required: true },
 				orderAmount: { type: Number, required: true },
@@ -20,7 +20,6 @@ const OrderSchema = new Schema(
 		],
 		email: {
 			type: String,
-			required: false,
 			default: '비회원',
 		},
 		password: {
