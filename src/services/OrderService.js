@@ -37,14 +37,6 @@ const OrderService = {
 
 		const newOrderId = await Order.create(orderInformation);
 
-		// 회원의 경우 회원 주문 내역에 저장
-		if (email) {
-			await User.updateOne(
-				{ email: email },
-				{ $push: { orderHistory: newOrderId } }
-			);
-		}
-
 		// salesAmount, currentAmount Update
 		purchase.map(async product => {
 			await Product.updateOne(
