@@ -21,6 +21,7 @@ const OrderService = {
 
 		const orderInformation = {
 			purchase,
+			email,
 			password,
 			addressInformation: {
 				recipient,
