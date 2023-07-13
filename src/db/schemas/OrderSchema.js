@@ -18,11 +18,7 @@ const OrderSchema = new Schema(
 				imageURL: { type: [String], required: true },
 			},
 		],
-		email: {
-            type: String,
-            required: true,
-            default: '비회원',
-        },
+		email: String,
 		password: {
 			type: String,
 			required: false,
