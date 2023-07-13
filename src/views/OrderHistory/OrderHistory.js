@@ -21,11 +21,26 @@ function checkJWTTokenInCookie() {
 // 쿠키에서 JWT 토큰 확인
 const hasToken = checkJWTTokenInCookie();
 const menuBar = document.querySelector('.myparty-menubar');
-console.log(menuBar);
+
+const itemsList = document.querySelector('.history-list');
+let items = '';
 
 if (hasToken) {
 	console.log('JWT 토큰이 쿠키에 존재합니다.');
 	menuBar.style.display = 'block';
+	const base64Url = hasToken.split('.')[1];
+	const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+	const jsonPayload = decodeURIComponent(
+		window
+			.atob(base64)
+			.split('')
+			.map(function (c) {
+				return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+			})
+			.join('')
+	);
+	const tokenData = JSON.parse(jsonPayload);
+	document.querySelector('#user-name').innerText = tokenData.name;
 } else {
 	console.log('JWT 토큰이 쿠키에 존재하지 않습니다.');
 	menuBar.style.display = 'hidden';
@@ -39,7 +54,7 @@ fetch('/api/orders/history', {
 	},
 })
 	.then(res => {
-		console.log('res', res);
+		// console.log('res', res);
 		if (res.ok) {
 			return res.json();
 		} else {
@@ -50,5 +65,46 @@ fetch('/api/orders/history', {
 		//redirect
 		console.log(err);
 	})
-	.then(json => console.log(json))
+	.then(json => {
+		// console.log(json.userOrderHistory);
+		json.userOrderHistory.map(getOrders);
+	})
 	.catch(err => console.log(err));
+
+// 주문상품 화면 그려주기
+function getOrders(orders) {
+	let orderItem = '';
+	orders.purchase.map(order => {
+		const orderLi = `<li>
+		<div class="thumbnail">
+			<img src="/" />
+			<span class="title">${order.title}</span>
+		</div>
+		<div><span>${
+			order.orderAmount
+		}</span> 개 / <span>${order.price.toLocaleString()}</span>원</div>
+	</li>`;
+		orderItem += orderLi;
+	});
+
+	const newItem = `<li>
+	<article>
+		<div class="info">
+			<div>
+				<span class="date">${new Date(orders.createdAt).toLocaleString()}</span>
+				<span class="status">${orders.shippingStatus}</span>
+			</div>
+			<a
+				href="/myPage/orders/history/?orderId=${orders._id}"
+				class="detail-btn"
+				>주문 상세보기 ></a
+			>
+		</div>
+		<ul class="products-list">
+			${orderItem}
+		</ul>
+	</article>
+</li>`;
+	items += newItem;
+	itemsList.innerHTML = items;
+}
