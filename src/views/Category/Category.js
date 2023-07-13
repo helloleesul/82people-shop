@@ -1,8 +1,11 @@
-const total = document.querySelector('.icons.total');
-const best = document.querySelector('.icons.best');
+const products = document.querySelector('.icons');
+const categoryTag = document.querySelector('.category');
+const urlStr = window.location.href;
+const category = new URL(urlStr).searchParams.get('category');
 
-// window.addEventListener('DOMContentLoaded', () => {
-fetch('/api/products', {
+categoryTag.innerHTML = category;
+
+fetch(`/api/products/category/${category}`, {
 	method: 'GET',
 	headers: {
 		'Content-Type': 'application/json',
@@ -20,14 +23,12 @@ fetch('/api/products', {
 	.catch(err => {
 		alert(err);
 	})
-	.then(({ bestProducts, totalProducts }) => {
-		console.log('bestProducts', bestProducts);
-		console.log('totalProducts', totalProducts);
-		best.innerHTML = bestProducts.map(getProducts).join('');
-		total.innerHTML = totalProducts.map(getProducts).join('');
+	.then(({ categoryProducts }) => {
+		console.log(categoryProducts);
+
+		products.innerHTML = categoryProducts.map(getProducts).join('');
 	})
 	.catch(err => console.log(err));
-// });
 
 //상품상세 불러오기
 const getProducts = newProduct => {

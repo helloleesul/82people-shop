@@ -124,12 +124,13 @@ main {
 	margin: 50px 0 0 0;
 }
 
-.product-put-shoppingcart a {
+#add-to-cart {
 	display: block;
 	width: 100%;
 	height: 100%;
 	text-decoration: none;
 	color: #000;
+	background: none;
 }
 
 .product-put-shoppingcart span {

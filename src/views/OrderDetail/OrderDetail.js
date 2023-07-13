@@ -1,7 +1,8 @@
-// 비회원 파라미터 정보
 const urlStr = window.location.href;
-const orderId = new URL(urlStr).searchParams.get('orderId'); //undefined
+const orderId = new URL(urlStr).searchParams.get('orderId');
 console.log(orderId);
+
+// 회원이 아닐경우 경로 변경해주고, 회원인데 searchParams값이 없으면 주문 내역으로 옮기기
 
 fetch(`/api/orders/history/${orderId}`, {
 	method: 'GET',
