@@ -145,7 +145,7 @@ const OrderController = {
 			await OrderService.addAddress(email, addressInformation);
 
 			res.status(200).json({
-				message: '배송지 추가 성공',
+				message: '배송지 변경 성공',
 			});
 		} catch (err) {
 			next(err);
