@@ -34,13 +34,10 @@ if (hasToken) {
 	);
 
 	const tokenData = JSON.parse(jsonPayload);
+	const userEmail = document.querySelector('.member-email2');
 	document.querySelector('#user-name').innerText = tokenData.name;
+	userEmail.innerText = tokenData.email;
 }
-
-const tokenData = JSON.parse(jsonPayload);
-
-const userEmail = document.querySelector('.member-email2');
-userEmail.innerText = tokenData.email;
 
 const inputElement = document.querySelector('.input');
 const checkButton = document.querySelector('.check-button');

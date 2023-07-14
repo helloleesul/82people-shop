@@ -1,140 +1,3 @@
-/* #member-withdrawal > #memberdelete {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-}
-
-#member-withdrawal > #memberdelete > .member-icon-image {
-	width: 265px;
-	height: 400px;
-	background-color: red;
-	margin: 58px 50px 0 0;
-}
-
-#member-withdrawal > #memberdelete > .field {
-	width: 740px;
-	height: 1000px;
-	background-color: white;
-	margin: 58px 0 0;
-	display: flex;
-	flex-direction: column;
-}
-
-#member-withdrawal > #memberdelete > .field > .member-name {
-	width: 730px;
-	height: 75px;
-	font-size: 30px;
-	border-bottom: solid;
-}
-
-#member-withdrawal > #memberdelete > .field > strong {
-	width: 703px;
-	height: 120px;
-	margin: 40px 0 0 0;
-}
-#member-withdrawal > #memberdelete > .field > strong > .member-email-container {
-	display: flex;
-}
-#member-withdrawal
-	> #memberdelete
-	> .field
-	> strong
-	> .member-email-container
-	> .member-email {
-	display: inline-block;
-	width: 200px;
-	height: 120px;
-	font-size: 15px;
-	background-color: white;
-	text-align: left center;
-	line-height: 120px;
-}
-#member-withdrawal
-	> #memberdelete
-	> .field
-	> strong
-	> .member-email-container
-	> .member-email2 {
-	display: inline-block;
-	width: 420px;
-	height: 50px;
-	font-size: 24px;
-	color: black;
-	background-color: white;
-	text-align: left center;
-	margin: 30px 0 0 0;
-	line-height: 60px;
-}
-
-#member-withdrawal
-	> #memberdelete
-	> .field
-	> strong
-	> .member-withdrawal-statement-container {
-	display: flex;
-	width: 700px;
-}
-#member-withdrawal
-	> #memberdelete
-	> .field
-	> strong
-	> .member-withdrawal-statement-container
-	> .member-withdrawal-statement {
-	display: inline-block;
-	width: 200px;
-	height: 120px;
-	font-size: 15px;
-	background-color: white;
-	text-align: left center;
-	line-height: 120px;
-}
-#member-withdrawal
-	> #memberdelete
-	> .field
-	> strong
-	> .member-withdrawal-statement-container
-	> .member-withdrawal-statement2 {
-	display: inline-block;
-	width: 500px;
-	height: 50px;
-	font-size: 24px;
-	color: black;
-	background-color: white;
-	text-align: left center;
-	margin: 30px 0 0 0;
-	line-height: 60px;
-}
-
-#member-withdrawal
-	> #memberdelete
-	> .field
-	> strong
-	> .member-withdrawal-statement-enter {
-	display: inline-block;
-	width: 198px;
-	height: 120px;
-	font-size: 15px;
-	background-color: white;
-	text-align: left center;
-	line-height: 120px;
-}
-
-#member-withdrawal > #memberdelete > .field > strong > .input {
-	width: 400px;
-	height: 50px;
-	font-size: 24px;
-	margin: auto;
-}
-
-.check-button {
-	width: 115px;
-	height: 70px;
-	text-align: center;
-	margin: 200px 0 0 150px;
-	color: white;
-	font-size: 20px;
-	background-color: black;
-} */
 /* 여기서 부터 각자 레이아웃 스타일 작업 */
 .main-container {
 	padding: 0;
@@ -266,4 +129,79 @@ h3 {
 }
 .order-history .history-list .products-list li .title {
 	font-weight: 700;
+}
+.order-history > h3 {
+	border-bottom: solid;
+	padding-bottom: 30px;
+}
+/* 여기부터 내용 스타일 */
+.member-delete-notice-container {
+	line-height: 22px;
+}
+
+.member-delete-notice-container .member-delete-notice {
+	display: flex;
+	font-size: 17px;
+	background-color: #f5f5f5;
+	margin-bottom: 30px;
+}
+.member-email-container .member-delete-notice2 {
+	display: inline-block;
+	font-size: 20px;
+	color: black;
+	background-color: #f5f5f5;
+}
+.member-email-container .member-email {
+	display: inline-block;
+	font-size: 17px;
+	background-color: #f5f5f5;
+	padding: 40px 130px 0 0;
+	margin-right: 7px;
+}
+.member-email-container .member-email2 {
+	display: inline-block;
+	font-size: 20px;
+	color: black;
+	background-color: #f5f5f5;
+}
+.member-withdrawal-statement-container {
+	display: flex;
+}
+.member-withdrawal-statement-container .member-withdrawal-statement {
+	display: inline-block;
+	font-size: 17px;
+	background-color: #f5f5f5;
+	padding: 40px 77px 0 0;
+	margin-right: 7px;
+}
+.member-withdrawal-statement-container .member-withdrawal-statement2 {
+	display: inline-block;
+	font-size: 20px;
+	color: black;
+	background-color: #f5f5f5;
+	margin-top: 39px;
+}
+.member-withdrawal-statement-enter-container {
+	display: flex;
+	padding-top: 40px;
+}
+.member-withdrawal-statement-enter-container
+	.member-withdrawal-statement-enter {
+	display: inline-block;
+	font-size: 17px;
+	background-color: #f5f5f5;
+	padding-top: 4px;
+	margin-right: 40px;
+}
+.member-withdrawal-statement-enter-container .input {
+	font-size: 20px;
+}
+.check-button {
+	width: 100px;
+	height: 40px;
+	text-align: center;
+	color: white;
+	font-size: 20px;
+	background-color: black;
+	margin: 50px 0 0 140px;
 }
