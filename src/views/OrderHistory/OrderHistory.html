@@ -3,20 +3,16 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<!-- css 초기화 연결 (삭제예정) -->
-		<link
-			rel="stylesheet"
-			href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css"
-		/>
 		<!-- 작업할 css 연결 -->
-		<link rel="stylesheet" href="OrderHistory.css" />
-		<script src="OrderHistory.js" defer></script>
+		<link rel="stylesheet" href="/Common/common.css" />
+		<link rel="stylesheet" href="./OrderHistory.css" />
+		<script type="module" src="./OrderHistory.js" defer></script>
 		<!-- 페이지에 맞는 타이틀 입력 -->
 		<title>마이파티 - 주문내역</title>
 	</head>
 	<body>
 		<div id="global-wrap">
-			<header>header</header>
+			<header></header>
 			<main>
 				<div class="main-container">
 					<div id="order-history-wrap">
@@ -27,18 +23,18 @@
 							<article class="user-info">
 								<div>
 									<div class="profile" role="img">🥳</div>
-									<p class="user-name"><span>홍길동</span>님</p>
+									<p class="user-name"><span id="user-name"></span>님</p>
 								</div>
 								<span class="user-role">일반회원</span>
 							</article>
 							<!-- 마이페이지 메뉴 -->
 							<nav>
 								<ul>
-									<li class="active">
-										<a href="#">주문 내역</a>
-									</li>
 									<li>
-										<a href="#">내 정보수정</a>
+										<a href="/myPage">내 정보수정</a>
+									</li>
+									<li class="active">
+										<a href="/myPage/orders">주문 내역</a>
 									</li>
 								</ul>
 							</nav>
@@ -46,94 +42,12 @@
 						<!-- 주문내역 -->
 						<section class="order-history">
 							<h3>주문내역</h3>
-							<ul class="history-list">
-								<li>
-									<article>
-										<div class="info">
-											<div>
-												<span class="date">2023-00-00</span>
-												<span class="status">상품 준비중</span>
-											</div>
-											<a href="#" class="detail-btn">주문 상세보기 ></a>
-										</div>
-										<ul class="products-list">
-											<li>
-												<div class="thumbnail">
-													<img src="/" />
-													<span class="title">상품1</span>
-												</div>
-												<div><span>1</span> 개 / <span>1,000</span>원</div>
-											</li>
-											<li>
-												<div class="thumbnail">
-													<img src="/" />
-													<span class="title">상품2</span>
-												</div>
-												<div><span>1</span> 개 / <span>1,000</span>원</div>
-											</li>
-										</ul>
-									</article>
-								</li>
-								<li>
-									<article>
-										<div class="info">
-											<div>
-												<span class="date">2023-00-00</span>
-												<span class="status">상품 준비중</span>
-											</div>
-											<a href="#" class="detail-btn">주문 상세보기 ></a>
-										</div>
-										<ul class="products-list">
-											<li>
-												<div class="thumbnail">
-													<img src="/" />
-													<span class="title">상품1</span>
-												</div>
-												<div><span>1</span> 개 / <span>1,000</span>원</div>
-											</li>
-											<li>
-												<div class="thumbnail">
-													<img src="/" />
-													<span class="title">상품2</span>
-												</div>
-												<div><span>1</span> 개 / <span>1,000</span>원</div>
-											</li>
-										</ul>
-									</article>
-								</li>
-								<li>
-									<article>
-										<div class="info">
-											<div>
-												<span class="date">2023-00-00</span>
-												<span class="status">상품 준비중</span>
-											</div>
-											<a href="#" class="detail-btn">주문 상세보기 ></a>
-										</div>
-										<ul class="products-list">
-											<li>
-												<div class="thumbnail">
-													<img src="/" />
-													<span class="title">상품1</span>
-												</div>
-												<div><span>1</span> 개 / <span>1,000</span>원</div>
-											</li>
-											<li>
-												<div class="thumbnail">
-													<img src="/" />
-													<span class="title">상품2</span>
-												</div>
-												<div><span>1</span> 개 / <span>1,000</span>원</div>
-											</li>
-										</ul>
-									</article>
-								</li>
-							</ul>
+							<ul class="history-list"></ul>
 						</section>
 					</div>
 				</div>
 			</main>
-			<footer>footer</footer>
+			<footer></footer>
 		</div>
 	</body>
 </html>

@@ -4,7 +4,6 @@ const userRole = ['customer', 'admin'];
 
 const UserSchema = new Schema(
 	{
-		userId: Schema.Types.ObjectId,
 		email: {
 			type: String,
 			required: true,
@@ -17,16 +16,13 @@ const UserSchema = new Schema(
 			type: String,
 			required: true,
 		},
-		addressInformation: [
-			{
-				recipient: { type: String, required: true },
-				phone: { type: String, required: true },
-				address: { type: String, required: true },
-				detailAddress: { type: String, required: true },
-				shippingRequest: { type: String },
-			},
-		],
-
+		addressInformation: {
+			recipient: { type: String, default: '' },
+			phone: { type: String, default: '' },
+			address: { type: String, default: '' },
+			detailAddress: { type: String, default: '' },
+			shippingRequest: { type: String, default: '' },
+		},
 		role: {
 			type: String,
 			enum: userRole,
@@ -36,11 +32,10 @@ const UserSchema = new Schema(
 			type: Boolean,
 			default: false,
 		},
-		orderHistory: [Schema.Types.ObjectId],
 	},
 	{
 		timestamps: true,
 	}
 );
 
-module.exports = { UserSchema };
+module.exports = UserSchema;

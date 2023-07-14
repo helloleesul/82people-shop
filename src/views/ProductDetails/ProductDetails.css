@@ -1,0 +1,111 @@
+#product-details-main > #product-details-container {
+	display: flex;
+	justify-content: center;
+}
+
+#product-details-main > #product-details-container > .product-icon-image {
+	width: 400px;
+	height: 400px;
+	background-color: red;
+	margin-right: 40px;
+}
+
+#product-details-main > #product-details-container > .field {
+	width: 540px;
+	height: 700px;
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+#product-details-main > #product-details-container > .field > .maker {
+	width: 200px;
+	height: 30px;
+	font-size: 25px;
+}
+
+#product-details-main > #product-details-container > .field > .product-title {
+	width: 450px;
+	height: 50px;
+	font-size: 30px;
+	margin-top: 43px;
+	border-bottom: solid;
+}
+
+#product-details-main > #product-details-container > .field > .product-price {
+	width: 204px;
+	height: 68px;
+	font-size: 40px;
+	margin-top: 51px;
+}
+#product-details-main > #product-details-container > .field > .product-detail {
+	width: 450px;
+	height: 70px;
+	font-size: 24px;
+	margin-top: 33px;
+}
+#product-details-main > #product-details-container > .field > strong {
+	margin: 40px 0 0 0;
+}
+
+#product-details-main
+	> #product-details-container
+	> .field
+	> strong
+	> .product-count {
+	width: 100px;
+	height: 30px;
+	font-size: 24px;
+}
+
+#product-details-main > #product-details-container > .field > strong > .input {
+	width: 200px;
+	height: 50px;
+	font-size: 24px;
+	margin: 0 0 0 100px;
+}
+#product-details-main
+	> #product-details-container
+	> .field
+	> strong
+	> .product-total-price {
+	margin: 70px 0 0 0;
+	width: 150px;
+	height: 30px;
+	font-size: 24px;
+}
+#product-details-main
+	> #product-details-container
+	> .field
+	> strong
+	> .product-total-cash {
+	margin: 70px 0 0 50px;
+	width: 150px;
+	height: 30px;
+	font-size: 24px;
+}
+
+.product-put-shoppingcart {
+	width: 500px;
+	height: 100px;
+	text-align: center;
+	font-size: 24px;
+	background-color: black;
+	line-height: 100px;
+	margin: 50px 0 0 0;
+}
+
+#add-to-cart {
+	display: block;
+	width: 100%;
+	height: 100%;
+	text-decoration: none;
+	color: #000;
+	background: none;
+}
+
+.product-put-shoppingcart span {
+	display: inline-block;
+	color: white;
+	vertical-align: middle;
+}

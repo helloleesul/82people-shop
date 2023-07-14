@@ -3,26 +3,22 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<!-- css 초기화 연결 (삭제예정) -->
-		<link
-			rel="stylesheet"
-			href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css"
-		/>
+		<link rel="stylesheet" href="/Common/common.css" />
 		<!-- 작업할 css 연결 -->
-		<link rel="stylesheet" href="HomeDetails.css" />
+		<link rel="stylesheet" href="./ProductDetails.css" />
+		<script type="module" src="./ProductDetails.js" defer></script>
 		<!-- 페이지에 맞는 타이틀 입력 -->
 		<title>물품 상세</title>
 	</head>
 	<body>
 		<div id="global-wrap">
-			<header>header</header>
+			<header></header>
 			<main role="main" id="product-details-main">
-				<div class="main-container" id="homedetails">
+				<div class="main-container" id="product-details-container">
 					<!-- 클래스명 main-container까지 공통, id값은 페이지에 맞게 이름설정해서 사용 -->
 					<!-- 해당 위치에 페이지 마크업 -->
 					<div class="product-icon-image">
-						<a href="http://www.naver.com" target="_self"></a
-						><img
+						<img
 							class="item-img"
 							src="https://image.auction.co.kr/itemimage/18/41/a3/1841a37b16.jpg"
 							alt="main_item1"
@@ -31,30 +27,27 @@
 						/>
 					</div>
 					<div class="field">
-						<span class="maker">파티피플</span>
-						<span class="product-title">완전멋진 상품명</span>
-						<span class="product-price">10,000원</span>
-						<span class="product-detail"
-							>아니 이게 아직도 없으시다구요?아니 이게 아직도
-							없으시다구요?</span
-						>
+						<span class="maker"></span>
+						<span class="product-title"></span>
+						<span class="product-price"></span>
+						<span class="product-detail"></span>
 						<strong>
 							<span class="product-count">수량</span>
-							<input class="input" />
+							<input type="number" id="amount" value="1" min="1" />
 						</strong>
 						<strong>
 							<span class="product-total-price">총 상품금액 :</span>
-							<span class="product-total-cash">100,000원</span>
+							<span class="product-total-cash"></span>
 						</strong>
 						<div class="product-put-shoppingcart">
-							<a id="add-to-cart" href="http://www.naver.com">
+							<button id="add-to-cart">
 								<span>장바구니 담기</span>
-							</a>
+							</button>
 						</div>
 					</div>
 				</div>
 			</main>
-			<footer>footer</footer>
+			<footer></footer>
 		</div>
 	</body>
 </html>

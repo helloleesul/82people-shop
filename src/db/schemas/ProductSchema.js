@@ -1,7 +1,6 @@
 const { Schema } = require('mongoose');
 
 const ProductSchema = new Schema({
-	productId: Schema.Types.ObjectId,
 	title: {
 		type: String,
 		required: true,
@@ -33,4 +32,4 @@ const ProductSchema = new Schema({
 	},
 });
 
-module.exports = { ProductSchema };
+module.exports = ProductSchema;

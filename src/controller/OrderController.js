@@ -24,7 +24,6 @@ const OrderController = {
 				!purchase ||
 				!recipient ||
 				!phone ||
-				!password ||
 				!address ||
 				!detailAddress ||
 				!shippingPrice
@@ -34,7 +33,8 @@ const OrderController = {
 				);
 			}
 
-			const newOrderId = await OrderService.createOrder({
+			const newOrderId = await OrderService.createOrder(
+				email,
 				purchase,
 				recipient,
 				phone,
@@ -42,8 +42,8 @@ const OrderController = {
 				address,
 				detailAddress,
 				shippingRequest,
-				shippingPrice,
-			});
+				shippingPrice
+			);
 
 			res.status(201).json({
 				message: '주문 성공',
@@ -76,22 +76,10 @@ const OrderController = {
 
 	// [회원] 주문 내역 전체 조회
 	checkOrderHistory: async (req, res, next) => {
-		const { email } = req.body;
+		const email = req.currentUserEmail;
 
 		try {
 			const orderHistory = await OrderService.checkOrderHistory(email);
-
-			if (!orderHistory) {
-				throw new badRequestError(
-					'주문 내역이 존재하지 않습니다. 다시 한 번 확인해주세요.'
-				);
-			}
-
-			if (!orderHistory) {
-				throw new badRequestError(
-					'주문 내역이 존재하지 않습니다. 다시 한 번 확인해주세요.'
-				);
-			}
 
 			res.status(200).json({
 				message: '회원 주문 내역 전체 조회 성공',
@@ -105,40 +93,64 @@ const OrderController = {
 	// [회원 || 비회원] 주문 상세 조회
 	checkOrderDetail: async (req, res, next) => {
 		const { orderId } = req.params;
+		const { password } = req.body;
+		console.log('orderId', orderId);
+		console.log('password', password);
+		if (password) {
+			try {
+				const orderDetail = await OrderService.guestCheckOrderDetail(
+					orderId,
+					password
+				);
+
+				if (!orderDetail) {
+					throw new badRequestError(
+						'주문 상세 내역이 존재하지 않습니다. 다시 한 번 확인해주세요.'
+					);
+				}
+				console.log('guest', orderDetail);
+				res.status(200).json({
+					message: '주문 상세 내역 조회 성공',
+					orderDetail: orderDetail,
+				});
+			} catch (err) {
+				next(err);
+			}
+		} else {
+			try {
+				const orderDetail = await OrderService.checkOrderDetail(orderId);
+
+				if (!orderDetail) {
+					throw new badRequestError(
+						'주문 상세 내역이 존재하지 않습니다. 다시 한 번 확인해주세요.'
+					);
+				}
+
+				res.status(200).json({
+					message: '주문 상세 내역 조회 성공',
+					orderDetail: orderDetail,
+				});
+			} catch (err) {
+				next(err);
+			}
+		}
+	},
+
+	// [회원] 주문 시 배송지 추가
+	addAddress: async (req, res, next) => {
+		const email = req.currentUserEmail;
+		const { addressInformation } = req.body;
 
 		try {
-			const orderDetail = await OrderService.checkOrderDetail(orderId);
-
-			if (!orderDetail) {
-				throw new badRequestError(
-					'주문 상세 내역이 존재하지 않습니다. 다시 한 번 확인해주세요.'
-				);
-			}
+			await OrderService.addAddress(email, addressInformation);
 
 			res.status(200).json({
-				message: '주문 상세 내역 조회 성공',
-				orderDetail: orderDetail,
+				message: '배송지 변경 성공',
 			});
 		} catch (err) {
 			next(err);
 		}
 	},
-
-	/*
-    // [회원] 주문 시 배송지 추가 => 2주차에 작업
-    addAddress: async (req, res, next) => {		
-		const email = req.currentUserEmail;
-
-        try {
-
-            res.status(200).json({
-                message: '배송지 추가 성공',
-            });
-        } catch(err) {
-            next(err);
-        };
-    },
-    */
 };
 
 module.exports = OrderController;

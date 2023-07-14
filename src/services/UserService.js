@@ -5,8 +5,8 @@ const UserService = {
 		return await User.findOne({ email });
 	},
 
-	updateUser: async (email, password, address) => {
-		await User.updateOne({ email }, { password, address });
+	updateUser: async (email, password) => {
+		await User.updateOne({ email }, { password });
 	},
 
 	deleteUser: async email => {
