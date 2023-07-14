@@ -12,7 +12,6 @@ const signupEvent = e => {
 	e.preventDefault();
 
 	if (pw.value !== pwCheck.value) {
-		// 비밀번호가 일치하지 않을때?
 		alert('비밀번호가 일치하지 않습니다.');
 	} else {
 		fetch('/api/users/signup', {
