@@ -41,5 +41,6 @@ ViewRouter.use('/common', ViewService.serveStatic('Common'));
 
 //admin
 ViewRouter.use('/admin', ViewService.serveStatic('Admin'));
+ViewRouter.use('/admin/:orderId', ViewService.serveStatic('AdminOrderDetail'));
 
 module.exports = ViewRouter;
