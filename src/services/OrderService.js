@@ -88,6 +88,7 @@ const OrderService = {
 			{ _id: orderId, password: password },
 			{ _id: 1, password: 1 }
 		);
+		return orderDetails;
 	},
 	// [회원] 주문 시 배송지 추가
 	addAddress: async (email, addressInformation) => {
