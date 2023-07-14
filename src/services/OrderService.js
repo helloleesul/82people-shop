@@ -73,17 +73,6 @@ const OrderService = {
 
 		return orderHistory;
 	},
-<<<<<<< HEAD
-
-	// [회원] 주문 시 배송지 추가
-	addAddress: async (email, addressInformation) => {
-		await User.updateOne(
-			{ email: email },
-			{ $push: { addressInformation: addressInformation } }
-		);
-	},
-=======
->>>>>>> e08b5b6e82ff04b1a1331d4029414afb1a8ee0f2
 
 	// [회원 비회원 공통] 주문 상세 조회
 	checkOrderDetail: async orderId => {
@@ -99,11 +88,14 @@ const OrderService = {
 			{ _id: orderId, password: password },
 			{ _id: 1, password: 1 }
 		);
-
-    // [회원] 주문 시 배송지 추가
-    addAddress: async (email, addressInformation) => {
-		await User.updateOne({ email: email }, { addressInformation: addressInformation });
-    },
+	},
+	// [회원] 주문 시 배송지 추가
+	addAddress: async (email, addressInformation) => {
+		await User.updateOne(
+			{ email: email },
+			{ addressInformation: addressInformation }
+		);
+	},
 };
 
 module.exports = OrderService;
