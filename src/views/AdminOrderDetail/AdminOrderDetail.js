@@ -74,11 +74,16 @@ fetch(`/api/admin/${orderId}`, {
 			orderDetails.addressInformation.shippingRequest;
 		orderPhone.innerHTML = orderDetails.addressInformation.phone;
 		orderAddress.innerHTML = orderDetails.addressInformation.address;
-		orderShippingPrice.innerHTML = orderDetails.totalPrice.shippingPrice;
-		orderTotalPrice.innerHTML = orderDetails.totalPrice.totalProductsPrice;
-		orderOrderPrice.innerHTML =
-			Number(orderDetails.totalPrice.totalProductsPrice) -
-			Number(orderDetails.totalPrice.shippingPrice);
+		orderShippingPrice.innerHTML = `${Number(
+			orderDetails.totalPrice.shippingPrice
+		).toLocaleString()} 원`;
+		orderTotalPrice.innerHTML = `${Number(
+			orderDetails.totalPrice.totalProductsPrice
+		).toLocaleString()} 원`;
+		orderOrderPrice.innerHTML = `${(
+			Number(orderDetails.totalPrice.totalProductsPrice) +
+			Number(orderDetails.totalPrice.shippingPrice)
+		).toLocaleString()} 원`;
 		orderDate.innerText = new Date(orderDetails.createdAt).toLocaleString();
 		orderStatus.innerText = orderDetails.shippingStatus;
 		// orderDetails.purchase
