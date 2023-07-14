@@ -35,8 +35,9 @@ orderButton.addEventListener('click', e => {
 		})
 		.then(({ orderDetail }) => {
 			console.log('value', orderDetail._id);
+
 			// window.location.href = `http://localhost:3000/guest/orders/history=${orderDetail._id}`;
-			window.location.href = `http://localhost:3000/guest/orders/history/?orderId=${orderDetail._id}`;
+			window.location.href = `/guest/orders/history/?orderId=${orderDetail._id}`;
 		})
 		.catch(err => console.log(err));
 });
