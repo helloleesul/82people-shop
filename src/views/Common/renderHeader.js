@@ -88,6 +88,21 @@ function renderHeader() {
         </div>
       </div>
     </div>
+
+    <div class="badges">
+      <div class="badge">
+        <a href="/products/category/?category=Christmas">
+          <img src="https://partyhae.com/web/product/extra/big/201712/13952_shop1_317692.jpg" alt="badge">
+          <div>🥇 인기상품 🥇</div>
+        </a>
+      </div>
+      <div class="badge">
+        <a href="/products/category/?category=birthDay">
+          <img src="https://partyhae.com/web/product/big/20200227/82d5c7f017b86f7fbd292db365db84b6.jpg" alt="badge">
+          <div class="new-title">🤡 신규상품 🤡</div>
+        </a>
+      </div>
+    </div>
       `;
 	}
 	// 로그아웃 했을때 헤더
