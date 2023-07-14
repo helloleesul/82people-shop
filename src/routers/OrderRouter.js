@@ -17,8 +17,8 @@ OrderRouter.get(
 	OrderController.checkAddress
 );
 
-// [회원] 배송지 추가
-// OrderRouter.post('/orders/addAddress', VerifyToken, OrderController.addAddress);
+// [회원] 배송지 추가(업데이트)
+OrderRouter.post('/orders/addAddress', VerifyToken, OrderController.addAddress);
 
 // [회원] 주문 내역 조회
 OrderRouter.get(
