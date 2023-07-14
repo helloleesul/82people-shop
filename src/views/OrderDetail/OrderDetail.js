@@ -53,7 +53,7 @@ const orderDate = document.querySelector('.date');
 const orderAddress = document.querySelector('#address');
 const orderPhone = document.querySelector('#phone');
 const orderRecipient = document.querySelector('#recipient');
-const orserShippingRequest = document.querySelector('#shippingRequest');
+const orderShippingRequest = document.querySelector('#shippingRequest');
 const orderShippingPrice = document.querySelector('#shippingPrice');
 const orderTotalPrice = document.querySelector('#totalPrice');
 const orderOrderPrice = document.querySelector('#orderPrice');
@@ -89,7 +89,7 @@ fetch(`/api/orders/history/${orderId}`, {
 		orderAddress.innerText = `${address}, ${detailAddress}`;
 		orderPhone.innerText = phone;
 		orderRecipient.innerText = recipient;
-		orserShippingRequest.innerText = shippingRequest;
+		orderShippingRequest.innerText = shippingRequest;
 		orderShippingPrice.innerText = `${shippingPrice.toLocaleString()}원`;
 		orderTotalPrice.innerText = `${totalProductsPrice.toLocaleString()}원`;
 		orderOrderPrice.innerText = `${(

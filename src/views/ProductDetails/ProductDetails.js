@@ -11,6 +11,8 @@ const productMaker = document.querySelector('.maker');
 const productTitle = document.querySelector('.product-title');
 const productPrice = document.querySelector('.product-price');
 const productDescription = document.querySelector('.product-detail');
+const productImage = document.querySelector('.product-icon-image>img');
+
 const addToCart = document.querySelector('#add-to-cart');
 const productAmount = document.querySelector('#amount');
 const totalCash = document.querySelector('.product-total-cash');
@@ -47,7 +49,8 @@ fetch(`/api/products/${productId}`, {
 		//  productInfo._id;
 
 		imageURL = productInfo.imageURL[0];
-		totalCash.innerText = `${productInfo.price} 원`;
+		productImage.setAttribute('src', imageURL);
+		totalCash.innerText = `${Number(productInfo.price).toLocaleString()} 원`;
 
 		price = Number(productInfo.price);
 		totalPrice = Number(productInfo.price);

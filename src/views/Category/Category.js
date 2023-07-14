@@ -35,13 +35,12 @@ fetch(`/api/products/category/${category}`, {
 
 //상품상세 불러오기
 const getProducts = newProduct => {
-	// ${newProduct.imageURL}
 	return `<li>
     <a class='icon-img'
     href='/products?productId=${newProduct._id}' target='_self' id='bring-list'>
 	<div class="icon-img">
     <img class='icon-img'
-    src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQE2O8ul5WH3_NdITW8bd4_7gpd6CoSVo1qUY2IHTfE8A&s' alt="product-item"/>
+    src='${newProduct.imageURL}'/>
 	</div>
     <div class="contents1-blod">${newProduct.title}</div>
     <div class='contents3'>${newProduct.price.toLocaleString()} 원</div>
