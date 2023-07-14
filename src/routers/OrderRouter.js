@@ -5,7 +5,7 @@ const VerifyToken = require('../middleware/VerifyToken');
 const OrderRouter = express.Router();
 
 // [회원] 주문
-OrderRouter.post('/orders', VerifyToken, OrderController.createOrder);	
+OrderRouter.post('/orders', VerifyToken, OrderController.createOrder);
 
 // [비회원] 주문
 OrderRouter.post('/orders/guest', OrderController.createOrder);
@@ -28,6 +28,6 @@ OrderRouter.get(
 );
 
 // [회원 || 비회원] 주문 상세 내역 조회
-OrderRouter.get('/orders/history/:orderId', OrderController.checkOrderDetail);
+OrderRouter.post('/orders/history/:orderId', OrderController.checkOrderDetail);
 
 module.exports = OrderRouter;

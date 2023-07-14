@@ -265,7 +265,7 @@ h3 {
 .field span {
 	flex: 1;
 }
-.field input {
+.field > * input {
 	flex: 3;
 }
 .field2 {
@@ -273,4 +273,7 @@ h3 {
 }
 .member-withdrawal-link {
 	justify-content: flex-end;
+}
+.field > * > *:last-child {
+	flex: 3;
 }
