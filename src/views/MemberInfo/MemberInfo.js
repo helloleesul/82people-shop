@@ -48,6 +48,7 @@ fetch('/api/users/myPage', {
 	.then(res => res.json())
 	.then(json => {
 		// 받아온 정보들을 위에 태그값에 넣어서 화면에 보여주기
+		console.log('json', json);
 		const { name, email, password } = json.userInformation;
 		const { address, detailAddress, recipient, shippingRequest, phone } =
 			json.userInformation.addressInformation;
