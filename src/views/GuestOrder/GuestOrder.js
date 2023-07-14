@@ -1,6 +1,5 @@
-import { main, renderLogin } from '/Common/index.js';
+import { main } from '/Common/index.js';
 await main();
-await renderLogin();
 
 const orderId = document.querySelector('#orderId');
 const orderPassword = document.querySelector('#orderPassword');
@@ -35,8 +34,9 @@ orderButton.addEventListener('click', e => {
 		})
 		.then(({ orderDetail }) => {
 			console.log('value', orderDetail._id);
+
 			// window.location.href = `http://localhost:3000/guest/orders/history=${orderDetail._id}`;
-			window.location.href = `http://localhost:3000/guest/orders/history/?orderId=${orderDetail._id}`;
+			window.location.href = `/guest/orders/history/?orderId=${orderDetail._id}`;
 		})
 		.catch(err => console.log(err));
 });

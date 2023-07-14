@@ -43,6 +43,7 @@ if (hasToken) {
 } else {
 	console.log('JWT 토큰이 쿠키에 존재하지 않습니다.');
 	menuBar.style.display = 'none';
+	document.querySelector('#back').style.display = 'none';
 }
 
 // 회원이 아닐경우 경로 변경해주고, 회원인데 searchParams값이 없으면 주문 내역으로 옮기기

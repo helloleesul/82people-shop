@@ -20,18 +20,22 @@ function checkJWTTokenInCookie() {
 
 // 확인된 토큰을 부르는 이름
 const hasToken = checkJWTTokenInCookie();
+if (hasToken) {
+	const base64Url = hasToken.split('.')[1];
+	const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+	const jsonPayload = decodeURIComponent(
+		window
+			.atob(base64)
+			.split('')
+			.map(function (c) {
+				return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+			})
+			.join('')
+	);
 
-const base64Url = hasToken.split('.')[1];
-const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-const jsonPayload = decodeURIComponent(
-	window
-		.atob(base64)
-		.split('')
-		.map(function (c) {
-			return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-		})
-		.join('')
-);
+	const tokenData = JSON.parse(jsonPayload);
+	document.querySelector('#user-name').innerText = tokenData.name;
+}
 
 const tokenData = JSON.parse(jsonPayload);
 
@@ -49,8 +53,6 @@ checkButton.addEventListener('click', () => {
 	if (withdrawalStatement === '파티피플에서 탈퇴하겠습니다.') {
 		// 탈퇴 신청 처리
 		processWithdrawal();
-		// 알림창 표시
-		alert('탈퇴신청이 정상적으로 처리되었습니다.');
 	} else {
 		// 알림창 표시
 		alert('입력한 문구가 일치하지 않습니다.');
@@ -69,6 +71,13 @@ function processWithdrawal() {
 		.then(response => {
 			console.log('response', response);
 			if (response.ok) {
+				alert('탈퇴신청이 정상적으로 처리되었습니다.');
+				// 로그인 토큰 삭제
+				document.cookie =
+					'userToken' +
+					'=; expires=Thu, 01 Jan 1970 00:00:01 GMT;domain=localhost;path=/;';
+
+				window.location.href = '/';
 				return response.json();
 			} else {
 				throw new Error('탈퇴 요청에 실패했습니다.');
