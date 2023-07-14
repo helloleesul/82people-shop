@@ -39,4 +39,7 @@ ViewRouter.use('/login', ViewService.serveStatic('Login')); //로그인 페이�
 //common
 ViewRouter.use('/common', ViewService.serveStatic('Common'));
 
+//admin
+ViewRouter.use('/admin', ViewService.serveStatic('Admin'));
+
 module.exports = ViewRouter;
