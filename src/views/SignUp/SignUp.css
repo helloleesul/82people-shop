@@ -1,4 +1,9 @@
 /* 회원가입 */
+#signup-wrap {
+  background-color: #fff;
+  box-shadow: 0 0 0 0;
+}
+
 .signup h1 {
   color: #000;
   font-size: 30px;
@@ -10,8 +15,8 @@
 .signup-card {
   width: 500px;
   margin: 0 auto;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  border: 4mm ridge rgba(0, 0, 0, .6);
+  border-radius: 0 20px 0 10px;
   color: #555;
 }
 

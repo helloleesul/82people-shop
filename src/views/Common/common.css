@@ -204,6 +204,7 @@ footer {
 /* 로그인 */
 #signin-wrap {
   background-color: #fff;
+  box-shadow: 0 0 0 0;
 }
 
 .signin h1 {
