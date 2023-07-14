@@ -98,7 +98,6 @@ fetch(`/api/admin/${orderId}`, {
 const getProducts = newProducts => {
 	return `
 		<li>
-		<article>
 		<div class="thumbnail">
 		<img src="${newProducts.imageURL}" />
 		<span class="title">${newProducts.title}</span>
@@ -107,7 +106,6 @@ const getProducts = newProducts => {
 		newProducts.orderAmount
 	}</span> 개 &#215; <span>${newProducts.price.toLocaleString()}</span>원</div>
 	<div>${(newProducts.price * newProducts.orderAmount).toLocaleString()}원</div>
-		</article>
 	</li>
 		`;
 };

@@ -4,13 +4,11 @@
 }
 #member-info-wrap {
 	display: flex; /* 여기 추가 */
-}
-#order-history-wrap {
 	width: 80%;
 	height: 100%;
 	margin: 0 auto;
-	display: flex;
 }
+
 h2 {
 	font-size: 24px;
 	font-weight: 900;
@@ -28,13 +26,12 @@ button {
 	font-size: inherit;
 	cursor: pointer;
 }
-#order-history-wrap > section {
+#member-info-wrap > section {
 	padding: 30px;
 }
 .myparty-menubar {
-	/* border-right: 1px solid #000; */ /* 여기 수정 */
+	border-right: 1px solid #000;
 	width: 200px;
-	padding: 30px; /* 여기 수정 */
 }
 .myparty-menubar h2,
 .order-history h3 {
@@ -85,7 +82,6 @@ button {
 }
 .order-history {
 	flex: 1;
-	padding: 30px; /* 여기 수정 */
 }
 .order-number-status {
 	display: flex;
