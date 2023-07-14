@@ -13,9 +13,11 @@ const VerifyToken = async (req, res, next) => {
 			const verified = jwt.verify(token, process.env.JSONSECRETKEY);
 			const currentUserEmail = verified.email;
 			const currentUserName = verified.name;
+			const currentUserRole = verified.role;
 
 			req.currentUserEmail = currentUserEmail;
 			req.currentUserName = currentUserName;
+			req.currentUserRole = currentUserRole;
 
 			next();
 		} catch (err) {
