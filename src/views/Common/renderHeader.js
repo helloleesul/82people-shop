@@ -1,9 +1,8 @@
 function renderHeader() {
 	const header = document.querySelector('header');
-	// const url = `localhost:3000`;
 
 	// 로그인 했을때 헤더
-	// try {
+
 	let token;
 	if (document.cookie) {
 		token = document.cookie
@@ -110,7 +109,7 @@ function renderHeader() {
           </nav>
           <div class="menu-group">
             <div>
-              <a href="/login">로그인</a>
+              <a href="/login">로그인 / 회원가입</a>
             </div>
             <div>
               <a href="/guest/orders">주문내역</a>
@@ -126,7 +125,6 @@ function renderHeader() {
     </div>
       `;
 	}
-	// } catch (e) {}
 }
 
 export { renderHeader };

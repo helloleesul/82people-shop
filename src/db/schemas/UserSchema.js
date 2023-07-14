@@ -17,11 +17,11 @@ const UserSchema = new Schema(
 			required: true,
 		},
 		addressInformation: {
-				recipient: { type: String, required: true },
-				phone: { type: String, required: true },
-				address: { type: String, required: true },
-				detailAddress: { type: String, required: true },
-				shippingRequest: { type: String },
+			recipient: { type: String },
+			phone: { type: String },
+			address: { type: String },
+			detailAddress: { type: String },
+			shippingRequest: { type: String },
 		},
 		role: {
 			type: String,
