@@ -30,7 +30,6 @@
                 </div>
                 <div class="signup-email">
                   <input type="email" id="form-email" class="form-email" name="form-email" required />
-                  <!-- 이메일 중복체크 어떻게 할 것인지? -->
                   <button type="button">중복확인</button>
                 </div>
               </div>
@@ -41,12 +40,14 @@
               <div>
                 <label for="form-pw" />비밀번호</label>
                 <input type="password" id="form-pw" class="form-pw" name="form-pw" minlength="8"
-                  pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$" required />
+                  pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$" required 
+                  placeholder="영문 숫자 특수문자 조합 8글자를 입력해 주세요."/>
+                  <div class="hint">* 영문 숫자 특수문자 조합 8글자를 입력해 주세요.</div>
               </div>
               <div>
                 <label for="form-pwCheck" />비밀번호 확인</label>
                 <input type="password" id="form-pwCheck" class="form-pwCheck" name="form-pwCheck" minlength="8"
-                  required />
+                  required placeholder="비밀번호와 동일한 문자를 입력해 주세요." />
               </div>
               <button type="submit" class="form-submit">가입하기</button>
             </form>

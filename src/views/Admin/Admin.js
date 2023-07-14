@@ -89,6 +89,6 @@ fetch(`/api/admin`, {
 			itemsList.innerHTML =
 				'<li style="padding:20px">주문 내역이 없습니다.</li>';
 		} else {
-			itemsList.innerHTML = orders.map(getOrders);
+			itemsList.innerHTML = orders.map(getOrders).reverse();
 		}
 	});
