@@ -66,8 +66,13 @@ fetch('/api/orders/history', {
 	})
 	.then(json => {
 		// console.log(json);
-		// console.log(json.userOrderHistory);
-		json.userOrderHistory.map(getOrders);
+		if (json.userOrderHistory.length !== 0) {
+			json.userOrderHistory.map(getOrders);
+		} else {
+			itemsList.innerHTML =
+				'<li style="padding:20px">주문하신 내역이 없습니다.</li>';
+		}
+		console.log(json.userOrderHistory.length !== 0);
 	})
 	.catch(err => console.log(err));
 
