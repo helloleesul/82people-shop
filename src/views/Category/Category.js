@@ -37,13 +37,11 @@ fetch(`/api/products/category/${category}`, {
 const getProducts = newProduct => {
 	return `<li>
     <a class='icon-img'
-    href='/products?productId=${newProduct._id}' target='_self' id='bring-list'>
-	<div class="icon-img">
-    <img class='icon-img'
+    href='/products?productId=${newProduct._id}' target='_self'>
+    <img class="product-img"
     src='${newProduct.imageURL}'/>
-	</div>
-    <div class="contents1-blod">${newProduct.title}</div>
-    <div class='contents3'>${newProduct.price.toLocaleString()} 원</div>
+    <div class="product-title">${newProduct.title}</div>
+    <div class='product-price'>${newProduct.price.toLocaleString()} 원</div>
     </div>
     </a>
     </li>`;
