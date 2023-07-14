@@ -11,7 +11,11 @@ const OrderSchema = new Schema(
 		},
 		purchase: [
 			{
-				productId: { type: Schema.Types.ObjectId, ref: 'Product', required: true },
+				productId: {
+					type: Schema.Types.ObjectId,
+					ref: 'Product',
+					required: true,
+				},
 				title: { type: String, required: true },
 				price: { type: Number, required: true },
 				orderAmount: { type: Number, required: true },
