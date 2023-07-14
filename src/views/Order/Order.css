@@ -57,6 +57,15 @@ h3 {
 	align-items: center;
 	justify-content: space-between;
 }
+.cart-items article > * {
+	flex: 1;
+}
+.cart-items article > *:last-child {
+	text-align: right;
+}
+.cart-items .thumbnail {
+	flex: 3;
+}
 .cart-items li {
 	gap: 20px;
 	margin-top: 20px;
@@ -90,6 +99,7 @@ h3 {
 }
 .order-info label.require::before {
 	content: '*';
+	color: red;
 }
 .order-info .address-input > div,
 .order-info input {
@@ -116,7 +126,7 @@ h3 {
 	border-bottom: 0;
 }
 .cart-price {
-	background-color: #ddd;
+	background-color: #fff;
 	padding: 40px;
 	padding-bottom: 20px;
 	font-size: 20px;
@@ -149,4 +159,18 @@ h3 {
 }
 #address {
 	cursor: pointer;
+}
+.cart-title-wrap {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 10px;
+}
+.cart-title-wrap h3 {
+	margin-bottom: 0;
+}
+.btn {
+	background-color: #000;
+	color: #fff;
+	padding: 7px 10px;
 }
