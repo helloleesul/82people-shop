@@ -1,0 +1,279 @@
+/* 
+#memberinfo > #memberinfo-wrap {
+	display: flex;
+	justify-content: center;
+}
+
+#memberinfo > #memberinfo-wrap > .member-icon-image {
+	width: 265px;
+	height: 400px;
+	background-color: red;
+	margin: 58px 50px 0 0;
+}
+
+#memberinfo > #memberinfo-wrap > .field {
+	width: 740px;
+	height: 1000px;
+	background-color: white;
+	margin: 58px 0 0;
+	display: flex;
+	flex-direction: column;
+}
+
+#memberinfo > #memberinfo-wrap > .field > .modify-tag {
+	width: 730px;
+	height: 75px;
+	font-size: 30px;
+	border-bottom: solid;
+}
+
+#memberinfo > #memberinfo-wrap > .field > strong {
+	width: 513px;
+	height: 120px;
+	margin: 40px 0 0 0;
+}
+
+#memberinfo > #memberinfo-wrap > .field > strong > .member-name {
+	display: inline-block;
+	width: 198px;
+	height: 120px;
+	font-size: 24px;
+	background-color: white;
+	text-align: left center;
+	line-height: 120px;
+}
+#memberinfo > #memberinfo-wrap > .field > strong > .member-email {
+	display: inline-block;
+	width: 198px;
+	height: 120px;
+	font-size: 24px;
+	background-color: white;
+	text-align: left center;
+	line-height: 120px;
+}
+#memberinfo > #memberinfo-wrap > .field > strong > .member-password {
+	display: inline-block;
+	width: 198px;
+	height: 120px;
+	font-size: 24px;
+	background-color: white;
+	text-align: left center;
+	line-height: 120px;
+}
+#memberinfo > #memberinfo-wrap > .field > strong > .member-address {
+	display: inline-block;
+	width: 198px;
+	height: 120px;
+	font-size: 24px;
+	background-color: white;
+	text-align: left center;
+	line-height: 120px;
+}
+#memberinfo > #memberinfo-wrap > .field > strong > .input {
+	width: 300px;
+	height: 50px;
+	font-size: 24px;
+	margin: auto;
+}
+#memberinfo > #memberinfo-wrap > .field > strong > .input_Address {
+	width: 300px;
+	height: 80px;
+	font-size: 24px;
+	margin: auto;
+}
+
+.field2 {
+	display: flex;
+	flex-direction: row;
+	align-items: end;
+	margin-top: 50px;
+}
+
+.field2 > .member-withdrawal-link {
+	width: 115px;
+	height: 70px;
+	text-align: center;
+	font-size: 20px;
+	background-color: black;
+	line-height: 60px;
+	margin: 50px 0 0 0;
+}
+
+.field2 > .member-withdrawal-link a {
+	display: block;
+	width: 100%;
+	height: 100%;
+	text-decoration: none;
+	color: #000;
+}
+
+.field2 > .member-withdrawal-link span {
+	display: inline-block;
+	color: white;
+	vertical-align: middle;
+}
+
+.field2 > .modify-botton {
+	width: 115px;
+	height: 70px;
+	text-align: center;
+	margin-left: 150px;
+	color: white;
+	font-size: 20px;
+	background-color: black;
+} */
+/* 여기서 부터 각자 레이아웃 스타일 작업 */
+.main-container {
+	padding: 0;
+}
+#member-info-wrap {
+	width: 80%;
+	height: 100%;
+	margin: 0 auto;
+	display: flex;
+}
+h2 {
+	font-size: 24px;
+	font-weight: 900;
+}
+h3 {
+	font-size: 24px;
+}
+#member-info-wrap > section {
+	padding: 30px;
+}
+.myparty-menubar {
+	border-right: 1px solid #000;
+	width: 200px;
+}
+.myparty-menubar h2,
+.order-history h3 {
+	margin-bottom: 30px;
+}
+.user-info {
+	border: 1px solid #000;
+	padding: 16px;
+	font-size: 26px;
+	background-color: #fff;
+	margin-bottom: 20px;
+}
+.user-info > div {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.user-info .profile {
+	font-size: 26px;
+	border: 1px solid #000;
+	width: 50px;
+	height: 50px;
+	line-height: 55px;
+	text-align: center;
+	border-radius: 999px;
+}
+.user-info .user-role {
+	text-align: center;
+	display: block;
+	border: 1px solid #000;
+	font-size: 20px;
+	padding: 7px 0;
+	margin-top: 10px;
+}
+.myparty-menubar nav li.active a {
+	background-color: #000;
+	color: #fff;
+}
+.myparty-menubar nav a {
+	border: 1px solid #000;
+	background-color: #fff;
+	font-size: 20px;
+	margin-top: 10px;
+	display: block;
+	padding: 20px;
+	text-decoration: none;
+	color: #000;
+}
+.order-history {
+	flex: 1;
+}
+.order-history .history-list > li {
+	border: 1px solid #000;
+	margin-bottom: 20px;
+	background-color: #fff;
+}
+.order-history .history-list .info {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border-bottom: 1px solid #000;
+	padding: 10px 20px;
+	font-size: 18px;
+}
+.order-history .history-list .info .status {
+	background-color: #000;
+	color: #fff;
+	padding: 3px 16px;
+	border-radius: 999px;
+	margin-left: 20px;
+}
+.order-history .history-list .info .date {
+	font-weight: 700;
+}
+.order-history .history-list .info .detail-btn {
+	text-decoration: none;
+	color: inherit;
+	margin-right: 10px;
+	border-bottom: 1px solid transparent;
+}
+.order-history .history-list .info .detail-btn:hover {
+	border-color: #000;
+}
+.order-history .history-list .products-list {
+	padding: 20px;
+}
+.order-history .history-list .products-list li {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	font-size: 20px;
+	margin-bottom: 10px;
+}
+.order-history .history-list .products-list li:last-child {
+	margin-bottom: 0;
+}
+.order-history .history-list .products-list li .thumbnail {
+	display: flex;
+	align-items: center;
+}
+.order-history .history-list .products-list li img {
+	width: 100px;
+	height: 80px;
+	background-color: #fff;
+	margin-right: 10px;
+}
+.order-history .history-list .products-list li .title {
+	font-weight: 700;
+}
+.field {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.field > * {
+	display: flex;
+}
+.field span {
+	flex: 1;
+}
+.field > * input {
+	flex: 3;
+}
+.field2 {
+	justify-content: center;
+}
+.member-withdrawal-link {
+	justify-content: flex-end;
+}
+.field > * > *:last-child {
+	flex: 3;
+}

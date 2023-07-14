@@ -27,7 +27,7 @@ function renderHeader() {
 			return JSON.parse(jsonPayload);
 		};
 
-		const { name } = parseJwt(token);
+		const { name, role } = parseJwt(token);
 
 		header.innerHTML = `
       <div class="header-container">
@@ -71,7 +71,9 @@ function renderHeader() {
             </div>
             <!-- 로그인 상태일 경우 마이페이지 노출-->
             <div>
-              <a href="/myPage">마이페이지</a>
+              <a href="${
+								role === 'customer' ? '/mypage' : '/admin'
+							}">마이페이지</a>
             </div>
             <div>
               <a href="/cart">
