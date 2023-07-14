@@ -61,6 +61,12 @@ function renderHeader() {
               <span>🥳 ${name} 님</span>
             </div>
             <div>
+              <span id="logout" onclick="(function(){
+                document.cookie = 'userToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+                window.location.href = '/login';
+              }) ()">로그아웃</span>
+            </div>
+            <div>
               <a href="/myPage/orders">주문내역</a>
             </div>
             <!-- 로그인 상태일 경우 마이페이지 노출-->
