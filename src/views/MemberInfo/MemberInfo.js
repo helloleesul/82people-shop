@@ -55,7 +55,7 @@ fetch('/api/users/myPage', {
 		receiverEmailInput.value = email;
 		receiverPasswordInput.value = password;
 
-		if (json.userInformation.addressInformation !== null) {
+		if (json.userInformation.addressInformation.length !== 0) {
 			defaultAddress.value = address;
 			defaultDetailAddress.value = detailAddress;
 			defaultRecipient.value = recipient;
