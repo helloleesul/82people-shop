@@ -74,7 +74,7 @@ const OrderService = {
 		return orderHistory;
 	},
 
-	// [회원 비회원 공통] 주문 상세 조회
+	// [회원] 주문 상세 조회
 	checkOrderDetail: async orderId => {
 		const orderDetails = await Order.findOne(
 			{ _id: orderId },
@@ -83,6 +83,8 @@ const OrderService = {
 
 		return orderDetails;
 	},
+
+	// [비회원] 주문 상세 조회
 	guestCheckOrderDetail: async (orderId, password) => {
 		const orderDetails = await Order.findOne(
 			{ _id: orderId, password: password },
@@ -90,6 +92,7 @@ const OrderService = {
 		);
 		return orderDetails;
 	},
+
 	// [회원] 주문 시 배송지 추가
 	addAddress: async (email, addressInformation) => {
 		await User.updateOne(
