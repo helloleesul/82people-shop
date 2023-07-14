@@ -9,6 +9,7 @@ const ProductRouter = require('./src/routers/ProductRouter');
 const UserRouter = require('./src/routers/UserRouter');
 const AuthRouter = require('./src/routers/AuthRouter');
 const OrderRouter = require('./src/routers/OrderRouter');
+const AdminRouter = require('./src/routers/AdminRouter');
 
 const app = express();
 dotenv.config();
@@ -35,6 +36,7 @@ app.use('/api', ProductRouter);
 app.use('/api', UserRouter);
 app.use('/api', AuthRouter);
 app.use('/api', OrderRouter);
+app.use('/api', AdminRouter);
 
 app.listen(port, () => {
 	console.log(`connecting to ${port}`);

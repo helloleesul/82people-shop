@@ -19,7 +19,7 @@ h3 {
 	padding: 30px;
 }
 .myparty-menubar {
-	border-right: 1px solid #000;
+	/* border-right: 1px solid #000; */
 	width: 200px;
 }
 .myparty-menubar h2,

@@ -73,6 +73,15 @@ button {
 .cart-items article {
 	flex: 1;
 }
+.cart-items article > * {
+	flex: 1;
+}
+.cart-items article > div:last-child {
+	text-align: right;
+}
+.cart-items .thumbnail {
+	flex: 2;
+}
 .cart-items .thumbnail,
 .cart-items .thumbnail label {
 	display: flex;
@@ -81,11 +90,12 @@ button {
 	cursor: pointer;
 }
 .cart-price {
-	background-color: #ddd;
+	background-color: #fff;
 	padding: 40px;
 	padding-bottom: 20px;
 	font-size: 20px;
 	margin-top: 20px;
+	border: 1px solid #000;
 }
 .cart-price > div {
 	display: flex;
@@ -137,4 +147,9 @@ button {
 	font-size: 20px;
 	width: 30px;
 	height: 30px;
+}
+.delete-btn {
+	background-color: #000;
+	color: #fff;
+	padding: 7px 10px;
 }

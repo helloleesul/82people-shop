@@ -49,12 +49,15 @@ fetch('/api/users/myPage', {
 	.then(json => {
 		// 받아온 정보들을 위에 태그값에 넣어서 화면에 보여주기
 		console.log('json', json);
-		const { name, email, password } = json.userInformation;
+		const { name, email, password, role } = json.userInformation;
 		const { address, detailAddress, recipient, shippingRequest, phone } =
 			json.userInformation.addressInformation;
 		receiverNameInput.value = name;
 		receiverEmailInput.value = email;
 		receiverPasswordInput.value = password;
+		if (role === 'admin') {
+			window.location.href = '/';
+		}
 
 		if (json.userInformation.addressInformation.length !== 0) {
 			defaultAddress.value = address;
