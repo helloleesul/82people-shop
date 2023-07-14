@@ -6,6 +6,8 @@
 		<link rel="stylesheet" href="/Common/common.css" />
 		<!-- 작업할 css 연결 -->
 		<link rel="stylesheet" href="./MemberInfo.css" />
+		<!-- 우편번호 서비스 -->
+		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 		<script type="module" src="./MemberInfo.js"></script>
 		<title>회원 정보 수정</title>
 	</head>
@@ -48,25 +50,63 @@
 								</strong>
 								<strong>
 									<span class="member-email">이메일</span>
-									<input class="input" id="receiver-email" />
+									<input class="input" id="receiver-email" disabled />
 								</strong>
 								<strong>
 									<span class="member-password">비밀번호</span>
-									<input class="input" id="receiver-password" />
+									<div style="display: flex">
+										<input class="input" id="receiver-password" />
+										<button class="modify-botton">비밀번호 변경</button>
+									</div>
 								</strong>
 								<strong>
-									<span class="member-address">주소</span>
-									<input class="input_Address" id="receiver-address" />
+									<span class="member-address">기본 배송지</span>
+									<div>
+										<section>
+											<label class="require" for="recipient">수령인</label>
+											<input type="text" id="recipient" name="orderForm" />
+										</section>
+										<section>
+											<label class="require" for="phone">연락처</label>
+											<input
+												type="tel"
+												id="phone"
+												name="orderForm"
+												maxlength="13"
+											/>
+										</section>
+										<section class="api-btn" style="display: flex">
+											<input
+												type="text"
+												readonly
+												id="address"
+												name="orderForm"
+												placeholder="주소"
+											/>
+											<button id="searchAddress">주소검색</button>
+										</section>
+										<input
+											style="width: 100%"
+											type="text"
+											id="detail-address"
+											name="orderForm"
+											placeholder="상세주소"
+										/>
+										<section>
+											<label for="shippingRequest">배송 요청사항</label>
+											<input
+												type="text"
+												id="shippingRequest"
+												name="orderForm"
+											/>
+										</section>
+										<button id="updateAddress">배송지 변경</button>
+									</div>
 								</strong>
-								<div class="field2">
-									<button class="modify-botton">정보 수정</button>
-								</div>
-								<div class="member-withdrawal-link">
-									<a href="/myPage/delete-membership" id="member-out">
-										<span>회원 탈퇴</span>
-									</a>
-								</div>
 							</div>
+							<a href="/myPage/delete-membership" id="member-out">
+								회원 탈퇴
+							</a>
 						</section>
 					</div>
 				</div>

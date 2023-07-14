@@ -14,7 +14,10 @@ const productDescription = document.querySelector('.product-detail');
 const addToCart = document.querySelector('#add-to-cart');
 const productAmount = document.querySelector('#amount');
 const totalCash = document.querySelector('.product-total-cash');
+
 let imageURL;
+let price;
+let totalPrice;
 
 fetch(`/api/products/${productId}`, {
 	method: 'GET',
@@ -39,12 +42,15 @@ fetch(`/api/products/${productId}`, {
 
 		productMaker.innerText = productInfo.manufacturer;
 		productTitle.innerText = productInfo.title;
-		productPrice.innerText = productInfo.price;
+		productPrice.innerText = `${Number(productInfo.price).toLocaleString()} 원`;
 		productDescription.innerText = productInfo.description;
 		//  productInfo._id;
+
 		imageURL = productInfo.imageURL[0];
-		totalCash.innerText =
-			Number(productPrice.innerText).toLocaleString() + ' 원';
+		totalCash.innerText = `${productInfo.price} 원`;
+
+		price = Number(productInfo.price);
+		totalPrice = Number(productInfo.price);
 	})
 	.catch(err => console.log(err));
 
@@ -53,12 +59,10 @@ let products = JSON.parse(localStorage.getItem(PRODUCT_KEY)) || [];
 
 productAmount.addEventListener('change', e => {
 	productAmount.value = e.target.value;
-	// console.log('productAmount.value', productAmount.value);
-	// console.log('productPrice.value', productPrice.textContent);
-	totalCash.innerText = `	${
-		Number(productPrice.textContent) *
-		Number(productAmount.value).toLocaleString()
-	}  원`;
+
+	totalCash.innerText = `	${(
+		price * Number(productAmount.value)
+	).toLocaleString()}  원`;
 });
 
 addToCart.addEventListener('click', () => {
@@ -69,8 +73,8 @@ addToCart.addEventListener('click', () => {
 		title: productTitle.textContent, // api에서 가져온 title값
 		amount: Number(productAmount.value),
 		imageUrl: imageURL, // api에서 가져온 imageUrl값
-		price: Number(productPrice.textContent),
-		totalPrice: Number(productPrice.textContent) * Number(productAmount.value),
+		price: price,
+		totalPrice: price * Number(productAmount.value),
 	};
 
 	if (hasProduct !== -1) {

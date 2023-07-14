@@ -44,7 +44,7 @@ main {
 
 /* 헤더 */
 header {
-	height: 100px;
+	min-height: 100px;
 	background-color: #fff;
 	box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.07);
 }
@@ -92,11 +92,14 @@ header {
 }
 
 .header-container .header-group ul li a:hover {
-	border-bottom: 1px solid #000;
+	border-bottom: 1px solid #ff5675;
+	color: #ff5675;
 }
 
 .header-container .header-group .menu-group {
 	display: flex;
+	align-items: center;
+	color: #999;
 }
 
 .header-container .header-group .menu-group > div {
