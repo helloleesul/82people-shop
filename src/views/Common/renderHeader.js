@@ -27,7 +27,7 @@ function renderHeader() {
 			return JSON.parse(jsonPayload);
 		};
 
-		const { name } = parseJwt(token);
+		const { name, role } = parseJwt(token);
 
 		header.innerHTML = `
       <div class="header-container">
@@ -58,10 +58,10 @@ function renderHeader() {
           </nav>
           <div class="menu-group">
             <div>
-              <span>🥳 ${name} 님</span>
+              <span>🥳 <span style="color:#ff5675; font-weight:600;">${name}님</span></span>
             </div>
             <div>
-              <span id="logout" onclick="(function(){
+              <span style="cursor:pointer" id="logout" onclick="(function(){
                 document.cookie = 'userToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
                 window.location.href = '/login';
               }) ()">로그아웃</span>
@@ -71,7 +71,9 @@ function renderHeader() {
             </div>
             <!-- 로그인 상태일 경우 마이페이지 노출-->
             <div>
-              <a href="/myPage">마이페이지</a>
+              <a href="${
+								role === 'customer' ? '/mypage' : '/admin'
+							}">마이페이지</a>
             </div>
             <div>
               <a href="/cart">
@@ -127,6 +129,21 @@ function renderHeader() {
             </div>
           </div>
         </div>
+      </div>
+    </div>
+
+    <div class="badges">
+      <div class="badge">
+        <a href="/products/category/?category=Christmas">
+          <img src="https://partyhae.com/web/product/extra/big/201712/13952_shop1_317692.jpg" alt="badge">
+          <div>🥇 인기상품 🥇</div>
+        </a>
+      </div>
+      <div class="badge">
+        <a href="/products/category/?category=birthDay">
+          <img src="https://partyhae.com/web/product/big/20200227/82d5c7f017b86f7fbd292db365db84b6.jpg" alt="badge">
+          <div class="new-title">🤡 신규상품 🤡</div>
+        </a>
       </div>
     </div>
       `;

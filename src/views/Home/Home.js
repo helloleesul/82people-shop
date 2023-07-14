@@ -35,7 +35,7 @@ const getProducts = newProduct => {
 	// ${newProduct.imageURL}
 	return `<li>
     <a class='product-link'
-    href='/products?productId=${newProduct._id}' target='_self' id='bring-list'>
+    href='/products?productId=${newProduct._id}' target='_self'>
     <img class="product-img"
     src='${newProduct.imageURL}' alt="product-item"/>
     <div class="product-title">${newProduct.title}</div>
