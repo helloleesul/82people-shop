@@ -50,16 +50,15 @@ if (hasToken) {
 } else {
 	console.log('JWT 토큰이 쿠키에 존재하지 않습니다.');
 	userName.innerHTML = '';
-	guestModeEl.innerHTML = `주문번호 <button type="button" id="order-id">${orderId}</button>와 비밀번호를
+	guestModeEl.innerHTML = `주문번호 <label for="order-id" id="order-id-label">${orderId}</label><input id="order-id"  />와 비밀번호를
     기억해주세요!`;
-	const orderIdCopy = document.querySelector('#order-id');
-	orderIdCopy.addEventListener('click', async () => {
-		try {
-			await navigator.clipboard.writeText(orderId);
-			alert(`주문번호: ${orderId}`);
-		} catch (err) {
-			console.log('복사실패', err);
-		}
+	const orderIdInput = document.querySelector('#order-id');
+	const orderIdCopy = document.querySelector('#order-id-label');
+	orderIdCopy.addEventListener('click', () => {
+		orderIdInput.value = orderId;
+		orderIdInput.select();
+		document.execCommand('copy');
+		alert('주문번호가 복사되었습니다!');
 	});
 }
 

@@ -17,6 +17,10 @@ button {
 #checked-delete {
 	right: 0;
 }
+#all-checked + label {
+	cursor: pointer;
+	padding: 7px;
+}
 #cart-wrap {
 	width: 80%;
 	margin: 0 auto;
@@ -54,6 +58,7 @@ button {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	padding-bottom: 10px;
 }
 .cart-items .empty-items {
 	display: block;
