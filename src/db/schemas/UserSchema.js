@@ -16,15 +16,13 @@ const UserSchema = new Schema(
 			type: String,
 			required: true,
 		},
-		addressInformation: [
-			{
+		addressInformation: {
 				recipient: { type: String, required: true },
 				phone: { type: String, required: true },
 				address: { type: String, required: true },
 				detailAddress: { type: String, required: true },
 				shippingRequest: { type: String },
-			},
-		],
+		},
 		role: {
 			type: String,
 			enum: userRole,
