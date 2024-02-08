@@ -46,10 +46,10 @@ function renderHeader() {
                 <a href="/products/category/?category=newYear">새해</a>
               </li>
               <li>
-                <a href="/products/category/?category=Christmas">크리스마스</a>
+                <a href="/products/category/?category=christmas">크리스마스</a>
               </li>
               <li>
-                <a href="/products/category/?category=Halloween">할로윈</a>
+                <a href="/products/category/?category=halloween">할로윈</a>
               </li>
               <li>
                 <a href="/products/category/?category=partySet">파티세트</a>
@@ -91,7 +91,7 @@ function renderHeader() {
 
     <div class="badges">
       <div class="badge">
-        <a href="/products/category/?category=Christmas">
+        <a href="/products/category/?category=christmas">
           <img src="https://partyhae.com/web/product/extra/big/201712/13952_shop1_317692.jpg" alt="badge">
           <div>🥇 인기상품 🥇</div>
         </a>
@@ -124,10 +124,10 @@ function renderHeader() {
             <a href="/products/category/?category=newYear">새해</a>
           </li>
           <li>
-            <a href="/products/category/?category=Christmas">크리스마스</a>
+            <a href="/products/category/?category=christmas">크리스마스</a>
           </li>
           <li>
-            <a href="/products/category/?category=Halloween">할로윈</a>
+            <a href="/products/category/?category=halloween">할로윈</a>
           </li>
           <li>
             <a href="/products/category/?category=partySet">파티세트</a>
@@ -153,7 +153,7 @@ function renderHeader() {
 
     <div class="badges">
       <div class="badge">
-        <a href="/products/category/?category=Christmas">
+        <a href="/products/category/?category=christmas">
           <img src="https://partyhae.com/web/product/extra/big/201712/13952_shop1_317692.jpg" alt="badge">
           <div>🥇 인기상품 🥇</div>
         </a>
